@@ -31,6 +31,7 @@ from .resources import (
     markets,
     chapters,
     episodes,
+    webhooks,
     audiobooks,
     audio_analysis,
     audio_features,
@@ -67,6 +68,7 @@ class Spotted(SyncAPIClient):
     audio_features: audio_features.AudioFeaturesResource
     audio_analysis: audio_analysis.AudioAnalysisResource
     recommendations: recommendations.RecommendationsResource
+    webhooks: webhooks.WebhooksResource
     markets: markets.MarketsResource
     with_raw_response: SpottedWithRawResponse
     with_streaming_response: SpottedWithStreamedResponse
@@ -74,12 +76,14 @@ class Spotted(SyncAPIClient):
     # client options
     client_id: str
     client_secret: str
+    webhook_key: str | None
 
     def __init__(
         self,
         *,
         client_id: str | None = None,
         client_secret: str | None = None,
+        webhook_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -104,6 +108,7 @@ class Spotted(SyncAPIClient):
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `client_id` from `SPOTIFY_CLIENT_ID`
         - `client_secret` from `SPOTIFY_CLIENT_SECRET`
+        - `webhook_key` from `ORG_WEBHOOK_KEY`
         """
         if client_id is None:
             client_id = os.environ.get("SPOTIFY_CLIENT_ID")
@@ -120,6 +125,10 @@ class Spotted(SyncAPIClient):
                 "The client_secret client option must be set either by passing client_secret to the client or by setting the SPOTIFY_CLIENT_SECRET environment variable"
             )
         self.client_secret = client_secret
+
+        if webhook_key is None:
+            webhook_key = os.environ.get("ORG_WEBHOOK_KEY")
+        self.webhook_key = webhook_key
 
         if base_url is None:
             base_url = os.environ.get("SPOTTED_BASE_URL")
@@ -152,6 +161,7 @@ class Spotted(SyncAPIClient):
         self.audio_features = audio_features.AudioFeaturesResource(self)
         self.audio_analysis = audio_analysis.AudioAnalysisResource(self)
         self.recommendations = recommendations.RecommendationsResource(self)
+        self.webhooks = webhooks.WebhooksResource(self)
         self.markets = markets.MarketsResource(self)
         self.with_raw_response = SpottedWithRawResponse(self)
         self.with_streaming_response = SpottedWithStreamedResponse(self)
@@ -196,6 +206,7 @@ class Spotted(SyncAPIClient):
         *,
         client_id: str | None = None,
         client_secret: str | None = None,
+        webhook_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -231,6 +242,7 @@ class Spotted(SyncAPIClient):
         return self.__class__(
             client_id=client_id or self.client_id,
             client_secret=client_secret or self.client_secret,
+            webhook_key=webhook_key or self.webhook_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -294,6 +306,7 @@ class AsyncSpotted(AsyncAPIClient):
     audio_features: audio_features.AsyncAudioFeaturesResource
     audio_analysis: audio_analysis.AsyncAudioAnalysisResource
     recommendations: recommendations.AsyncRecommendationsResource
+    webhooks: webhooks.AsyncWebhooksResource
     markets: markets.AsyncMarketsResource
     with_raw_response: AsyncSpottedWithRawResponse
     with_streaming_response: AsyncSpottedWithStreamedResponse
@@ -301,12 +314,14 @@ class AsyncSpotted(AsyncAPIClient):
     # client options
     client_id: str
     client_secret: str
+    webhook_key: str | None
 
     def __init__(
         self,
         *,
         client_id: str | None = None,
         client_secret: str | None = None,
+        webhook_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -331,6 +346,7 @@ class AsyncSpotted(AsyncAPIClient):
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `client_id` from `SPOTIFY_CLIENT_ID`
         - `client_secret` from `SPOTIFY_CLIENT_SECRET`
+        - `webhook_key` from `ORG_WEBHOOK_KEY`
         """
         if client_id is None:
             client_id = os.environ.get("SPOTIFY_CLIENT_ID")
@@ -347,6 +363,10 @@ class AsyncSpotted(AsyncAPIClient):
                 "The client_secret client option must be set either by passing client_secret to the client or by setting the SPOTIFY_CLIENT_SECRET environment variable"
             )
         self.client_secret = client_secret
+
+        if webhook_key is None:
+            webhook_key = os.environ.get("ORG_WEBHOOK_KEY")
+        self.webhook_key = webhook_key
 
         if base_url is None:
             base_url = os.environ.get("SPOTTED_BASE_URL")
@@ -379,6 +399,7 @@ class AsyncSpotted(AsyncAPIClient):
         self.audio_features = audio_features.AsyncAudioFeaturesResource(self)
         self.audio_analysis = audio_analysis.AsyncAudioAnalysisResource(self)
         self.recommendations = recommendations.AsyncRecommendationsResource(self)
+        self.webhooks = webhooks.AsyncWebhooksResource(self)
         self.markets = markets.AsyncMarketsResource(self)
         self.with_raw_response = AsyncSpottedWithRawResponse(self)
         self.with_streaming_response = AsyncSpottedWithStreamedResponse(self)
@@ -423,6 +444,7 @@ class AsyncSpotted(AsyncAPIClient):
         *,
         client_id: str | None = None,
         client_secret: str | None = None,
+        webhook_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -458,6 +480,7 @@ class AsyncSpotted(AsyncAPIClient):
         return self.__class__(
             client_id=client_id or self.client_id,
             client_secret=client_secret or self.client_secret,
+            webhook_key=webhook_key or self.webhook_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,

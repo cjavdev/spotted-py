@@ -88,6 +88,7 @@ from .episodes import (
     EpisodesResourceWithStreamingResponse,
     AsyncEpisodesResourceWithStreamingResponse,
 )
+from .webhooks import WebhooksResource, AsyncWebhooksResource
 from .playlists import (
     PlaylistsResource,
     AsyncPlaylistsResource,
@@ -220,6 +221,8 @@ __all__ = [
     "AsyncRecommendationsResourceWithRawResponse",
     "RecommendationsResourceWithStreamingResponse",
     "AsyncRecommendationsResourceWithStreamingResponse",
+    "WebhooksResource",
+    "AsyncWebhooksResource",
     "MarketsResource",
     "AsyncMarketsResource",
     "MarketsResourceWithRawResponse",
