@@ -152,9 +152,7 @@ class FollowingResource(SyncAPIResource):
     def follow(
         self,
         *,
-        query_ids: str,
-        type: Literal["artist", "user"],
-        body_ids: SequenceNotStr[str],
+        ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -167,13 +165,7 @@ class FollowingResource(SyncAPIResource):
         users.
 
         Args:
-          query_ids: A comma-separated list of the artist or the user
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). A maximum of 50
-              IDs can be sent in one request.
-
-          type: The ID type.
-
-          body_ids: A JSON array of the artist or user
+          ids: A JSON array of the artist or user
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
               `{ids:["74ASZWbe4lXaubB36ztrGX", "08td7MxkoHQkXnWAYD8d6Q"]}`. A maximum of 50
               IDs can be sent in one request. _**Note**: if the `ids` parameter is present in
@@ -190,19 +182,9 @@ class FollowingResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             "/me/following",
-            body=maybe_transform({"body_ids": body_ids}, following_follow_params.FollowingFollowParams),
+            body=maybe_transform({"ids": ids}, following_follow_params.FollowingFollowParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "query_ids": query_ids,
-                        "type": type,
-                    },
-                    following_follow_params.FollowingFollowParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -210,9 +192,7 @@ class FollowingResource(SyncAPIResource):
     def unfollow(
         self,
         *,
-        query_ids: str,
-        type: Literal["artist", "user"],
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -225,14 +205,7 @@ class FollowingResource(SyncAPIResource):
         users.
 
         Args:
-          query_ids: A comma-separated list of the artist or the user
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
-              `ids=74ASZWbe4lXaubB36ztrGX,08td7MxkoHQkXnWAYD8d6Q`. A maximum of 50 IDs can be
-              sent in one request.
-
-          type: The ID type: either `artist` or `user`.
-
-          body_ids: A JSON array of the artist or user
+          ids: A JSON array of the artist or user
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
               `{ids:["74ASZWbe4lXaubB36ztrGX", "08td7MxkoHQkXnWAYD8d6Q"]}`. A maximum of 50
               IDs can be sent in one request. _**Note**: if the `ids` parameter is present in
@@ -249,19 +222,9 @@ class FollowingResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             "/me/following",
-            body=maybe_transform({"body_ids": body_ids}, following_unfollow_params.FollowingUnfollowParams),
+            body=maybe_transform({"ids": ids}, following_unfollow_params.FollowingUnfollowParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "query_ids": query_ids,
-                        "type": type,
-                    },
-                    following_unfollow_params.FollowingUnfollowParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -390,9 +353,7 @@ class AsyncFollowingResource(AsyncAPIResource):
     async def follow(
         self,
         *,
-        query_ids: str,
-        type: Literal["artist", "user"],
-        body_ids: SequenceNotStr[str],
+        ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -405,13 +366,7 @@ class AsyncFollowingResource(AsyncAPIResource):
         users.
 
         Args:
-          query_ids: A comma-separated list of the artist or the user
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). A maximum of 50
-              IDs can be sent in one request.
-
-          type: The ID type.
-
-          body_ids: A JSON array of the artist or user
+          ids: A JSON array of the artist or user
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
               `{ids:["74ASZWbe4lXaubB36ztrGX", "08td7MxkoHQkXnWAYD8d6Q"]}`. A maximum of 50
               IDs can be sent in one request. _**Note**: if the `ids` parameter is present in
@@ -428,19 +383,9 @@ class AsyncFollowingResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             "/me/following",
-            body=await async_maybe_transform({"body_ids": body_ids}, following_follow_params.FollowingFollowParams),
+            body=await async_maybe_transform({"ids": ids}, following_follow_params.FollowingFollowParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "query_ids": query_ids,
-                        "type": type,
-                    },
-                    following_follow_params.FollowingFollowParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -448,9 +393,7 @@ class AsyncFollowingResource(AsyncAPIResource):
     async def unfollow(
         self,
         *,
-        query_ids: str,
-        type: Literal["artist", "user"],
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -463,14 +406,7 @@ class AsyncFollowingResource(AsyncAPIResource):
         users.
 
         Args:
-          query_ids: A comma-separated list of the artist or the user
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
-              `ids=74ASZWbe4lXaubB36ztrGX,08td7MxkoHQkXnWAYD8d6Q`. A maximum of 50 IDs can be
-              sent in one request.
-
-          type: The ID type: either `artist` or `user`.
-
-          body_ids: A JSON array of the artist or user
+          ids: A JSON array of the artist or user
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
               `{ids:["74ASZWbe4lXaubB36ztrGX", "08td7MxkoHQkXnWAYD8d6Q"]}`. A maximum of 50
               IDs can be sent in one request. _**Note**: if the `ids` parameter is present in
@@ -487,19 +423,9 @@ class AsyncFollowingResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             "/me/following",
-            body=await async_maybe_transform({"body_ids": body_ids}, following_unfollow_params.FollowingUnfollowParams),
+            body=await async_maybe_transform({"ids": ids}, following_unfollow_params.FollowingUnfollowParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "query_ids": query_ids,
-                        "type": type,
-                    },
-                    following_unfollow_params.FollowingUnfollowParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )

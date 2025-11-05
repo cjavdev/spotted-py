@@ -149,8 +149,7 @@ class TracksResource(SyncAPIResource):
     def remove(
         self,
         *,
-        query_ids: str,
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -162,11 +161,7 @@ class TracksResource(SyncAPIResource):
         Remove one or more tracks from the current user's 'Your Music' library.
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
-              `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum: 50 IDs.
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
               `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br/>A maximum of 50 items
               can be specified in one request. _**Note**: if the `ids` parameter is present in
@@ -183,13 +178,9 @@ class TracksResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             "/me/tracks",
-            body=maybe_transform({"body_ids": body_ids}, track_remove_params.TrackRemoveParams),
+            body=maybe_transform({"ids": ids}, track_remove_params.TrackRemoveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"query_ids": query_ids}, track_remove_params.TrackRemoveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -374,8 +365,7 @@ class AsyncTracksResource(AsyncAPIResource):
     async def remove(
         self,
         *,
-        query_ids: str,
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -387,11 +377,7 @@ class AsyncTracksResource(AsyncAPIResource):
         Remove one or more tracks from the current user's 'Your Music' library.
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
-              `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum: 50 IDs.
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
               `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br/>A maximum of 50 items
               can be specified in one request. _**Note**: if the `ids` parameter is present in
@@ -408,13 +394,9 @@ class AsyncTracksResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             "/me/tracks",
-            body=await async_maybe_transform({"body_ids": body_ids}, track_remove_params.TrackRemoveParams),
+            body=await async_maybe_transform({"ids": ids}, track_remove_params.TrackRemoveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"query_ids": query_ids}, track_remove_params.TrackRemoveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )

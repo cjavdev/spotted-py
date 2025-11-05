@@ -152,8 +152,7 @@ class EpisodesResource(SyncAPIResource):
     def remove(
         self,
         *,
-        query_ids: str,
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -168,11 +167,7 @@ class EpisodesResource(SyncAPIResource):
         [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
-              `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum: 50 IDs.
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). <br/>A maximum
               of 50 items can be specified in one request. _**Note**: if the `ids` parameter
               is present in the query string, any IDs listed here in the body will be
@@ -189,13 +184,9 @@ class EpisodesResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             "/me/episodes",
-            body=maybe_transform({"body_ids": body_ids}, episode_remove_params.EpisodeRemoveParams),
+            body=maybe_transform({"ids": ids}, episode_remove_params.EpisodeRemoveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"query_ids": query_ids}, episode_remove_params.EpisodeRemoveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -203,8 +194,7 @@ class EpisodesResource(SyncAPIResource):
     def save(
         self,
         *,
-        query_ids: str,
-        body_ids: SequenceNotStr[str],
+        ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -219,11 +209,7 @@ class EpisodesResource(SyncAPIResource):
         [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). Maximum: 50
-              IDs.
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). <br/>A maximum
               of 50 items can be specified in one request. _**Note**: if the `ids` parameter
               is present in the query string, any IDs listed here in the body will be
@@ -240,13 +226,9 @@ class EpisodesResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             "/me/episodes",
-            body=maybe_transform({"body_ids": body_ids}, episode_save_params.EpisodeSaveParams),
+            body=maybe_transform({"ids": ids}, episode_save_params.EpisodeSaveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"query_ids": query_ids}, episode_save_params.EpisodeSaveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -381,8 +363,7 @@ class AsyncEpisodesResource(AsyncAPIResource):
     async def remove(
         self,
         *,
-        query_ids: str,
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -397,11 +378,7 @@ class AsyncEpisodesResource(AsyncAPIResource):
         [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
-              `ids=4iV5W9uYEdYUVa79Axb7Rh,1301WleyT98MSxVHPZCA6M`. Maximum: 50 IDs.
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). <br/>A maximum
               of 50 items can be specified in one request. _**Note**: if the `ids` parameter
               is present in the query string, any IDs listed here in the body will be
@@ -418,13 +395,9 @@ class AsyncEpisodesResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             "/me/episodes",
-            body=await async_maybe_transform({"body_ids": body_ids}, episode_remove_params.EpisodeRemoveParams),
+            body=await async_maybe_transform({"ids": ids}, episode_remove_params.EpisodeRemoveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"query_ids": query_ids}, episode_remove_params.EpisodeRemoveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -432,8 +405,7 @@ class AsyncEpisodesResource(AsyncAPIResource):
     async def save(
         self,
         *,
-        query_ids: str,
-        body_ids: SequenceNotStr[str],
+        ids: SequenceNotStr[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -448,11 +420,7 @@ class AsyncEpisodesResource(AsyncAPIResource):
         [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). Maximum: 50
-              IDs.
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). <br/>A maximum
               of 50 items can be specified in one request. _**Note**: if the `ids` parameter
               is present in the query string, any IDs listed here in the body will be
@@ -469,13 +437,9 @@ class AsyncEpisodesResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             "/me/episodes",
-            body=await async_maybe_transform({"body_ids": body_ids}, episode_save_params.EpisodeSaveParams),
+            body=await async_maybe_transform({"ids": ids}, episode_save_params.EpisodeSaveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"query_ids": query_ids}, episode_save_params.EpisodeSaveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )

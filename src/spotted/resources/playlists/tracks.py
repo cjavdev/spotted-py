@@ -51,12 +51,11 @@ class TracksResource(SyncAPIResource):
         self,
         playlist_id: str,
         *,
-        query_uris: str | Omit = omit,
         insert_before: int | Omit = omit,
         range_length: int | Omit = omit,
         range_start: int | Omit = omit,
         snapshot_id: str | Omit = omit,
-        body_uris: SequenceNotStr[str] | Omit = omit,
+        uris: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -78,12 +77,6 @@ class TracksResource(SyncAPIResource):
         Args:
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
               playlist.
-
-          query_uris: A comma-separated list of
-              [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to set, can be
-              track or episode URIs. For example:
-              `uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ`<br/>A
-              maximum of 100 items can be set in one request.
 
           insert_before: The position where the items should be inserted.<br/>To reorder the items to the
               end of the playlist, simply set _insert_before_ to the position after the last
@@ -120,16 +113,12 @@ class TracksResource(SyncAPIResource):
                     "range_length": range_length,
                     "range_start": range_start,
                     "snapshot_id": snapshot_id,
-                    "body_uris": body_uris,
+                    "uris": uris,
                 },
                 track_update_params.TrackUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"query_uris": query_uris}, track_update_params.TrackUpdateParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TrackUpdateResponse,
         )
@@ -226,10 +215,8 @@ class TracksResource(SyncAPIResource):
         self,
         playlist_id: str,
         *,
-        query_position: int | Omit = omit,
-        query_uris: str | Omit = omit,
-        body_position: int | Omit = omit,
-        body_uris: SequenceNotStr[str] | Omit = omit,
+        position: int | Omit = omit,
+        uris: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -244,28 +231,13 @@ class TracksResource(SyncAPIResource):
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
               playlist.
 
-          query_position: The position to insert the items, a zero-based index. For example, to insert the
-              items in the first position: `position=0`; to insert the items in the third
-              position: `position=2`. If omitted, the items will be appended to the playlist.
-              Items are added in the order they are listed in the query string or request
-              body.
-
-          query_uris: A comma-separated list of
-              [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to add, can be
-              track or episode URIs. For
-              example:<br/>`uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh, spotify:track:1301WleyT98MSxVHPZCA6M, spotify:episode:512ojhOuo1ktJprKbVcKyQ`<br/>A
-              maximum of 100 items can be added in one request. <br/> _**Note**: it is likely
-              that passing a large number of item URIs as a query parameter will exceed the
-              maximum length of the request URI. When adding a large number of items, it is
-              recommended to pass them in the request body, see below._
-
-          body_position: The position to insert the items, a zero-based index. For example, to insert the
+          position: The position to insert the items, a zero-based index. For example, to insert the
               items in the first position: `position=0` ; to insert the items in the third
               position: `position=2`. If omitted, the items will be appended to the playlist.
               Items are added in the order they appear in the uris array. For example:
               `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M"], "position": 3}`
 
-          body_uris: A JSON array of the
+          uris: A JSON array of the
               [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to add. For
               example:
               `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M", "spotify:episode:512ojhOuo1ktJprKbVcKyQ"]}`<br/>A
@@ -287,23 +259,13 @@ class TracksResource(SyncAPIResource):
             f"/playlists/{playlist_id}/tracks",
             body=maybe_transform(
                 {
-                    "body_position": body_position,
-                    "body_uris": body_uris,
+                    "position": position,
+                    "uris": uris,
                 },
                 track_add_params.TrackAddParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "query_position": query_position,
-                        "query_uris": query_uris,
-                    },
-                    track_add_params.TrackAddParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TrackAddResponse,
         )
@@ -388,12 +350,11 @@ class AsyncTracksResource(AsyncAPIResource):
         self,
         playlist_id: str,
         *,
-        query_uris: str | Omit = omit,
         insert_before: int | Omit = omit,
         range_length: int | Omit = omit,
         range_start: int | Omit = omit,
         snapshot_id: str | Omit = omit,
-        body_uris: SequenceNotStr[str] | Omit = omit,
+        uris: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -415,12 +376,6 @@ class AsyncTracksResource(AsyncAPIResource):
         Args:
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
               playlist.
-
-          query_uris: A comma-separated list of
-              [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to set, can be
-              track or episode URIs. For example:
-              `uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ`<br/>A
-              maximum of 100 items can be set in one request.
 
           insert_before: The position where the items should be inserted.<br/>To reorder the items to the
               end of the playlist, simply set _insert_before_ to the position after the last
@@ -457,16 +412,12 @@ class AsyncTracksResource(AsyncAPIResource):
                     "range_length": range_length,
                     "range_start": range_start,
                     "snapshot_id": snapshot_id,
-                    "body_uris": body_uris,
+                    "uris": uris,
                 },
                 track_update_params.TrackUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"query_uris": query_uris}, track_update_params.TrackUpdateParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TrackUpdateResponse,
         )
@@ -563,10 +514,8 @@ class AsyncTracksResource(AsyncAPIResource):
         self,
         playlist_id: str,
         *,
-        query_position: int | Omit = omit,
-        query_uris: str | Omit = omit,
-        body_position: int | Omit = omit,
-        body_uris: SequenceNotStr[str] | Omit = omit,
+        position: int | Omit = omit,
+        uris: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -581,28 +530,13 @@ class AsyncTracksResource(AsyncAPIResource):
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
               playlist.
 
-          query_position: The position to insert the items, a zero-based index. For example, to insert the
-              items in the first position: `position=0`; to insert the items in the third
-              position: `position=2`. If omitted, the items will be appended to the playlist.
-              Items are added in the order they are listed in the query string or request
-              body.
-
-          query_uris: A comma-separated list of
-              [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to add, can be
-              track or episode URIs. For
-              example:<br/>`uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh, spotify:track:1301WleyT98MSxVHPZCA6M, spotify:episode:512ojhOuo1ktJprKbVcKyQ`<br/>A
-              maximum of 100 items can be added in one request. <br/> _**Note**: it is likely
-              that passing a large number of item URIs as a query parameter will exceed the
-              maximum length of the request URI. When adding a large number of items, it is
-              recommended to pass them in the request body, see below._
-
-          body_position: The position to insert the items, a zero-based index. For example, to insert the
+          position: The position to insert the items, a zero-based index. For example, to insert the
               items in the first position: `position=0` ; to insert the items in the third
               position: `position=2`. If omitted, the items will be appended to the playlist.
               Items are added in the order they appear in the uris array. For example:
               `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M"], "position": 3}`
 
-          body_uris: A JSON array of the
+          uris: A JSON array of the
               [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to add. For
               example:
               `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M", "spotify:episode:512ojhOuo1ktJprKbVcKyQ"]}`<br/>A
@@ -624,23 +558,13 @@ class AsyncTracksResource(AsyncAPIResource):
             f"/playlists/{playlist_id}/tracks",
             body=await async_maybe_transform(
                 {
-                    "body_position": body_position,
-                    "body_uris": body_uris,
+                    "position": position,
+                    "uris": uris,
                 },
                 track_add_params.TrackAddParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "query_position": query_position,
-                        "query_uris": query_uris,
-                    },
-                    track_add_params.TrackAddParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=TrackAddResponse,
         )

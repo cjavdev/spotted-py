@@ -2,24 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
-from ..._utils import PropertyInfo
 
 __all__ = ["TrackUpdateParams"]
 
 
 class TrackUpdateParams(TypedDict, total=False):
-    query_uris: Annotated[str, PropertyInfo(alias="uris")]
-    """
-    A comma-separated list of
-    [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to set, can be
-    track or episode URIs. For example:
-    `uris=spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ`<br/>A
-    maximum of 100 items can be set in one request.
-    """
-
     insert_before: int
     """
     The position where the items should be inserted.<br/>To reorder the items to the
@@ -45,4 +35,4 @@ class TrackUpdateParams(TypedDict, total=False):
     snapshot_id: str
     """The playlist's snapshot ID against which you want to make the changes."""
 
-    body_uris: Annotated[SequenceNotStr[str], PropertyInfo(alias="uris")]
+    uris: SequenceNotStr[str]

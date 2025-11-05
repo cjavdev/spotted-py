@@ -147,8 +147,7 @@ class AlbumsResource(SyncAPIResource):
     def remove(
         self,
         *,
-        query_ids: str,
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -160,11 +159,7 @@ class AlbumsResource(SyncAPIResource):
         Remove one or more albums from the current user's 'Your Music' library.
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the albums.
-              Maximum: 20 IDs.
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
               `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br/>A maximum of 50 items
               can be specified in one request. _**Note**: if the `ids` parameter is present in
@@ -181,13 +176,9 @@ class AlbumsResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             "/me/albums",
-            body=maybe_transform({"body_ids": body_ids}, album_remove_params.AlbumRemoveParams),
+            body=maybe_transform({"ids": ids}, album_remove_params.AlbumRemoveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"query_ids": query_ids}, album_remove_params.AlbumRemoveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -195,8 +186,7 @@ class AlbumsResource(SyncAPIResource):
     def save(
         self,
         *,
-        query_ids: str,
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -208,11 +198,7 @@ class AlbumsResource(SyncAPIResource):
         Save one or more albums to the current user's 'Your Music' library.
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the albums.
-              Maximum: 20 IDs.
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
               `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br/>A maximum of 50 items
               can be specified in one request. _**Note**: if the `ids` parameter is present in
@@ -229,13 +215,9 @@ class AlbumsResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             "/me/albums",
-            body=maybe_transform({"body_ids": body_ids}, album_save_params.AlbumSaveParams),
+            body=maybe_transform({"ids": ids}, album_save_params.AlbumSaveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"query_ids": query_ids}, album_save_params.AlbumSaveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -365,8 +347,7 @@ class AsyncAlbumsResource(AsyncAPIResource):
     async def remove(
         self,
         *,
-        query_ids: str,
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -378,11 +359,7 @@ class AsyncAlbumsResource(AsyncAPIResource):
         Remove one or more albums from the current user's 'Your Music' library.
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the albums.
-              Maximum: 20 IDs.
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
               `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br/>A maximum of 50 items
               can be specified in one request. _**Note**: if the `ids` parameter is present in
@@ -399,13 +376,9 @@ class AsyncAlbumsResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             "/me/albums",
-            body=await async_maybe_transform({"body_ids": body_ids}, album_remove_params.AlbumRemoveParams),
+            body=await async_maybe_transform({"ids": ids}, album_remove_params.AlbumRemoveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"query_ids": query_ids}, album_remove_params.AlbumRemoveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -413,8 +386,7 @@ class AsyncAlbumsResource(AsyncAPIResource):
     async def save(
         self,
         *,
-        query_ids: str,
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -426,11 +398,7 @@ class AsyncAlbumsResource(AsyncAPIResource):
         Save one or more albums to the current user's 'Your Music' library.
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the albums.
-              Maximum: 20 IDs.
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
               `["4iV5W9uYEdYUVa79Axb7Rh", "1301WleyT98MSxVHPZCA6M"]`<br/>A maximum of 50 items
               can be specified in one request. _**Note**: if the `ids` parameter is present in
@@ -447,13 +415,9 @@ class AsyncAlbumsResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             "/me/albums",
-            body=await async_maybe_transform({"body_ids": body_ids}, album_save_params.AlbumSaveParams),
+            body=await async_maybe_transform({"ids": ids}, album_save_params.AlbumSaveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"query_ids": query_ids}, album_save_params.AlbumSaveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )

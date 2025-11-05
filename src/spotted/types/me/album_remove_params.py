@@ -2,23 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
-from ..._utils import PropertyInfo
 
 __all__ = ["AlbumRemoveParams"]
 
 
 class AlbumRemoveParams(TypedDict, total=False):
-    query_ids: Required[Annotated[str, PropertyInfo(alias="ids")]]
-    """
-    A comma-separated list of the
-    [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the albums.
-    Maximum: 20 IDs.
-    """
-
-    body_ids: Annotated[SequenceNotStr[str], PropertyInfo(alias="ids")]
+    ids: SequenceNotStr[str]
     """
     A JSON array of the
     [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:

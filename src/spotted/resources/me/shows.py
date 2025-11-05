@@ -136,9 +136,7 @@ class ShowsResource(SyncAPIResource):
     def remove(
         self,
         *,
-        query_ids: str,
-        market: str | Omit = omit,
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -150,21 +148,7 @@ class ShowsResource(SyncAPIResource):
         Delete one or more shows from current Spotify user's library.
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the shows.
-              Maximum: 50 IDs.
-
-          market: An
-              [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
-              If a country code is specified, only content that is available in that market
-              will be returned.<br/> If a valid user access token is specified in the request
-              header, the country associated with the user account will take priority over
-              this parameter.<br/> _**Note**: If neither market or user country are provided,
-              the content is considered unavailable for the client._<br/> Users can view the
-              country that is associated with their account in the
-              [account settings](https://www.spotify.com/account/overview/).
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).
               A maximum of 50 items can be specified in one request. _Note: if the `ids`
               parameter is present in the query string, any IDs listed here in the body will
@@ -181,19 +165,9 @@ class ShowsResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             "/me/shows",
-            body=maybe_transform({"body_ids": body_ids}, show_remove_params.ShowRemoveParams),
+            body=maybe_transform({"ids": ids}, show_remove_params.ShowRemoveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "query_ids": query_ids,
-                        "market": market,
-                    },
-                    show_remove_params.ShowRemoveParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -201,8 +175,7 @@ class ShowsResource(SyncAPIResource):
     def save(
         self,
         *,
-        query_ids: str,
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -214,11 +187,7 @@ class ShowsResource(SyncAPIResource):
         Save one or more shows to current Spotify user's library.
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the shows.
-              Maximum: 50 IDs.
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).
               A maximum of 50 items can be specified in one request. _Note: if the `ids`
               parameter is present in the query string, any IDs listed here in the body will
@@ -235,13 +204,9 @@ class ShowsResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             "/me/shows",
-            body=maybe_transform({"body_ids": body_ids}, show_save_params.ShowSaveParams),
+            body=maybe_transform({"ids": ids}, show_save_params.ShowSaveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"query_ids": query_ids}, show_save_params.ShowSaveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -360,9 +325,7 @@ class AsyncShowsResource(AsyncAPIResource):
     async def remove(
         self,
         *,
-        query_ids: str,
-        market: str | Omit = omit,
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -374,21 +337,7 @@ class AsyncShowsResource(AsyncAPIResource):
         Delete one or more shows from current Spotify user's library.
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the shows.
-              Maximum: 50 IDs.
-
-          market: An
-              [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
-              If a country code is specified, only content that is available in that market
-              will be returned.<br/> If a valid user access token is specified in the request
-              header, the country associated with the user account will take priority over
-              this parameter.<br/> _**Note**: If neither market or user country are provided,
-              the content is considered unavailable for the client._<br/> Users can view the
-              country that is associated with their account in the
-              [account settings](https://www.spotify.com/account/overview/).
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).
               A maximum of 50 items can be specified in one request. _Note: if the `ids`
               parameter is present in the query string, any IDs listed here in the body will
@@ -405,19 +354,9 @@ class AsyncShowsResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             "/me/shows",
-            body=await async_maybe_transform({"body_ids": body_ids}, show_remove_params.ShowRemoveParams),
+            body=await async_maybe_transform({"ids": ids}, show_remove_params.ShowRemoveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "query_ids": query_ids,
-                        "market": market,
-                    },
-                    show_remove_params.ShowRemoveParams,
-                ),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
@@ -425,8 +364,7 @@ class AsyncShowsResource(AsyncAPIResource):
     async def save(
         self,
         *,
-        query_ids: str,
-        body_ids: SequenceNotStr[str] | Omit = omit,
+        ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -438,11 +376,7 @@ class AsyncShowsResource(AsyncAPIResource):
         Save one or more shows to current Spotify user's library.
 
         Args:
-          query_ids: A comma-separated list of the
-              [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the shows.
-              Maximum: 50 IDs.
-
-          body_ids: A JSON array of the
+          ids: A JSON array of the
               [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).
               A maximum of 50 items can be specified in one request. _Note: if the `ids`
               parameter is present in the query string, any IDs listed here in the body will
@@ -459,13 +393,9 @@ class AsyncShowsResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             "/me/shows",
-            body=await async_maybe_transform({"body_ids": body_ids}, show_save_params.ShowSaveParams),
+            body=await async_maybe_transform({"ids": ids}, show_save_params.ShowSaveParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"query_ids": query_ids}, show_save_params.ShowSaveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
         )
