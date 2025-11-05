@@ -12,7 +12,7 @@ from .shared.simplified_track_object import SimplifiedTrackObject
 from .shared.album_restriction_object import AlbumRestrictionObject
 from .shared.simplified_artist_object import SimplifiedArtistObject
 
-__all__ = ["AlbumListResponse", "Album", "AlbumTracks"]
+__all__ = ["AlbumBulkRetrieveResponse", "Album", "AlbumTracks"]
 
 
 class AlbumTracks(BaseModel):
@@ -122,5 +122,5 @@ class Album(BaseModel):
     """The tracks of the album."""
 
 
-class AlbumListResponse(BaseModel):
+class AlbumBulkRetrieveResponse(BaseModel):
     albums: List[Album]

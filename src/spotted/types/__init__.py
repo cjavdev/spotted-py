@@ -31,11 +31,9 @@ from .shared import (
     SimplifiedPlaylistObject as SimplifiedPlaylistObject,
 )
 from .show_list_params import ShowListParams as ShowListParams
-from .album_list_params import AlbumListParams as AlbumListParams
 from .track_list_params import TrackListParams as TrackListParams
 from .artist_list_params import ArtistListParams as ArtistListParams
 from .show_list_response import ShowListResponse as ShowListResponse
-from .album_list_response import AlbumListResponse as AlbumListResponse
 from .chapter_list_params import ChapterListParams as ChapterListParams
 from .episode_list_params import EpisodeListParams as EpisodeListParams
 from .track_list_response import TrackListResponse as TrackListResponse
@@ -66,11 +64,13 @@ from .chapter_retrieve_response import ChapterRetrieveResponse as ChapterRetriev
 from .recommendation_get_params import RecommendationGetParams as RecommendationGetParams
 from .show_list_episodes_params import ShowListEpisodesParams as ShowListEpisodesParams
 from .simplified_chapter_object import SimplifiedChapterObject as SimplifiedChapterObject
+from .album_bulk_retrieve_params import AlbumBulkRetrieveParams as AlbumBulkRetrieveParams
 from .playlist_retrieve_response import PlaylistRetrieveResponse as PlaylistRetrieveResponse
 from .artist_list_albums_response import ArtistListAlbumsResponse as ArtistListAlbumsResponse
 from .audio_feature_list_response import AudioFeatureListResponse as AudioFeatureListResponse
 from .audiobook_retrieve_response import AudiobookRetrieveResponse as AudiobookRetrieveResponse
 from .recommendation_get_response import RecommendationGetResponse as RecommendationGetResponse
+from .album_bulk_retrieve_response import AlbumBulkRetrieveResponse as AlbumBulkRetrieveResponse
 from .artist_list_top_tracks_params import ArtistListTopTracksParams as ArtistListTopTracksParams
 from .audiobook_list_chapters_params import AudiobookListChaptersParams as AudiobookListChaptersParams
 from .browse_get_new_releases_params import BrowseGetNewReleasesParams as BrowseGetNewReleasesParams

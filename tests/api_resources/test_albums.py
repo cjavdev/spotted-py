@@ -10,8 +10,8 @@ import pytest
 from spotted import Spotted, AsyncSpotted
 from tests.utils import assert_matches_type
 from spotted.types import (
-    AlbumListResponse,
     AlbumRetrieveResponse,
+    AlbumBulkRetrieveResponse,
 )
 from spotted.pagination import SyncCursorURLPage, AsyncCursorURLPage
 from spotted.types.shared import SimplifiedTrackObject
@@ -75,44 +75,44 @@ class TestAlbums:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list(self, client: Spotted) -> None:
-        album = client.albums.list(
+    def test_method_bulk_retrieve(self, client: Spotted) -> None:
+        album = client.albums.bulk_retrieve(
             ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
         )
-        assert_matches_type(AlbumListResponse, album, path=["response"])
+        assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list_with_all_params(self, client: Spotted) -> None:
-        album = client.albums.list(
+    def test_method_bulk_retrieve_with_all_params(self, client: Spotted) -> None:
+        album = client.albums.bulk_retrieve(
             ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
             market="ES",
         )
-        assert_matches_type(AlbumListResponse, album, path=["response"])
+        assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: Spotted) -> None:
-        response = client.albums.with_raw_response.list(
+    def test_raw_response_bulk_retrieve(self, client: Spotted) -> None:
+        response = client.albums.with_raw_response.bulk_retrieve(
             ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         album = response.parse()
-        assert_matches_type(AlbumListResponse, album, path=["response"])
+        assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: Spotted) -> None:
-        with client.albums.with_streaming_response.list(
+    def test_streaming_response_bulk_retrieve(self, client: Spotted) -> None:
+        with client.albums.with_streaming_response.bulk_retrieve(
             ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             album = response.parse()
-            assert_matches_type(AlbumListResponse, album, path=["response"])
+            assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -228,44 +228,44 @@ class TestAsyncAlbums:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncSpotted) -> None:
-        album = await async_client.albums.list(
+    async def test_method_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
+        album = await async_client.albums.bulk_retrieve(
             ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
         )
-        assert_matches_type(AlbumListResponse, album, path=["response"])
+        assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncSpotted) -> None:
-        album = await async_client.albums.list(
+    async def test_method_bulk_retrieve_with_all_params(self, async_client: AsyncSpotted) -> None:
+        album = await async_client.albums.bulk_retrieve(
             ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
             market="ES",
         )
-        assert_matches_type(AlbumListResponse, album, path=["response"])
+        assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.albums.with_raw_response.list(
+    async def test_raw_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
+        response = await async_client.albums.with_raw_response.bulk_retrieve(
             ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         album = await response.parse()
-        assert_matches_type(AlbumListResponse, album, path=["response"])
+        assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncSpotted) -> None:
-        async with async_client.albums.with_streaming_response.list(
+    async def test_streaming_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
+        async with async_client.albums.with_streaming_response.bulk_retrieve(
             ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             album = await response.parse()
-            assert_matches_type(AlbumListResponse, album, path=["response"])
+            assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
