@@ -2,26 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
-from ..._utils import PropertyInfo
 
 __all__ = ["FollowingFollowParams"]
 
 
 class FollowingFollowParams(TypedDict, total=False):
-    query_ids: Required[Annotated[str, PropertyInfo(alias="ids")]]
-    """
-    A comma-separated list of the artist or the user
-    [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). A maximum of 50
-    IDs can be sent in one request.
-    """
-
-    type: Required[Literal["artist", "user"]]
-    """The ID type."""
-
-    body_ids: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="ids")]]
+    ids: Required[SequenceNotStr[str]]
     """
     A JSON array of the artist or user
     [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:

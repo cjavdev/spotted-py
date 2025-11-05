@@ -453,14 +453,6 @@ Methods:
 - <code title="get /recommendations">client.recommendations.<a href="./src/spotted/resources/recommendations.py">get</a>(\*\*<a href="src/spotted/types/recommendation_get_params.py">params</a>) -> <a href="./src/spotted/types/recommendation_get_response.py">RecommendationGetResponse</a></code>
 - <code title="get /recommendations/available-genre-seeds">client.recommendations.<a href="./src/spotted/resources/recommendations.py">list_available_genre_seeds</a>() -> <a href="./src/spotted/types/recommendation_list_available_genre_seeds_response.py">RecommendationListAvailableGenreSeedsResponse</a></code>
 
-# Webhooks
-
-Types:
-
-```python
-from spotted.types import UnwrapWebhookEvent
-```
-
 # Markets
 
 Types:

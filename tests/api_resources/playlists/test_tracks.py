@@ -36,12 +36,11 @@ class TestTracks:
     def test_method_update_with_all_params(self, client: Spotted) -> None:
         track = client.playlists.tracks.update(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            query_uris="uris",
             insert_before=3,
             range_length=2,
             range_start=1,
             snapshot_id="snapshot_id",
-            body_uris=["string"],
+            uris=["string"],
         )
         assert_matches_type(TrackUpdateResponse, track, path=["response"])
 
@@ -147,10 +146,8 @@ class TestTracks:
     def test_method_add_with_all_params(self, client: Spotted) -> None:
         track = client.playlists.tracks.add(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            query_position=0,
-            query_uris="spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M",
-            body_position=0,
-            body_uris=["string"],
+            position=0,
+            uris=["string"],
         )
         assert_matches_type(TrackAddResponse, track, path=["response"])
 
@@ -263,12 +260,11 @@ class TestAsyncTracks:
     async def test_method_update_with_all_params(self, async_client: AsyncSpotted) -> None:
         track = await async_client.playlists.tracks.update(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            query_uris="uris",
             insert_before=3,
             range_length=2,
             range_start=1,
             snapshot_id="snapshot_id",
-            body_uris=["string"],
+            uris=["string"],
         )
         assert_matches_type(TrackUpdateResponse, track, path=["response"])
 
@@ -374,10 +370,8 @@ class TestAsyncTracks:
     async def test_method_add_with_all_params(self, async_client: AsyncSpotted) -> None:
         track = await async_client.playlists.tracks.add(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            query_position=0,
-            query_uris="spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M",
-            body_position=0,
-            body_uris=["string"],
+            position=0,
+            uris=["string"],
         )
         assert_matches_type(TrackAddResponse, track, path=["response"])
 

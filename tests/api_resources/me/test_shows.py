@@ -95,27 +95,21 @@ class TestShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_remove(self, client: Spotted) -> None:
-        show = client.me.shows.remove(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        show = client.me.shows.remove()
         assert show is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_remove_with_all_params(self, client: Spotted) -> None:
         show = client.me.shows.remove(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-            market="ES",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert show is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_remove(self, client: Spotted) -> None:
-        response = client.me.shows.with_raw_response.remove(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        response = client.me.shows.with_raw_response.remove()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -125,9 +119,7 @@ class TestShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_remove(self, client: Spotted) -> None:
-        with client.me.shows.with_streaming_response.remove(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        ) as response:
+        with client.me.shows.with_streaming_response.remove() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -139,26 +131,21 @@ class TestShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_save(self, client: Spotted) -> None:
-        show = client.me.shows.save(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        show = client.me.shows.save()
         assert show is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_save_with_all_params(self, client: Spotted) -> None:
         show = client.me.shows.save(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert show is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_save(self, client: Spotted) -> None:
-        response = client.me.shows.with_raw_response.save(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        response = client.me.shows.with_raw_response.save()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -168,9 +155,7 @@ class TestShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_save(self, client: Spotted) -> None:
-        with client.me.shows.with_streaming_response.save(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        ) as response:
+        with client.me.shows.with_streaming_response.save() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -259,27 +244,21 @@ class TestAsyncShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_remove(self, async_client: AsyncSpotted) -> None:
-        show = await async_client.me.shows.remove(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        show = await async_client.me.shows.remove()
         assert show is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_remove_with_all_params(self, async_client: AsyncSpotted) -> None:
         show = await async_client.me.shows.remove(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-            market="ES",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert show is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_remove(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.shows.with_raw_response.remove(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        response = await async_client.me.shows.with_raw_response.remove()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -289,9 +268,7 @@ class TestAsyncShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_remove(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.shows.with_streaming_response.remove(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        ) as response:
+        async with async_client.me.shows.with_streaming_response.remove() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -303,26 +280,21 @@ class TestAsyncShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_save(self, async_client: AsyncSpotted) -> None:
-        show = await async_client.me.shows.save(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        show = await async_client.me.shows.save()
         assert show is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_save_with_all_params(self, async_client: AsyncSpotted) -> None:
         show = await async_client.me.shows.save(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert show is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_save(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.shows.with_raw_response.save(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        response = await async_client.me.shows.with_raw_response.save()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -332,9 +304,7 @@ class TestAsyncShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_save(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.shows.with_streaming_response.save(
-            query_ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        ) as response:
+        async with async_client.me.shows.with_streaming_response.save() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

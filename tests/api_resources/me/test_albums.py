@@ -96,26 +96,21 @@ class TestAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_remove(self, client: Spotted) -> None:
-        album = client.me.albums.remove(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        album = client.me.albums.remove()
         assert album is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_remove_with_all_params(self, client: Spotted) -> None:
         album = client.me.albums.remove(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert album is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_remove(self, client: Spotted) -> None:
-        response = client.me.albums.with_raw_response.remove(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        response = client.me.albums.with_raw_response.remove()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -125,9 +120,7 @@ class TestAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_remove(self, client: Spotted) -> None:
-        with client.me.albums.with_streaming_response.remove(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        ) as response:
+        with client.me.albums.with_streaming_response.remove() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -139,26 +132,21 @@ class TestAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_save(self, client: Spotted) -> None:
-        album = client.me.albums.save(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        album = client.me.albums.save()
         assert album is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_save_with_all_params(self, client: Spotted) -> None:
         album = client.me.albums.save(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert album is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_save(self, client: Spotted) -> None:
-        response = client.me.albums.with_raw_response.save(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        response = client.me.albums.with_raw_response.save()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -168,9 +156,7 @@ class TestAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_save(self, client: Spotted) -> None:
-        with client.me.albums.with_streaming_response.save(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        ) as response:
+        with client.me.albums.with_streaming_response.save() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -260,26 +246,21 @@ class TestAsyncAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_remove(self, async_client: AsyncSpotted) -> None:
-        album = await async_client.me.albums.remove(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        album = await async_client.me.albums.remove()
         assert album is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_remove_with_all_params(self, async_client: AsyncSpotted) -> None:
         album = await async_client.me.albums.remove(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert album is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_remove(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.albums.with_raw_response.remove(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        response = await async_client.me.albums.with_raw_response.remove()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -289,9 +270,7 @@ class TestAsyncAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_remove(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.albums.with_streaming_response.remove(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        ) as response:
+        async with async_client.me.albums.with_streaming_response.remove() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -303,26 +282,21 @@ class TestAsyncAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_save(self, async_client: AsyncSpotted) -> None:
-        album = await async_client.me.albums.save(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        album = await async_client.me.albums.save()
         assert album is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_save_with_all_params(self, async_client: AsyncSpotted) -> None:
         album = await async_client.me.albums.save(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert album is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_save(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.albums.with_raw_response.save(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        response = await async_client.me.albums.with_raw_response.save()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -332,9 +306,7 @@ class TestAsyncAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_save(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.albums.with_streaming_response.save(
-            query_ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        ) as response:
+        async with async_client.me.albums.with_streaming_response.save() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

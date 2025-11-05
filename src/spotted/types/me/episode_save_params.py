@@ -2,23 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Required, TypedDict
 
 from ..._types import SequenceNotStr
-from ..._utils import PropertyInfo
 
 __all__ = ["EpisodeSaveParams"]
 
 
 class EpisodeSaveParams(TypedDict, total=False):
-    query_ids: Required[Annotated[str, PropertyInfo(alias="ids")]]
-    """
-    A comma-separated list of the
-    [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). Maximum: 50
-    IDs.
-    """
-
-    body_ids: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="ids")]]
+    ids: Required[SequenceNotStr[str]]
     """
     A JSON array of the
     [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). <br/>A maximum

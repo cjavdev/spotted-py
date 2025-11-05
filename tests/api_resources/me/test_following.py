@@ -105,9 +105,7 @@ class TestFollowing:
     @parametrize
     def test_method_follow(self, client: Spotted) -> None:
         following = client.me.following.follow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert following is None
 
@@ -115,9 +113,7 @@ class TestFollowing:
     @parametrize
     def test_raw_response_follow(self, client: Spotted) -> None:
         response = client.me.following.with_raw_response.follow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-            body_ids=["string"],
+            ids=["string"],
         )
 
         assert response.is_closed is True
@@ -129,9 +125,7 @@ class TestFollowing:
     @parametrize
     def test_streaming_response_follow(self, client: Spotted) -> None:
         with client.me.following.with_streaming_response.follow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-            body_ids=["string"],
+            ids=["string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -144,29 +138,21 @@ class TestFollowing:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_unfollow(self, client: Spotted) -> None:
-        following = client.me.following.unfollow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-        )
+        following = client.me.following.unfollow()
         assert following is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_unfollow_with_all_params(self, client: Spotted) -> None:
         following = client.me.following.unfollow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert following is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_unfollow(self, client: Spotted) -> None:
-        response = client.me.following.with_raw_response.unfollow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-        )
+        response = client.me.following.with_raw_response.unfollow()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -176,10 +162,7 @@ class TestFollowing:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_unfollow(self, client: Spotted) -> None:
-        with client.me.following.with_streaming_response.unfollow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-        ) as response:
+        with client.me.following.with_streaming_response.unfollow() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -279,9 +262,7 @@ class TestAsyncFollowing:
     @parametrize
     async def test_method_follow(self, async_client: AsyncSpotted) -> None:
         following = await async_client.me.following.follow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert following is None
 
@@ -289,9 +270,7 @@ class TestAsyncFollowing:
     @parametrize
     async def test_raw_response_follow(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.following.with_raw_response.follow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-            body_ids=["string"],
+            ids=["string"],
         )
 
         assert response.is_closed is True
@@ -303,9 +282,7 @@ class TestAsyncFollowing:
     @parametrize
     async def test_streaming_response_follow(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.following.with_streaming_response.follow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-            body_ids=["string"],
+            ids=["string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -318,29 +295,21 @@ class TestAsyncFollowing:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_unfollow(self, async_client: AsyncSpotted) -> None:
-        following = await async_client.me.following.unfollow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-        )
+        following = await async_client.me.following.unfollow()
         assert following is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_unfollow_with_all_params(self, async_client: AsyncSpotted) -> None:
         following = await async_client.me.following.unfollow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert following is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_unfollow(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.following.with_raw_response.unfollow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-        )
+        response = await async_client.me.following.with_raw_response.unfollow()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -350,10 +319,7 @@ class TestAsyncFollowing:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_unfollow(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.following.with_streaming_response.unfollow(
-            query_ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-        ) as response:
+        async with async_client.me.following.with_streaming_response.unfollow() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

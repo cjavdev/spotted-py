@@ -97,26 +97,21 @@ class TestTracks:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_remove(self, client: Spotted) -> None:
-        track = client.me.tracks.remove(
-            query_ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
-        )
+        track = client.me.tracks.remove()
         assert track is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_remove_with_all_params(self, client: Spotted) -> None:
         track = client.me.tracks.remove(
-            query_ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert track is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_remove(self, client: Spotted) -> None:
-        response = client.me.tracks.with_raw_response.remove(
-            query_ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
-        )
+        response = client.me.tracks.with_raw_response.remove()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -126,9 +121,7 @@ class TestTracks:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_remove(self, client: Spotted) -> None:
-        with client.me.tracks.with_streaming_response.remove(
-            query_ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
-        ) as response:
+        with client.me.tracks.with_streaming_response.remove() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -266,26 +259,21 @@ class TestAsyncTracks:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_remove(self, async_client: AsyncSpotted) -> None:
-        track = await async_client.me.tracks.remove(
-            query_ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
-        )
+        track = await async_client.me.tracks.remove()
         assert track is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_remove_with_all_params(self, async_client: AsyncSpotted) -> None:
         track = await async_client.me.tracks.remove(
-            query_ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
-            body_ids=["string"],
+            ids=["string"],
         )
         assert track is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_remove(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.tracks.with_raw_response.remove(
-            query_ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
-        )
+        response = await async_client.me.tracks.with_raw_response.remove()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -295,9 +283,7 @@ class TestAsyncTracks:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_remove(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.tracks.with_streaming_response.remove(
-            query_ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
-        ) as response:
+        async with async_client.me.tracks.with_streaming_response.remove() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
