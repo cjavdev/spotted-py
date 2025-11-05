@@ -36,13 +36,13 @@ from spotted.types import (
 Types:
 
 ```python
-from spotted.types import AlbumRetrieveResponse, AlbumListResponse
+from spotted.types import AlbumRetrieveResponse, AlbumBulkRetrieveResponse
 ```
 
 Methods:
 
 - <code title="get /albums/{id}">client.albums.<a href="./src/spotted/resources/albums.py">retrieve</a>(id, \*\*<a href="src/spotted/types/album_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/album_retrieve_response.py">AlbumRetrieveResponse</a></code>
-- <code title="get /albums">client.albums.<a href="./src/spotted/resources/albums.py">list</a>(\*\*<a href="src/spotted/types/album_list_params.py">params</a>) -> <a href="./src/spotted/types/album_list_response.py">AlbumListResponse</a></code>
+- <code title="get /albums">client.albums.<a href="./src/spotted/resources/albums.py">bulk_retrieve</a>(\*\*<a href="src/spotted/types/album_bulk_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/album_bulk_retrieve_response.py">AlbumBulkRetrieveResponse</a></code>
 - <code title="get /albums/{id}/tracks">client.albums.<a href="./src/spotted/resources/albums.py">list_tracks</a>(id, \*\*<a href="src/spotted/types/album_list_tracks_params.py">params</a>) -> <a href="./src/spotted/types/shared/simplified_track_object.py">SyncCursorURLPage[SimplifiedTrackObject]</a></code>
 
 # Artists

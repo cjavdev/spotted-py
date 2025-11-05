@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["AlbumListParams"]
+__all__ = ["AlbumBulkRetrieveParams"]
 
 
-class AlbumListParams(TypedDict, total=False):
+class AlbumBulkRetrieveParams(TypedDict, total=False):
     ids: Required[str]
     """
     A comma-separated list of the

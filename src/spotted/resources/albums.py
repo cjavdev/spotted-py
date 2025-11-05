@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import album_list_params, album_retrieve_params, album_list_tracks_params
+from ..types import album_retrieve_params, album_list_tracks_params, album_bulk_retrieve_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -17,8 +17,8 @@ from .._response import (
 )
 from ..pagination import SyncCursorURLPage, AsyncCursorURLPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.album_list_response import AlbumListResponse
 from ..types.album_retrieve_response import AlbumRetrieveResponse
+from ..types.album_bulk_retrieve_response import AlbumBulkRetrieveResponse
 from ..types.shared.simplified_track_object import SimplifiedTrackObject
 
 __all__ = ["AlbumsResource", "AsyncAlbumsResource"]
@@ -94,7 +94,7 @@ class AlbumsResource(SyncAPIResource):
             cast_to=AlbumRetrieveResponse,
         )
 
-    def list(
+    def bulk_retrieve(
         self,
         *,
         ids: str,
@@ -105,7 +105,7 @@ class AlbumsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AlbumListResponse:
+    ) -> AlbumBulkRetrieveResponse:
         """
         Get Spotify catalog information for multiple albums identified by their Spotify
         IDs.
@@ -145,10 +145,10 @@ class AlbumsResource(SyncAPIResource):
                         "ids": ids,
                         "market": market,
                     },
-                    album_list_params.AlbumListParams,
+                    album_bulk_retrieve_params.AlbumBulkRetrieveParams,
                 ),
             ),
-            cast_to=AlbumListResponse,
+            cast_to=AlbumBulkRetrieveResponse,
         )
 
     def list_tracks(
@@ -289,7 +289,7 @@ class AsyncAlbumsResource(AsyncAPIResource):
             cast_to=AlbumRetrieveResponse,
         )
 
-    async def list(
+    async def bulk_retrieve(
         self,
         *,
         ids: str,
@@ -300,7 +300,7 @@ class AsyncAlbumsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AlbumListResponse:
+    ) -> AlbumBulkRetrieveResponse:
         """
         Get Spotify catalog information for multiple albums identified by their Spotify
         IDs.
@@ -340,10 +340,10 @@ class AsyncAlbumsResource(AsyncAPIResource):
                         "ids": ids,
                         "market": market,
                     },
-                    album_list_params.AlbumListParams,
+                    album_bulk_retrieve_params.AlbumBulkRetrieveParams,
                 ),
             ),
-            cast_to=AlbumListResponse,
+            cast_to=AlbumBulkRetrieveResponse,
         )
 
     def list_tracks(
@@ -421,8 +421,8 @@ class AlbumsResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             albums.retrieve,
         )
-        self.list = to_raw_response_wrapper(
-            albums.list,
+        self.bulk_retrieve = to_raw_response_wrapper(
+            albums.bulk_retrieve,
         )
         self.list_tracks = to_raw_response_wrapper(
             albums.list_tracks,
@@ -436,8 +436,8 @@ class AsyncAlbumsResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             albums.retrieve,
         )
-        self.list = async_to_raw_response_wrapper(
-            albums.list,
+        self.bulk_retrieve = async_to_raw_response_wrapper(
+            albums.bulk_retrieve,
         )
         self.list_tracks = async_to_raw_response_wrapper(
             albums.list_tracks,
@@ -451,8 +451,8 @@ class AlbumsResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             albums.retrieve,
         )
-        self.list = to_streamed_response_wrapper(
-            albums.list,
+        self.bulk_retrieve = to_streamed_response_wrapper(
+            albums.bulk_retrieve,
         )
         self.list_tracks = to_streamed_response_wrapper(
             albums.list_tracks,
@@ -466,8 +466,8 @@ class AsyncAlbumsResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             albums.retrieve,
         )
-        self.list = async_to_streamed_response_wrapper(
-            albums.list,
+        self.bulk_retrieve = async_to_streamed_response_wrapper(
+            albums.bulk_retrieve,
         )
         self.list_tracks = async_to_streamed_response_wrapper(
             albums.list_tracks,
