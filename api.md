@@ -54,7 +54,7 @@ from spotted.types import (
     ArtistBulkRetrieveResponse,
     ArtistListAlbumsResponse,
     ArtistListRelatedArtistsResponse,
-    ArtistListTopTracksResponse,
+    ArtistTopTracksResponse,
 )
 ```
 
@@ -64,7 +64,7 @@ Methods:
 - <code title="get /artists">client.artists.<a href="./src/spotted/resources/artists.py">bulk_retrieve</a>(\*\*<a href="src/spotted/types/artist_bulk_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/artist_bulk_retrieve_response.py">ArtistBulkRetrieveResponse</a></code>
 - <code title="get /artists/{id}/albums">client.artists.<a href="./src/spotted/resources/artists.py">list_albums</a>(id, \*\*<a href="src/spotted/types/artist_list_albums_params.py">params</a>) -> <a href="./src/spotted/types/artist_list_albums_response.py">SyncCursorURLPage[ArtistListAlbumsResponse]</a></code>
 - <code title="get /artists/{id}/related-artists">client.artists.<a href="./src/spotted/resources/artists.py">list_related_artists</a>(id) -> <a href="./src/spotted/types/artist_list_related_artists_response.py">ArtistListRelatedArtistsResponse</a></code>
-- <code title="get /artists/{id}/top-tracks">client.artists.<a href="./src/spotted/resources/artists.py">list_top_tracks</a>(id, \*\*<a href="src/spotted/types/artist_list_top_tracks_params.py">params</a>) -> <a href="./src/spotted/types/artist_list_top_tracks_response.py">ArtistListTopTracksResponse</a></code>
+- <code title="get /artists/{id}/top-tracks">client.artists.<a href="./src/spotted/resources/artists.py">top_tracks</a>(id, \*\*<a href="src/spotted/types/artist_top_tracks_params.py">params</a>) -> <a href="./src/spotted/types/artist_top_tracks_response.py">ArtistTopTracksResponse</a></code>
 
 # Shows
 

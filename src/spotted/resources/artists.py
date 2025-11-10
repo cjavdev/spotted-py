@@ -6,7 +6,7 @@ import typing_extensions
 
 import httpx
 
-from ..types import artist_list_albums_params, artist_bulk_retrieve_params, artist_list_top_tracks_params
+from ..types import artist_top_tracks_params, artist_list_albums_params, artist_bulk_retrieve_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -20,9 +20,9 @@ from .._response import (
 from ..pagination import SyncCursorURLPage, AsyncCursorURLPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.shared.artist_object import ArtistObject
+from ..types.artist_top_tracks_response import ArtistTopTracksResponse
 from ..types.artist_list_albums_response import ArtistListAlbumsResponse
 from ..types.artist_bulk_retrieve_response import ArtistBulkRetrieveResponse
-from ..types.artist_list_top_tracks_response import ArtistListTopTracksResponse
 from ..types.artist_list_related_artists_response import ArtistListRelatedArtistsResponse
 
 __all__ = ["ArtistsResource", "AsyncArtistsResource"]
@@ -235,7 +235,7 @@ class ArtistsResource(SyncAPIResource):
             cast_to=ArtistListRelatedArtistsResponse,
         )
 
-    def list_top_tracks(
+    def top_tracks(
         self,
         id: str,
         *,
@@ -246,7 +246,7 @@ class ArtistsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ArtistListTopTracksResponse:
+    ) -> ArtistTopTracksResponse:
         """
         Get Spotify catalog information about an artist's top tracks by country.
 
@@ -281,9 +281,9 @@ class ArtistsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"market": market}, artist_list_top_tracks_params.ArtistListTopTracksParams),
+                query=maybe_transform({"market": market}, artist_top_tracks_params.ArtistTopTracksParams),
             ),
-            cast_to=ArtistListTopTracksResponse,
+            cast_to=ArtistTopTracksResponse,
         )
 
 
@@ -494,7 +494,7 @@ class AsyncArtistsResource(AsyncAPIResource):
             cast_to=ArtistListRelatedArtistsResponse,
         )
 
-    async def list_top_tracks(
+    async def top_tracks(
         self,
         id: str,
         *,
@@ -505,7 +505,7 @@ class AsyncArtistsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ArtistListTopTracksResponse:
+    ) -> ArtistTopTracksResponse:
         """
         Get Spotify catalog information about an artist's top tracks by country.
 
@@ -540,11 +540,9 @@ class AsyncArtistsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"market": market}, artist_list_top_tracks_params.ArtistListTopTracksParams
-                ),
+                query=await async_maybe_transform({"market": market}, artist_top_tracks_params.ArtistTopTracksParams),
             ),
-            cast_to=ArtistListTopTracksResponse,
+            cast_to=ArtistTopTracksResponse,
         )
 
 
@@ -566,8 +564,8 @@ class ArtistsResourceWithRawResponse:
                 artists.list_related_artists,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list_top_tracks = to_raw_response_wrapper(
-            artists.list_top_tracks,
+        self.top_tracks = to_raw_response_wrapper(
+            artists.top_tracks,
         )
 
 
@@ -589,8 +587,8 @@ class AsyncArtistsResourceWithRawResponse:
                 artists.list_related_artists,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list_top_tracks = async_to_raw_response_wrapper(
-            artists.list_top_tracks,
+        self.top_tracks = async_to_raw_response_wrapper(
+            artists.top_tracks,
         )
 
 
@@ -612,8 +610,8 @@ class ArtistsResourceWithStreamingResponse:
                 artists.list_related_artists,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list_top_tracks = to_streamed_response_wrapper(
-            artists.list_top_tracks,
+        self.top_tracks = to_streamed_response_wrapper(
+            artists.top_tracks,
         )
 
 
@@ -635,6 +633,6 @@ class AsyncArtistsResourceWithStreamingResponse:
                 artists.list_related_artists,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list_top_tracks = async_to_streamed_response_wrapper(
-            artists.list_top_tracks,
+        self.top_tracks = async_to_streamed_response_wrapper(
+            artists.top_tracks,
         )
