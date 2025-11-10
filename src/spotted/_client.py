@@ -37,7 +37,7 @@ from .resources import (
     recommendations,
 )
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import SpottedError, APIStatusError
+from ._exceptions import APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -72,14 +72,16 @@ class Spotted(SyncAPIClient):
     with_streaming_response: SpottedWithStreamedResponse
 
     # client options
-    client_id: str
-    client_secret: str
+    client_id: str | None
+    client_secret: str | None
+    access_token: str | None
 
     def __init__(
         self,
         *,
         client_id: str | None = None,
         client_secret: str | None = None,
+        access_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -104,22 +106,19 @@ class Spotted(SyncAPIClient):
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `client_id` from `SPOTIFY_CLIENT_ID`
         - `client_secret` from `SPOTIFY_CLIENT_SECRET`
+        - `access_token` from `SPOTIFY_ACCESS_TOKEN`
         """
         if client_id is None:
             client_id = os.environ.get("SPOTIFY_CLIENT_ID")
-        if client_id is None:
-            raise SpottedError(
-                "The client_id client option must be set either by passing client_id to the client or by setting the SPOTIFY_CLIENT_ID environment variable"
-            )
         self.client_id = client_id
 
         if client_secret is None:
             client_secret = os.environ.get("SPOTIFY_CLIENT_SECRET")
-        if client_secret is None:
-            raise SpottedError(
-                "The client_secret client option must be set either by passing client_secret to the client or by setting the SPOTIFY_CLIENT_SECRET environment variable"
-            )
         self.client_secret = client_secret
+
+        if access_token is None:
+            access_token = os.environ.get("SPOTIFY_ACCESS_TOKEN")
+        self.access_token = access_token
 
         if base_url is None:
             base_url = os.environ.get("SPOTTED_BASE_URL")
@@ -163,6 +162,14 @@ class Spotted(SyncAPIClient):
 
     @property
     @override
+    def auth_headers(self) -> dict[str, str]:
+        access_token = self.access_token
+        if access_token is None:
+            return {}
+        return {"Authorization": f"Bearer {access_token}"}
+
+    @property
+    @override
     def custom_auth(self) -> httpx.Auth | None:
         if self.client_id and self.client_secret:
             return make_oauth2(
@@ -196,6 +203,7 @@ class Spotted(SyncAPIClient):
         *,
         client_id: str | None = None,
         client_secret: str | None = None,
+        access_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -231,6 +239,7 @@ class Spotted(SyncAPIClient):
         return self.__class__(
             client_id=client_id or self.client_id,
             client_secret=client_secret or self.client_secret,
+            access_token=access_token or self.access_token,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -299,14 +308,16 @@ class AsyncSpotted(AsyncAPIClient):
     with_streaming_response: AsyncSpottedWithStreamedResponse
 
     # client options
-    client_id: str
-    client_secret: str
+    client_id: str | None
+    client_secret: str | None
+    access_token: str | None
 
     def __init__(
         self,
         *,
         client_id: str | None = None,
         client_secret: str | None = None,
+        access_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -331,22 +342,19 @@ class AsyncSpotted(AsyncAPIClient):
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `client_id` from `SPOTIFY_CLIENT_ID`
         - `client_secret` from `SPOTIFY_CLIENT_SECRET`
+        - `access_token` from `SPOTIFY_ACCESS_TOKEN`
         """
         if client_id is None:
             client_id = os.environ.get("SPOTIFY_CLIENT_ID")
-        if client_id is None:
-            raise SpottedError(
-                "The client_id client option must be set either by passing client_id to the client or by setting the SPOTIFY_CLIENT_ID environment variable"
-            )
         self.client_id = client_id
 
         if client_secret is None:
             client_secret = os.environ.get("SPOTIFY_CLIENT_SECRET")
-        if client_secret is None:
-            raise SpottedError(
-                "The client_secret client option must be set either by passing client_secret to the client or by setting the SPOTIFY_CLIENT_SECRET environment variable"
-            )
         self.client_secret = client_secret
+
+        if access_token is None:
+            access_token = os.environ.get("SPOTIFY_ACCESS_TOKEN")
+        self.access_token = access_token
 
         if base_url is None:
             base_url = os.environ.get("SPOTTED_BASE_URL")
@@ -390,6 +398,14 @@ class AsyncSpotted(AsyncAPIClient):
 
     @property
     @override
+    def auth_headers(self) -> dict[str, str]:
+        access_token = self.access_token
+        if access_token is None:
+            return {}
+        return {"Authorization": f"Bearer {access_token}"}
+
+    @property
+    @override
     def custom_auth(self) -> httpx.Auth | None:
         if self.client_id and self.client_secret:
             return make_oauth2(
@@ -423,6 +439,7 @@ class AsyncSpotted(AsyncAPIClient):
         *,
         client_id: str | None = None,
         client_secret: str | None = None,
+        access_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -458,6 +475,7 @@ class AsyncSpotted(AsyncAPIClient):
         return self.__class__(
             client_id=client_id or self.client_id,
             client_secret=client_secret or self.client_secret,
+            access_token=access_token or self.access_token,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
