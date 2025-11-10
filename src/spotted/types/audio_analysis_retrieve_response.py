@@ -76,6 +76,10 @@ class Section(BaseModel):
     1 for "major", or a -1 for no result. Note that the major key (e.g. C major)
     could more likely be confused with the minor key at 3 semitones lower (e.g. A
     minor) as both keys carry the same pitches.
+
+    - `-1` - No result
+    - `0` - Minor
+    - `1` - Major
     """
 
     mode_confidence: Optional[float] = None
