@@ -9,7 +9,7 @@ import pytest
 
 from spotted import Spotted, AsyncSpotted
 from tests.utils import assert_matches_type
-from spotted.types import SearchRetrieveResponse
+from spotted.types import SearchSearchResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,17 +19,17 @@ class TestSearch:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_retrieve(self, client: Spotted) -> None:
-        search = client.search.retrieve(
+    def test_method_search(self, client: Spotted) -> None:
+        search = client.search.search(
             q="remaster%20track:Doxy%20artist:Miles%20Davis",
             type=["album"],
         )
-        assert_matches_type(SearchRetrieveResponse, search, path=["response"])
+        assert_matches_type(SearchSearchResponse, search, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_retrieve_with_all_params(self, client: Spotted) -> None:
-        search = client.search.retrieve(
+    def test_method_search_with_all_params(self, client: Spotted) -> None:
+        search = client.search.search(
             q="remaster%20track:Doxy%20artist:Miles%20Davis",
             type=["album"],
             include_external="audio",
@@ -37,12 +37,12 @@ class TestSearch:
             market="ES",
             offset=5,
         )
-        assert_matches_type(SearchRetrieveResponse, search, path=["response"])
+        assert_matches_type(SearchSearchResponse, search, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_retrieve(self, client: Spotted) -> None:
-        response = client.search.with_raw_response.retrieve(
+    def test_raw_response_search(self, client: Spotted) -> None:
+        response = client.search.with_raw_response.search(
             q="remaster%20track:Doxy%20artist:Miles%20Davis",
             type=["album"],
         )
@@ -50,12 +50,12 @@ class TestSearch:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         search = response.parse()
-        assert_matches_type(SearchRetrieveResponse, search, path=["response"])
+        assert_matches_type(SearchSearchResponse, search, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve(self, client: Spotted) -> None:
-        with client.search.with_streaming_response.retrieve(
+    def test_streaming_response_search(self, client: Spotted) -> None:
+        with client.search.with_streaming_response.search(
             q="remaster%20track:Doxy%20artist:Miles%20Davis",
             type=["album"],
         ) as response:
@@ -63,7 +63,7 @@ class TestSearch:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             search = response.parse()
-            assert_matches_type(SearchRetrieveResponse, search, path=["response"])
+            assert_matches_type(SearchSearchResponse, search, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -75,17 +75,17 @@ class TestAsyncSearch:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncSpotted) -> None:
-        search = await async_client.search.retrieve(
+    async def test_method_search(self, async_client: AsyncSpotted) -> None:
+        search = await async_client.search.search(
             q="remaster%20track:Doxy%20artist:Miles%20Davis",
             type=["album"],
         )
-        assert_matches_type(SearchRetrieveResponse, search, path=["response"])
+        assert_matches_type(SearchSearchResponse, search, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncSpotted) -> None:
-        search = await async_client.search.retrieve(
+    async def test_method_search_with_all_params(self, async_client: AsyncSpotted) -> None:
+        search = await async_client.search.search(
             q="remaster%20track:Doxy%20artist:Miles%20Davis",
             type=["album"],
             include_external="audio",
@@ -93,12 +93,12 @@ class TestAsyncSearch:
             market="ES",
             offset=5,
         )
-        assert_matches_type(SearchRetrieveResponse, search, path=["response"])
+        assert_matches_type(SearchSearchResponse, search, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.search.with_raw_response.retrieve(
+    async def test_raw_response_search(self, async_client: AsyncSpotted) -> None:
+        response = await async_client.search.with_raw_response.search(
             q="remaster%20track:Doxy%20artist:Miles%20Davis",
             type=["album"],
         )
@@ -106,12 +106,12 @@ class TestAsyncSearch:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         search = await response.parse()
-        assert_matches_type(SearchRetrieveResponse, search, path=["response"])
+        assert_matches_type(SearchSearchResponse, search, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncSpotted) -> None:
-        async with async_client.search.with_streaming_response.retrieve(
+    async def test_streaming_response_search(self, async_client: AsyncSpotted) -> None:
+        async with async_client.search.with_streaming_response.search(
             q="remaster%20track:Doxy%20artist:Miles%20Davis",
             type=["album"],
         ) as response:
@@ -119,6 +119,6 @@ class TestAsyncSearch:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             search = await response.parse()
-            assert_matches_type(SearchRetrieveResponse, search, path=["response"])
+            assert_matches_type(SearchSearchResponse, search, path=["response"])
 
         assert cast(Any, response.is_closed) is True

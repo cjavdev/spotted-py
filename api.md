@@ -297,12 +297,12 @@ Methods:
 Types:
 
 ```python
-from spotted.types import SearchRetrieveResponse
+from spotted.types import SearchSearchResponse
 ```
 
 Methods:
 
-- <code title="get /search">client.search.<a href="./src/spotted/resources/search.py">retrieve</a>(\*\*<a href="src/spotted/types/search_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/search_retrieve_response.py">SearchRetrieveResponse</a></code>
+- <code title="get /search">client.search.<a href="./src/spotted/resources/search.py">search</a>(\*\*<a href="src/spotted/types/search_search_params.py">params</a>) -> <a href="./src/spotted/types/search_search_response.py">SearchSearchResponse</a></code>
 
 # Playlists
 

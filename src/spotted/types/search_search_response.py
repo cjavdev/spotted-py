@@ -15,7 +15,7 @@ from .shared.album_restriction_object import AlbumRestrictionObject
 from .shared.simplified_artist_object import SimplifiedArtistObject
 from .shared.simplified_episode_object import SimplifiedEpisodeObject
 
-__all__ = ["SearchRetrieveResponse", "Albums", "AlbumsItem", "Artists", "Audiobooks", "Episodes", "Shows", "Tracks"]
+__all__ = ["SearchSearchResponse", "Albums", "AlbumsItem", "Artists", "Audiobooks", "Episodes", "Shows", "Tracks"]
 
 
 class AlbumsItem(BaseModel):
@@ -224,7 +224,7 @@ class Tracks(BaseModel):
     """The total number of items available to return."""
 
 
-class SearchRetrieveResponse(BaseModel):
+class SearchSearchResponse(BaseModel):
     albums: Optional[Albums] = None
 
     artists: Optional[Artists] = None
