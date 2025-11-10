@@ -116,7 +116,7 @@ client = Spotted()
 all_shows = []
 # Automatically fetches more pages as needed.
 for show in client.shows.list_episodes(
-    id="38bS44xjbVVZ3No3ByF1dJ",
+    id="showid",
     limit=5,
     offset=10,
 ):
@@ -138,7 +138,7 @@ async def main() -> None:
     all_shows = []
     # Iterate through items across all pages, issuing requests as needed.
     async for show in client.shows.list_episodes(
-        id="38bS44xjbVVZ3No3ByF1dJ",
+        id="showid",
         limit=5,
         offset=10,
     ):
@@ -153,7 +153,7 @@ Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get
 
 ```python
 first_page = await client.shows.list_episodes(
-    id="38bS44xjbVVZ3No3ByF1dJ",
+    id="showid",
     limit=5,
     offset=10,
 )
@@ -169,7 +169,7 @@ Or just work directly with the returned data:
 
 ```python
 first_page = await client.shows.list_episodes(
-    id="38bS44xjbVVZ3No3ByF1dJ",
+    id="showid",
     limit=5,
     offset=10,
 )
