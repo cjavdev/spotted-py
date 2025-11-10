@@ -10,9 +10,9 @@ import pytest
 from spotted import Spotted, AsyncSpotted
 from tests.utils import assert_matches_type
 from spotted.types import (
+    ArtistTopTracksResponse,
     ArtistListAlbumsResponse,
     ArtistBulkRetrieveResponse,
-    ArtistListTopTracksResponse,
     ArtistListRelatedArtistsResponse,
 )
 from spotted.pagination import SyncCursorURLPage, AsyncCursorURLPage
@@ -205,52 +205,52 @@ class TestArtists:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list_top_tracks(self, client: Spotted) -> None:
-        artist = client.artists.list_top_tracks(
+    def test_method_top_tracks(self, client: Spotted) -> None:
+        artist = client.artists.top_tracks(
             id="0TnOYISbd1XYRBk9myaseg",
         )
-        assert_matches_type(ArtistListTopTracksResponse, artist, path=["response"])
+        assert_matches_type(ArtistTopTracksResponse, artist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list_top_tracks_with_all_params(self, client: Spotted) -> None:
-        artist = client.artists.list_top_tracks(
+    def test_method_top_tracks_with_all_params(self, client: Spotted) -> None:
+        artist = client.artists.top_tracks(
             id="0TnOYISbd1XYRBk9myaseg",
             market="ES",
         )
-        assert_matches_type(ArtistListTopTracksResponse, artist, path=["response"])
+        assert_matches_type(ArtistTopTracksResponse, artist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_list_top_tracks(self, client: Spotted) -> None:
-        response = client.artists.with_raw_response.list_top_tracks(
+    def test_raw_response_top_tracks(self, client: Spotted) -> None:
+        response = client.artists.with_raw_response.top_tracks(
             id="0TnOYISbd1XYRBk9myaseg",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         artist = response.parse()
-        assert_matches_type(ArtistListTopTracksResponse, artist, path=["response"])
+        assert_matches_type(ArtistTopTracksResponse, artist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_list_top_tracks(self, client: Spotted) -> None:
-        with client.artists.with_streaming_response.list_top_tracks(
+    def test_streaming_response_top_tracks(self, client: Spotted) -> None:
+        with client.artists.with_streaming_response.top_tracks(
             id="0TnOYISbd1XYRBk9myaseg",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             artist = response.parse()
-            assert_matches_type(ArtistListTopTracksResponse, artist, path=["response"])
+            assert_matches_type(ArtistTopTracksResponse, artist, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_path_params_list_top_tracks(self, client: Spotted) -> None:
+    def test_path_params_top_tracks(self, client: Spotted) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.artists.with_raw_response.list_top_tracks(
+            client.artists.with_raw_response.top_tracks(
                 id="",
             )
 
@@ -439,51 +439,51 @@ class TestAsyncArtists:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list_top_tracks(self, async_client: AsyncSpotted) -> None:
-        artist = await async_client.artists.list_top_tracks(
+    async def test_method_top_tracks(self, async_client: AsyncSpotted) -> None:
+        artist = await async_client.artists.top_tracks(
             id="0TnOYISbd1XYRBk9myaseg",
         )
-        assert_matches_type(ArtistListTopTracksResponse, artist, path=["response"])
+        assert_matches_type(ArtistTopTracksResponse, artist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list_top_tracks_with_all_params(self, async_client: AsyncSpotted) -> None:
-        artist = await async_client.artists.list_top_tracks(
+    async def test_method_top_tracks_with_all_params(self, async_client: AsyncSpotted) -> None:
+        artist = await async_client.artists.top_tracks(
             id="0TnOYISbd1XYRBk9myaseg",
             market="ES",
         )
-        assert_matches_type(ArtistListTopTracksResponse, artist, path=["response"])
+        assert_matches_type(ArtistTopTracksResponse, artist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_list_top_tracks(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.artists.with_raw_response.list_top_tracks(
+    async def test_raw_response_top_tracks(self, async_client: AsyncSpotted) -> None:
+        response = await async_client.artists.with_raw_response.top_tracks(
             id="0TnOYISbd1XYRBk9myaseg",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         artist = await response.parse()
-        assert_matches_type(ArtistListTopTracksResponse, artist, path=["response"])
+        assert_matches_type(ArtistTopTracksResponse, artist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_list_top_tracks(self, async_client: AsyncSpotted) -> None:
-        async with async_client.artists.with_streaming_response.list_top_tracks(
+    async def test_streaming_response_top_tracks(self, async_client: AsyncSpotted) -> None:
+        async with async_client.artists.with_streaming_response.top_tracks(
             id="0TnOYISbd1XYRBk9myaseg",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             artist = await response.parse()
-            assert_matches_type(ArtistListTopTracksResponse, artist, path=["response"])
+            assert_matches_type(ArtistTopTracksResponse, artist, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_path_params_list_top_tracks(self, async_client: AsyncSpotted) -> None:
+    async def test_path_params_top_tracks(self, async_client: AsyncSpotted) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.artists.with_raw_response.list_top_tracks(
+            await async_client.artists.with_raw_response.top_tracks(
                 id="",
             )

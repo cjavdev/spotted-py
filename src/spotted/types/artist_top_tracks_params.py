@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["ArtistListTopTracksParams"]
+__all__ = ["ArtistTopTracksParams"]
 
 
-class ArtistListTopTracksParams(TypedDict, total=False):
+class ArtistTopTracksParams(TypedDict, total=False):
     market: str
     """
     An

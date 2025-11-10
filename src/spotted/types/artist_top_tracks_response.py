@@ -5,8 +5,8 @@ from typing import List
 from .._models import BaseModel
 from .shared.track_object import TrackObject
 
-__all__ = ["ArtistListTopTracksResponse"]
+__all__ = ["ArtistTopTracksResponse"]
 
 
-class ArtistListTopTracksResponse(BaseModel):
+class ArtistTopTracksResponse(BaseModel):
     tracks: List[TrackObject]
