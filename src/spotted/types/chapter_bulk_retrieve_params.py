@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["ChapterListParams"]
+__all__ = ["ChapterBulkRetrieveParams"]
 
 
-class ChapterListParams(TypedDict, total=False):
+class ChapterBulkRetrieveParams(TypedDict, total=False):
     ids: Required[str]
     """
     A comma-separated list of the

@@ -10,10 +10,10 @@ from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNo
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.me import (
-    following_list_params,
     following_check_params,
     following_follow_params,
     following_unfollow_params,
+    following_bulk_retrieve_params,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -23,8 +23,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.me.following_list_response import FollowingListResponse
 from ...types.me.following_check_response import FollowingCheckResponse
+from ...types.me.following_bulk_retrieve_response import FollowingBulkRetrieveResponse
 
 __all__ = ["FollowingResource", "AsyncFollowingResource"]
 
@@ -49,7 +49,7 @@ class FollowingResource(SyncAPIResource):
         """
         return FollowingResourceWithStreamingResponse(self)
 
-    def list(
+    def bulk_retrieve(
         self,
         *,
         type: Literal["artist"],
@@ -61,7 +61,7 @@ class FollowingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FollowingListResponse:
+    ) -> FollowingBulkRetrieveResponse:
         """
         Get the current user's followed artists.
 
@@ -93,10 +93,10 @@ class FollowingResource(SyncAPIResource):
                         "after": after,
                         "limit": limit,
                     },
-                    following_list_params.FollowingListParams,
+                    following_bulk_retrieve_params.FollowingBulkRetrieveParams,
                 ),
             ),
-            cast_to=FollowingListResponse,
+            cast_to=FollowingBulkRetrieveResponse,
         )
 
     def check(
@@ -250,7 +250,7 @@ class AsyncFollowingResource(AsyncAPIResource):
         """
         return AsyncFollowingResourceWithStreamingResponse(self)
 
-    async def list(
+    async def bulk_retrieve(
         self,
         *,
         type: Literal["artist"],
@@ -262,7 +262,7 @@ class AsyncFollowingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FollowingListResponse:
+    ) -> FollowingBulkRetrieveResponse:
         """
         Get the current user's followed artists.
 
@@ -294,10 +294,10 @@ class AsyncFollowingResource(AsyncAPIResource):
                         "after": after,
                         "limit": limit,
                     },
-                    following_list_params.FollowingListParams,
+                    following_bulk_retrieve_params.FollowingBulkRetrieveParams,
                 ),
             ),
-            cast_to=FollowingListResponse,
+            cast_to=FollowingBulkRetrieveResponse,
         )
 
     async def check(
@@ -435,8 +435,8 @@ class FollowingResourceWithRawResponse:
     def __init__(self, following: FollowingResource) -> None:
         self._following = following
 
-        self.list = to_raw_response_wrapper(
-            following.list,
+        self.bulk_retrieve = to_raw_response_wrapper(
+            following.bulk_retrieve,
         )
         self.check = to_raw_response_wrapper(
             following.check,
@@ -453,8 +453,8 @@ class AsyncFollowingResourceWithRawResponse:
     def __init__(self, following: AsyncFollowingResource) -> None:
         self._following = following
 
-        self.list = async_to_raw_response_wrapper(
-            following.list,
+        self.bulk_retrieve = async_to_raw_response_wrapper(
+            following.bulk_retrieve,
         )
         self.check = async_to_raw_response_wrapper(
             following.check,
@@ -471,8 +471,8 @@ class FollowingResourceWithStreamingResponse:
     def __init__(self, following: FollowingResource) -> None:
         self._following = following
 
-        self.list = to_streamed_response_wrapper(
-            following.list,
+        self.bulk_retrieve = to_streamed_response_wrapper(
+            following.bulk_retrieve,
         )
         self.check = to_streamed_response_wrapper(
             following.check,
@@ -489,8 +489,8 @@ class AsyncFollowingResourceWithStreamingResponse:
     def __init__(self, following: AsyncFollowingResource) -> None:
         self._following = following
 
-        self.list = async_to_streamed_response_wrapper(
-            following.list,
+        self.bulk_retrieve = async_to_streamed_response_wrapper(
+            following.bulk_retrieve,
         )
         self.check = async_to_streamed_response_wrapper(
             following.check,

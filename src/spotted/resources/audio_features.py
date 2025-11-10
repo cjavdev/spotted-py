@@ -6,7 +6,7 @@ import typing_extensions
 
 import httpx
 
-from ..types import audio_feature_list_params
+from ..types import audio_feature_bulk_retrieve_params
 from .._types import Body, Query, Headers, NotGiven, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -18,8 +18,8 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.audio_feature_list_response import AudioFeatureListResponse
 from ..types.audio_feature_retrieve_response import AudioFeatureRetrieveResponse
+from ..types.audio_feature_bulk_retrieve_response import AudioFeatureBulkRetrieveResponse
 
 __all__ = ["AudioFeaturesResource", "AsyncAudioFeaturesResource"]
 
@@ -83,7 +83,7 @@ class AudioFeaturesResource(SyncAPIResource):
         )
 
     @typing_extensions.deprecated("deprecated")
-    def list(
+    def bulk_retrieve(
         self,
         *,
         ids: str,
@@ -93,7 +93,7 @@ class AudioFeaturesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AudioFeatureListResponse:
+    ) -> AudioFeatureBulkRetrieveResponse:
         """
         Get audio features for multiple tracks based on their Spotify IDs.
 
@@ -117,9 +117,9 @@ class AudioFeaturesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"ids": ids}, audio_feature_list_params.AudioFeatureListParams),
+                query=maybe_transform({"ids": ids}, audio_feature_bulk_retrieve_params.AudioFeatureBulkRetrieveParams),
             ),
-            cast_to=AudioFeatureListResponse,
+            cast_to=AudioFeatureBulkRetrieveResponse,
         )
 
 
@@ -182,7 +182,7 @@ class AsyncAudioFeaturesResource(AsyncAPIResource):
         )
 
     @typing_extensions.deprecated("deprecated")
-    async def list(
+    async def bulk_retrieve(
         self,
         *,
         ids: str,
@@ -192,7 +192,7 @@ class AsyncAudioFeaturesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AudioFeatureListResponse:
+    ) -> AudioFeatureBulkRetrieveResponse:
         """
         Get audio features for multiple tracks based on their Spotify IDs.
 
@@ -216,9 +216,11 @@ class AsyncAudioFeaturesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"ids": ids}, audio_feature_list_params.AudioFeatureListParams),
+                query=await async_maybe_transform(
+                    {"ids": ids}, audio_feature_bulk_retrieve_params.AudioFeatureBulkRetrieveParams
+                ),
             ),
-            cast_to=AudioFeatureListResponse,
+            cast_to=AudioFeatureBulkRetrieveResponse,
         )
 
 
@@ -231,9 +233,9 @@ class AudioFeaturesResourceWithRawResponse:
                 audio_features.retrieve,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list = (  # pyright: ignore[reportDeprecated]
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
-                audio_features.list,  # pyright: ignore[reportDeprecated],
+                audio_features.bulk_retrieve,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -247,9 +249,9 @@ class AsyncAudioFeaturesResourceWithRawResponse:
                 audio_features.retrieve,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list = (  # pyright: ignore[reportDeprecated]
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
-                audio_features.list,  # pyright: ignore[reportDeprecated],
+                audio_features.bulk_retrieve,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -263,9 +265,9 @@ class AudioFeaturesResourceWithStreamingResponse:
                 audio_features.retrieve,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list = (  # pyright: ignore[reportDeprecated]
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
-                audio_features.list,  # pyright: ignore[reportDeprecated],
+                audio_features.bulk_retrieve,  # pyright: ignore[reportDeprecated],
             )
         )
 
@@ -279,8 +281,8 @@ class AsyncAudioFeaturesResourceWithStreamingResponse:
                 audio_features.retrieve,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list = (  # pyright: ignore[reportDeprecated]
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
-                audio_features.list,  # pyright: ignore[reportDeprecated],
+                audio_features.bulk_retrieve,  # pyright: ignore[reportDeprecated],
             )
         )

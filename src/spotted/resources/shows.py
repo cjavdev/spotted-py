@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import show_list_params, show_retrieve_params, show_list_episodes_params
+from ..types import show_retrieve_params, show_bulk_retrieve_params, show_list_episodes_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -17,8 +17,8 @@ from .._response import (
 )
 from ..pagination import SyncCursorURLPage, AsyncCursorURLPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.show_list_response import ShowListResponse
 from ..types.show_retrieve_response import ShowRetrieveResponse
+from ..types.show_bulk_retrieve_response import ShowBulkRetrieveResponse
 from ..types.shared.simplified_episode_object import SimplifiedEpisodeObject
 
 __all__ = ["ShowsResource", "AsyncShowsResource"]
@@ -95,7 +95,7 @@ class ShowsResource(SyncAPIResource):
             cast_to=ShowRetrieveResponse,
         )
 
-    def list(
+    def bulk_retrieve(
         self,
         *,
         ids: str,
@@ -106,7 +106,7 @@ class ShowsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ShowListResponse:
+    ) -> ShowBulkRetrieveResponse:
         """
         Get Spotify catalog information for several shows based on their Spotify IDs.
 
@@ -145,10 +145,10 @@ class ShowsResource(SyncAPIResource):
                         "ids": ids,
                         "market": market,
                     },
-                    show_list_params.ShowListParams,
+                    show_bulk_retrieve_params.ShowBulkRetrieveParams,
                 ),
             ),
-            cast_to=ShowListResponse,
+            cast_to=ShowBulkRetrieveResponse,
         )
 
     def list_episodes(
@@ -290,7 +290,7 @@ class AsyncShowsResource(AsyncAPIResource):
             cast_to=ShowRetrieveResponse,
         )
 
-    async def list(
+    async def bulk_retrieve(
         self,
         *,
         ids: str,
@@ -301,7 +301,7 @@ class AsyncShowsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ShowListResponse:
+    ) -> ShowBulkRetrieveResponse:
         """
         Get Spotify catalog information for several shows based on their Spotify IDs.
 
@@ -340,10 +340,10 @@ class AsyncShowsResource(AsyncAPIResource):
                         "ids": ids,
                         "market": market,
                     },
-                    show_list_params.ShowListParams,
+                    show_bulk_retrieve_params.ShowBulkRetrieveParams,
                 ),
             ),
-            cast_to=ShowListResponse,
+            cast_to=ShowBulkRetrieveResponse,
         )
 
     def list_episodes(
@@ -421,8 +421,8 @@ class ShowsResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             shows.retrieve,
         )
-        self.list = to_raw_response_wrapper(
-            shows.list,
+        self.bulk_retrieve = to_raw_response_wrapper(
+            shows.bulk_retrieve,
         )
         self.list_episodes = to_raw_response_wrapper(
             shows.list_episodes,
@@ -436,8 +436,8 @@ class AsyncShowsResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             shows.retrieve,
         )
-        self.list = async_to_raw_response_wrapper(
-            shows.list,
+        self.bulk_retrieve = async_to_raw_response_wrapper(
+            shows.bulk_retrieve,
         )
         self.list_episodes = async_to_raw_response_wrapper(
             shows.list_episodes,
@@ -451,8 +451,8 @@ class ShowsResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             shows.retrieve,
         )
-        self.list = to_streamed_response_wrapper(
-            shows.list,
+        self.bulk_retrieve = to_streamed_response_wrapper(
+            shows.bulk_retrieve,
         )
         self.list_episodes = to_streamed_response_wrapper(
             shows.list_episodes,
@@ -466,8 +466,8 @@ class AsyncShowsResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             shows.retrieve,
         )
-        self.list = async_to_streamed_response_wrapper(
-            shows.list,
+        self.bulk_retrieve = async_to_streamed_response_wrapper(
+            shows.bulk_retrieve,
         )
         self.list_episodes = async_to_streamed_response_wrapper(
             shows.list_episodes,

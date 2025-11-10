@@ -6,7 +6,7 @@ from .._models import BaseModel
 from .shared.audiobook_base import AudiobookBase
 from .simplified_chapter_object import SimplifiedChapterObject
 
-__all__ = ["AudiobookListResponse", "Audiobook", "AudiobookChapters"]
+__all__ = ["AudiobookBulkRetrieveResponse", "Audiobook", "AudiobookChapters"]
 
 
 class AudiobookChapters(BaseModel):
@@ -38,5 +38,5 @@ class Audiobook(AudiobookBase):
     """The chapters of the audiobook."""
 
 
-class AudiobookListResponse(BaseModel):
+class AudiobookBulkRetrieveResponse(BaseModel):
     audiobooks: List[Audiobook]
