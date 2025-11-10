@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["ImageUpdateParams"]
 
 
 class ImageUpdateParams(TypedDict, total=False):
-    body: Required[str]
-    """Base64 encoded JPEG image data, maximum payload size is 256 KB."""
+    pass

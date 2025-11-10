@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import Body, Query, Headers, NoneType, NotGiven, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._files import read_file_content, async_read_file_content
+from ..._types import Body, Query, Headers, NoneType, NotGiven, FileContent, not_given
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -15,7 +15,6 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.playlists import image_update_params
 from ...types.playlists.image_list_response import ImageListResponse
 
 __all__ = ["ImagesResource", "AsyncImagesResource"]
@@ -44,8 +43,8 @@ class ImagesResource(SyncAPIResource):
     def update(
         self,
         playlist_id: str,
+        body: FileContent,
         *,
-        body: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,9 +72,10 @@ class ImagesResource(SyncAPIResource):
         if not playlist_id:
             raise ValueError(f"Expected a non-empty value for `playlist_id` but received {playlist_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers["Content-Type"] = "image/jpeg"
         return self._put(
             f"/playlists/{playlist_id}/images",
-            body=maybe_transform(body, image_update_params.ImageUpdateParams),
+            body=read_file_content(body),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -142,8 +142,8 @@ class AsyncImagesResource(AsyncAPIResource):
     async def update(
         self,
         playlist_id: str,
+        body: FileContent,
         *,
-        body: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -171,9 +171,10 @@ class AsyncImagesResource(AsyncAPIResource):
         if not playlist_id:
             raise ValueError(f"Expected a non-empty value for `playlist_id` but received {playlist_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers["Content-Type"] = "image/jpeg"
         return await self._put(
             f"/playlists/{playlist_id}/images",
-            body=await async_maybe_transform(body, image_update_params.ImageUpdateParams),
+            body=await async_read_file_content(body),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
