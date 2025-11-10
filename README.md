@@ -38,6 +38,11 @@ album = client.albums.retrieve(
 print(album.id)
 ```
 
+While you can provide a `access_token` keyword argument,
+we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
+to add `SPOTIFY_ACCESS_TOKEN="My Access Token"` to your `.env` file
+so that your Access Token is not stored in source control.
+
 ## Async usage
 
 Simply import `AsyncSpotted` instead of `Spotted` and use `await` with each API call:
