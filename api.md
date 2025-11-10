@@ -301,12 +301,12 @@ Methods:
 Types:
 
 ```python
-from spotted.types import SearchSearchResponse
+from spotted.types import SearchQueryResponse
 ```
 
 Methods:
 
-- <code title="get /search">client.search.<a href="./src/spotted/resources/search.py">search</a>(\*\*<a href="src/spotted/types/search_search_params.py">params</a>) -> <a href="./src/spotted/types/search_search_response.py">SearchSearchResponse</a></code>
+- <code title="get /search">client.search.<a href="./src/spotted/resources/search.py">query</a>(\*\*<a href="src/spotted/types/search_query_params.py">params</a>) -> <a href="./src/spotted/types/search_query_response.py">SearchQueryResponse</a></code>
 
 # Playlists
 

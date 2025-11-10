@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import search_search_params
+from ..types import search_query_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -19,7 +19,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.search_search_response import SearchSearchResponse
+from ..types.search_query_response import SearchQueryResponse
 
 __all__ = ["SearchResource", "AsyncSearchResource"]
 
@@ -44,7 +44,7 @@ class SearchResource(SyncAPIResource):
         """
         return SearchResourceWithStreamingResponse(self)
 
-    def search(
+    def query(
         self,
         *,
         q: str,
@@ -59,7 +59,7 @@ class SearchResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SearchSearchResponse:
+    ) -> SearchQueryResponse:
         """
         Get Spotify catalog information about albums, artists, playlists, tracks, shows,
         episodes or audiobooks that match a keyword string. Audiobooks are only
@@ -129,10 +129,10 @@ class SearchResource(SyncAPIResource):
                         "market": market,
                         "offset": offset,
                     },
-                    search_search_params.SearchSearchParams,
+                    search_query_params.SearchQueryParams,
                 ),
             ),
-            cast_to=SearchSearchResponse,
+            cast_to=SearchQueryResponse,
         )
 
 
@@ -156,7 +156,7 @@ class AsyncSearchResource(AsyncAPIResource):
         """
         return AsyncSearchResourceWithStreamingResponse(self)
 
-    async def search(
+    async def query(
         self,
         *,
         q: str,
@@ -171,7 +171,7 @@ class AsyncSearchResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SearchSearchResponse:
+    ) -> SearchQueryResponse:
         """
         Get Spotify catalog information about albums, artists, playlists, tracks, shows,
         episodes or audiobooks that match a keyword string. Audiobooks are only
@@ -241,10 +241,10 @@ class AsyncSearchResource(AsyncAPIResource):
                         "market": market,
                         "offset": offset,
                     },
-                    search_search_params.SearchSearchParams,
+                    search_query_params.SearchQueryParams,
                 ),
             ),
-            cast_to=SearchSearchResponse,
+            cast_to=SearchQueryResponse,
         )
 
 
@@ -252,8 +252,8 @@ class SearchResourceWithRawResponse:
     def __init__(self, search: SearchResource) -> None:
         self._search = search
 
-        self.search = to_raw_response_wrapper(
-            search.search,
+        self.query = to_raw_response_wrapper(
+            search.query,
         )
 
 
@@ -261,8 +261,8 @@ class AsyncSearchResourceWithRawResponse:
     def __init__(self, search: AsyncSearchResource) -> None:
         self._search = search
 
-        self.search = async_to_raw_response_wrapper(
-            search.search,
+        self.query = async_to_raw_response_wrapper(
+            search.query,
         )
 
 
@@ -270,8 +270,8 @@ class SearchResourceWithStreamingResponse:
     def __init__(self, search: SearchResource) -> None:
         self._search = search
 
-        self.search = to_streamed_response_wrapper(
-            search.search,
+        self.query = to_streamed_response_wrapper(
+            search.query,
         )
 
 
@@ -279,6 +279,6 @@ class AsyncSearchResourceWithStreamingResponse:
     def __init__(self, search: AsyncSearchResource) -> None:
         self._search = search
 
-        self.search = async_to_streamed_response_wrapper(
-            search.search,
+        self.query = async_to_streamed_response_wrapper(
+            search.query,
         )
