@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import track_list_params, track_retrieve_params
+from ..types import track_retrieve_params, track_bulk_retrieve_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -17,7 +17,7 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.shared.track_object import TrackObject
-from ..types.track_list_response import TrackListResponse
+from ..types.track_bulk_retrieve_response import TrackBulkRetrieveResponse
 
 __all__ = ["TracksResource", "AsyncTracksResource"]
 
@@ -94,7 +94,7 @@ class TracksResource(SyncAPIResource):
             cast_to=TrackObject,
         )
 
-    def list(
+    def bulk_retrieve(
         self,
         *,
         ids: str,
@@ -105,7 +105,7 @@ class TracksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TrackListResponse:
+    ) -> TrackBulkRetrieveResponse:
         """
         Get Spotify catalog information for multiple tracks based on their Spotify IDs.
 
@@ -144,10 +144,10 @@ class TracksResource(SyncAPIResource):
                         "ids": ids,
                         "market": market,
                     },
-                    track_list_params.TrackListParams,
+                    track_bulk_retrieve_params.TrackBulkRetrieveParams,
                 ),
             ),
-            cast_to=TrackListResponse,
+            cast_to=TrackBulkRetrieveResponse,
         )
 
 
@@ -223,7 +223,7 @@ class AsyncTracksResource(AsyncAPIResource):
             cast_to=TrackObject,
         )
 
-    async def list(
+    async def bulk_retrieve(
         self,
         *,
         ids: str,
@@ -234,7 +234,7 @@ class AsyncTracksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> TrackListResponse:
+    ) -> TrackBulkRetrieveResponse:
         """
         Get Spotify catalog information for multiple tracks based on their Spotify IDs.
 
@@ -273,10 +273,10 @@ class AsyncTracksResource(AsyncAPIResource):
                         "ids": ids,
                         "market": market,
                     },
-                    track_list_params.TrackListParams,
+                    track_bulk_retrieve_params.TrackBulkRetrieveParams,
                 ),
             ),
-            cast_to=TrackListResponse,
+            cast_to=TrackBulkRetrieveResponse,
         )
 
 
@@ -287,8 +287,8 @@ class TracksResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             tracks.retrieve,
         )
-        self.list = to_raw_response_wrapper(
-            tracks.list,
+        self.bulk_retrieve = to_raw_response_wrapper(
+            tracks.bulk_retrieve,
         )
 
 
@@ -299,8 +299,8 @@ class AsyncTracksResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             tracks.retrieve,
         )
-        self.list = async_to_raw_response_wrapper(
-            tracks.list,
+        self.bulk_retrieve = async_to_raw_response_wrapper(
+            tracks.bulk_retrieve,
         )
 
 
@@ -311,8 +311,8 @@ class TracksResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             tracks.retrieve,
         )
-        self.list = to_streamed_response_wrapper(
-            tracks.list,
+        self.bulk_retrieve = to_streamed_response_wrapper(
+            tracks.bulk_retrieve,
         )
 
 
@@ -323,6 +323,6 @@ class AsyncTracksResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             tracks.retrieve,
         )
-        self.list = async_to_streamed_response_wrapper(
-            tracks.list,
+        self.bulk_retrieve = async_to_streamed_response_wrapper(
+            tracks.bulk_retrieve,
         )

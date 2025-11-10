@@ -10,7 +10,7 @@ from .shared.external_url_object import ExternalURLObject
 from .shared.resume_point_object import ResumePointObject
 from .shared.chapter_restriction_object import ChapterRestrictionObject
 
-__all__ = ["ChapterListResponse", "Chapter"]
+__all__ = ["ChapterBulkRetrieveResponse", "Chapter"]
 
 
 class Chapter(BaseModel):
@@ -107,5 +107,5 @@ class Chapter(BaseModel):
     """
 
 
-class ChapterListResponse(BaseModel):
+class ChapterBulkRetrieveResponse(BaseModel):
     chapters: List[Chapter]

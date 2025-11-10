@@ -51,7 +51,7 @@ Types:
 
 ```python
 from spotted.types import (
-    ArtistListResponse,
+    ArtistBulkRetrieveResponse,
     ArtistListAlbumsResponse,
     ArtistListRelatedArtistsResponse,
     ArtistListTopTracksResponse,
@@ -61,7 +61,7 @@ from spotted.types import (
 Methods:
 
 - <code title="get /artists/{id}">client.artists.<a href="./src/spotted/resources/artists.py">retrieve</a>(id) -> <a href="./src/spotted/types/shared/artist_object.py">ArtistObject</a></code>
-- <code title="get /artists">client.artists.<a href="./src/spotted/resources/artists.py">list</a>(\*\*<a href="src/spotted/types/artist_list_params.py">params</a>) -> <a href="./src/spotted/types/artist_list_response.py">ArtistListResponse</a></code>
+- <code title="get /artists">client.artists.<a href="./src/spotted/resources/artists.py">bulk_retrieve</a>(\*\*<a href="src/spotted/types/artist_bulk_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/artist_bulk_retrieve_response.py">ArtistBulkRetrieveResponse</a></code>
 - <code title="get /artists/{id}/albums">client.artists.<a href="./src/spotted/resources/artists.py">list_albums</a>(id, \*\*<a href="src/spotted/types/artist_list_albums_params.py">params</a>) -> <a href="./src/spotted/types/artist_list_albums_response.py">SyncCursorURLPage[ArtistListAlbumsResponse]</a></code>
 - <code title="get /artists/{id}/related-artists">client.artists.<a href="./src/spotted/resources/artists.py">list_related_artists</a>(id) -> <a href="./src/spotted/types/artist_list_related_artists_response.py">ArtistListRelatedArtistsResponse</a></code>
 - <code title="get /artists/{id}/top-tracks">client.artists.<a href="./src/spotted/resources/artists.py">list_top_tracks</a>(id, \*\*<a href="src/spotted/types/artist_list_top_tracks_params.py">params</a>) -> <a href="./src/spotted/types/artist_list_top_tracks_response.py">ArtistListTopTracksResponse</a></code>
@@ -71,13 +71,13 @@ Methods:
 Types:
 
 ```python
-from spotted.types import ShowRetrieveResponse, ShowListResponse
+from spotted.types import ShowRetrieveResponse, ShowBulkRetrieveResponse
 ```
 
 Methods:
 
 - <code title="get /shows/{id}">client.shows.<a href="./src/spotted/resources/shows.py">retrieve</a>(id, \*\*<a href="src/spotted/types/show_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/show_retrieve_response.py">ShowRetrieveResponse</a></code>
-- <code title="get /shows">client.shows.<a href="./src/spotted/resources/shows.py">list</a>(\*\*<a href="src/spotted/types/show_list_params.py">params</a>) -> <a href="./src/spotted/types/show_list_response.py">ShowListResponse</a></code>
+- <code title="get /shows">client.shows.<a href="./src/spotted/resources/shows.py">bulk_retrieve</a>(\*\*<a href="src/spotted/types/show_bulk_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/show_bulk_retrieve_response.py">ShowBulkRetrieveResponse</a></code>
 - <code title="get /shows/{id}/episodes">client.shows.<a href="./src/spotted/resources/shows.py">list_episodes</a>(id, \*\*<a href="src/spotted/types/show_list_episodes_params.py">params</a>) -> <a href="./src/spotted/types/shared/simplified_episode_object.py">SyncCursorURLPage[SimplifiedEpisodeObject]</a></code>
 
 # Episodes
@@ -85,26 +85,30 @@ Methods:
 Types:
 
 ```python
-from spotted.types import EpisodeListResponse
+from spotted.types import EpisodeBulkRetrieveResponse
 ```
 
 Methods:
 
 - <code title="get /episodes/{id}">client.episodes.<a href="./src/spotted/resources/episodes.py">retrieve</a>(id, \*\*<a href="src/spotted/types/episode_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/shared/episode_object.py">EpisodeObject</a></code>
-- <code title="get /episodes">client.episodes.<a href="./src/spotted/resources/episodes.py">list</a>(\*\*<a href="src/spotted/types/episode_list_params.py">params</a>) -> <a href="./src/spotted/types/episode_list_response.py">EpisodeListResponse</a></code>
+- <code title="get /episodes">client.episodes.<a href="./src/spotted/resources/episodes.py">bulk_retrieve</a>(\*\*<a href="src/spotted/types/episode_bulk_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/episode_bulk_retrieve_response.py">EpisodeBulkRetrieveResponse</a></code>
 
 # Audiobooks
 
 Types:
 
 ```python
-from spotted.types import SimplifiedChapterObject, AudiobookRetrieveResponse, AudiobookListResponse
+from spotted.types import (
+    SimplifiedChapterObject,
+    AudiobookRetrieveResponse,
+    AudiobookBulkRetrieveResponse,
+)
 ```
 
 Methods:
 
 - <code title="get /audiobooks/{id}">client.audiobooks.<a href="./src/spotted/resources/audiobooks.py">retrieve</a>(id, \*\*<a href="src/spotted/types/audiobook_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/audiobook_retrieve_response.py">AudiobookRetrieveResponse</a></code>
-- <code title="get /audiobooks">client.audiobooks.<a href="./src/spotted/resources/audiobooks.py">list</a>(\*\*<a href="src/spotted/types/audiobook_list_params.py">params</a>) -> <a href="./src/spotted/types/audiobook_list_response.py">AudiobookListResponse</a></code>
+- <code title="get /audiobooks">client.audiobooks.<a href="./src/spotted/resources/audiobooks.py">bulk_retrieve</a>(\*\*<a href="src/spotted/types/audiobook_bulk_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/audiobook_bulk_retrieve_response.py">AudiobookBulkRetrieveResponse</a></code>
 - <code title="get /audiobooks/{id}/chapters">client.audiobooks.<a href="./src/spotted/resources/audiobooks.py">list_chapters</a>(id, \*\*<a href="src/spotted/types/audiobook_list_chapters_params.py">params</a>) -> <a href="./src/spotted/types/simplified_chapter_object.py">SyncCursorURLPage[SimplifiedChapterObject]</a></code>
 
 # Me
@@ -212,12 +216,12 @@ Methods:
 Types:
 
 ```python
-from spotted.types.me import FollowingListResponse, FollowingCheckResponse
+from spotted.types.me import FollowingBulkRetrieveResponse, FollowingCheckResponse
 ```
 
 Methods:
 
-- <code title="get /me/following">client.me.following.<a href="./src/spotted/resources/me/following.py">list</a>(\*\*<a href="src/spotted/types/me/following_list_params.py">params</a>) -> <a href="./src/spotted/types/me/following_list_response.py">FollowingListResponse</a></code>
+- <code title="get /me/following">client.me.following.<a href="./src/spotted/resources/me/following.py">bulk_retrieve</a>(\*\*<a href="src/spotted/types/me/following_bulk_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/me/following_bulk_retrieve_response.py">FollowingBulkRetrieveResponse</a></code>
 - <code title="get /me/following/contains">client.me.following.<a href="./src/spotted/resources/me/following.py">check</a>(\*\*<a href="src/spotted/types/me/following_check_params.py">params</a>) -> <a href="./src/spotted/types/me/following_check_response.py">FollowingCheckResponse</a></code>
 - <code title="put /me/following">client.me.following.<a href="./src/spotted/resources/me/following.py">follow</a>(\*\*<a href="src/spotted/types/me/following_follow_params.py">params</a>) -> None</code>
 - <code title="delete /me/following">client.me.following.<a href="./src/spotted/resources/me/following.py">unfollow</a>(\*\*<a href="src/spotted/types/me/following_unfollow_params.py">params</a>) -> None</code>
@@ -271,26 +275,26 @@ Methods:
 Types:
 
 ```python
-from spotted.types import ChapterRetrieveResponse, ChapterListResponse
+from spotted.types import ChapterRetrieveResponse, ChapterBulkRetrieveResponse
 ```
 
 Methods:
 
 - <code title="get /chapters/{id}">client.chapters.<a href="./src/spotted/resources/chapters.py">retrieve</a>(id, \*\*<a href="src/spotted/types/chapter_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/chapter_retrieve_response.py">ChapterRetrieveResponse</a></code>
-- <code title="get /chapters">client.chapters.<a href="./src/spotted/resources/chapters.py">list</a>(\*\*<a href="src/spotted/types/chapter_list_params.py">params</a>) -> <a href="./src/spotted/types/chapter_list_response.py">ChapterListResponse</a></code>
+- <code title="get /chapters">client.chapters.<a href="./src/spotted/resources/chapters.py">bulk_retrieve</a>(\*\*<a href="src/spotted/types/chapter_bulk_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/chapter_bulk_retrieve_response.py">ChapterBulkRetrieveResponse</a></code>
 
 # Tracks
 
 Types:
 
 ```python
-from spotted.types import TrackListResponse
+from spotted.types import TrackBulkRetrieveResponse
 ```
 
 Methods:
 
 - <code title="get /tracks/{id}">client.tracks.<a href="./src/spotted/resources/tracks.py">retrieve</a>(id, \*\*<a href="src/spotted/types/track_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/shared/track_object.py">TrackObject</a></code>
-- <code title="get /tracks">client.tracks.<a href="./src/spotted/resources/tracks.py">list</a>(\*\*<a href="src/spotted/types/track_list_params.py">params</a>) -> <a href="./src/spotted/types/track_list_response.py">TrackListResponse</a></code>
+- <code title="get /tracks">client.tracks.<a href="./src/spotted/resources/tracks.py">bulk_retrieve</a>(\*\*<a href="src/spotted/types/track_bulk_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/track_bulk_retrieve_response.py">TrackBulkRetrieveResponse</a></code>
 
 # Search
 
@@ -420,13 +424,13 @@ Methods:
 Types:
 
 ```python
-from spotted.types import AudioFeatureRetrieveResponse, AudioFeatureListResponse
+from spotted.types import AudioFeatureRetrieveResponse, AudioFeatureBulkRetrieveResponse
 ```
 
 Methods:
 
 - <code title="get /audio-features/{id}">client.audio_features.<a href="./src/spotted/resources/audio_features.py">retrieve</a>(id) -> <a href="./src/spotted/types/audio_feature_retrieve_response.py">AudioFeatureRetrieveResponse</a></code>
-- <code title="get /audio-features">client.audio_features.<a href="./src/spotted/resources/audio_features.py">list</a>(\*\*<a href="src/spotted/types/audio_feature_list_params.py">params</a>) -> <a href="./src/spotted/types/audio_feature_list_response.py">AudioFeatureListResponse</a></code>
+- <code title="get /audio-features">client.audio_features.<a href="./src/spotted/resources/audio_features.py">bulk_retrieve</a>(\*\*<a href="src/spotted/types/audio_feature_bulk_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/audio_feature_bulk_retrieve_response.py">AudioFeatureBulkRetrieveResponse</a></code>
 
 # AudioAnalysis
 

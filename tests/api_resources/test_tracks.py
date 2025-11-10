@@ -9,7 +9,7 @@ import pytest
 
 from spotted import Spotted, AsyncSpotted
 from tests.utils import assert_matches_type
-from spotted.types import TrackListResponse
+from spotted.types import TrackBulkRetrieveResponse
 from spotted.types.shared import TrackObject
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -71,44 +71,44 @@ class TestTracks:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list(self, client: Spotted) -> None:
-        track = client.tracks.list(
+    def test_method_bulk_retrieve(self, client: Spotted) -> None:
+        track = client.tracks.bulk_retrieve(
             ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
         )
-        assert_matches_type(TrackListResponse, track, path=["response"])
+        assert_matches_type(TrackBulkRetrieveResponse, track, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list_with_all_params(self, client: Spotted) -> None:
-        track = client.tracks.list(
+    def test_method_bulk_retrieve_with_all_params(self, client: Spotted) -> None:
+        track = client.tracks.bulk_retrieve(
             ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
             market="ES",
         )
-        assert_matches_type(TrackListResponse, track, path=["response"])
+        assert_matches_type(TrackBulkRetrieveResponse, track, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: Spotted) -> None:
-        response = client.tracks.with_raw_response.list(
+    def test_raw_response_bulk_retrieve(self, client: Spotted) -> None:
+        response = client.tracks.with_raw_response.bulk_retrieve(
             ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         track = response.parse()
-        assert_matches_type(TrackListResponse, track, path=["response"])
+        assert_matches_type(TrackBulkRetrieveResponse, track, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: Spotted) -> None:
-        with client.tracks.with_streaming_response.list(
+    def test_streaming_response_bulk_retrieve(self, client: Spotted) -> None:
+        with client.tracks.with_streaming_response.bulk_retrieve(
             ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             track = response.parse()
-            assert_matches_type(TrackListResponse, track, path=["response"])
+            assert_matches_type(TrackBulkRetrieveResponse, track, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -171,43 +171,43 @@ class TestAsyncTracks:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncSpotted) -> None:
-        track = await async_client.tracks.list(
+    async def test_method_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
+        track = await async_client.tracks.bulk_retrieve(
             ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
         )
-        assert_matches_type(TrackListResponse, track, path=["response"])
+        assert_matches_type(TrackBulkRetrieveResponse, track, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncSpotted) -> None:
-        track = await async_client.tracks.list(
+    async def test_method_bulk_retrieve_with_all_params(self, async_client: AsyncSpotted) -> None:
+        track = await async_client.tracks.bulk_retrieve(
             ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
             market="ES",
         )
-        assert_matches_type(TrackListResponse, track, path=["response"])
+        assert_matches_type(TrackBulkRetrieveResponse, track, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.tracks.with_raw_response.list(
+    async def test_raw_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
+        response = await async_client.tracks.with_raw_response.bulk_retrieve(
             ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         track = await response.parse()
-        assert_matches_type(TrackListResponse, track, path=["response"])
+        assert_matches_type(TrackBulkRetrieveResponse, track, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncSpotted) -> None:
-        async with async_client.tracks.with_streaming_response.list(
+    async def test_streaming_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
+        async with async_client.tracks.with_streaming_response.bulk_retrieve(
             ids="7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ,2takcwOaAZWiXQijPHIx7B",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             track = await response.parse()
-            assert_matches_type(TrackListResponse, track, path=["response"])
+            assert_matches_type(TrackBulkRetrieveResponse, track, path=["response"])
 
         assert cast(Any, response.is_closed) is True

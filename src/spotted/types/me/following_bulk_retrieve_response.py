@@ -5,7 +5,7 @@ from typing import List, Optional
 from ..._models import BaseModel
 from ..shared.artist_object import ArtistObject
 
-__all__ = ["FollowingListResponse", "Artists", "ArtistsCursors"]
+__all__ = ["FollowingBulkRetrieveResponse", "Artists", "ArtistsCursors"]
 
 
 class ArtistsCursors(BaseModel):
@@ -37,5 +37,5 @@ class Artists(BaseModel):
     """The total number of items available to return."""
 
 
-class FollowingListResponse(BaseModel):
+class FollowingBulkRetrieveResponse(BaseModel):
     artists: Artists

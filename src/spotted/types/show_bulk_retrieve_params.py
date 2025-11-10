@@ -4,15 +4,15 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["EpisodeListParams"]
+__all__ = ["ShowBulkRetrieveParams"]
 
 
-class EpisodeListParams(TypedDict, total=False):
+class ShowBulkRetrieveParams(TypedDict, total=False):
     ids: Required[str]
     """
     A comma-separated list of the
-    [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the
-    episodes. Maximum: 50 IDs.
+    [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids) for the shows.
+    Maximum: 50 IDs.
     """
 
     market: str

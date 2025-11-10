@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import audiobook_list_params, audiobook_retrieve_params, audiobook_list_chapters_params
+from ..types import audiobook_retrieve_params, audiobook_bulk_retrieve_params, audiobook_list_chapters_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -17,9 +17,9 @@ from .._response import (
 )
 from ..pagination import SyncCursorURLPage, AsyncCursorURLPage
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.audiobook_list_response import AudiobookListResponse
 from ..types.simplified_chapter_object import SimplifiedChapterObject
 from ..types.audiobook_retrieve_response import AudiobookRetrieveResponse
+from ..types.audiobook_bulk_retrieve_response import AudiobookBulkRetrieveResponse
 
 __all__ = ["AudiobooksResource", "AsyncAudiobooksResource"]
 
@@ -97,7 +97,7 @@ class AudiobooksResource(SyncAPIResource):
             cast_to=AudiobookRetrieveResponse,
         )
 
-    def list(
+    def bulk_retrieve(
         self,
         *,
         ids: str,
@@ -108,7 +108,7 @@ class AudiobooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AudiobookListResponse:
+    ) -> AudiobookBulkRetrieveResponse:
         """
         Get Spotify catalog information for several audiobooks identified by their
         Spotify IDs. Audiobooks are only available within the US, UK, Canada, Ireland,
@@ -149,10 +149,10 @@ class AudiobooksResource(SyncAPIResource):
                         "ids": ids,
                         "market": market,
                     },
-                    audiobook_list_params.AudiobookListParams,
+                    audiobook_bulk_retrieve_params.AudiobookBulkRetrieveParams,
                 ),
             ),
-            cast_to=AudiobookListResponse,
+            cast_to=AudiobookBulkRetrieveResponse,
         )
 
     def list_chapters(
@@ -300,7 +300,7 @@ class AsyncAudiobooksResource(AsyncAPIResource):
             cast_to=AudiobookRetrieveResponse,
         )
 
-    async def list(
+    async def bulk_retrieve(
         self,
         *,
         ids: str,
@@ -311,7 +311,7 @@ class AsyncAudiobooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AudiobookListResponse:
+    ) -> AudiobookBulkRetrieveResponse:
         """
         Get Spotify catalog information for several audiobooks identified by their
         Spotify IDs. Audiobooks are only available within the US, UK, Canada, Ireland,
@@ -352,10 +352,10 @@ class AsyncAudiobooksResource(AsyncAPIResource):
                         "ids": ids,
                         "market": market,
                     },
-                    audiobook_list_params.AudiobookListParams,
+                    audiobook_bulk_retrieve_params.AudiobookBulkRetrieveParams,
                 ),
             ),
-            cast_to=AudiobookListResponse,
+            cast_to=AudiobookBulkRetrieveResponse,
         )
 
     def list_chapters(
@@ -435,8 +435,8 @@ class AudiobooksResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             audiobooks.retrieve,
         )
-        self.list = to_raw_response_wrapper(
-            audiobooks.list,
+        self.bulk_retrieve = to_raw_response_wrapper(
+            audiobooks.bulk_retrieve,
         )
         self.list_chapters = to_raw_response_wrapper(
             audiobooks.list_chapters,
@@ -450,8 +450,8 @@ class AsyncAudiobooksResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             audiobooks.retrieve,
         )
-        self.list = async_to_raw_response_wrapper(
-            audiobooks.list,
+        self.bulk_retrieve = async_to_raw_response_wrapper(
+            audiobooks.bulk_retrieve,
         )
         self.list_chapters = async_to_raw_response_wrapper(
             audiobooks.list_chapters,
@@ -465,8 +465,8 @@ class AudiobooksResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             audiobooks.retrieve,
         )
-        self.list = to_streamed_response_wrapper(
-            audiobooks.list,
+        self.bulk_retrieve = to_streamed_response_wrapper(
+            audiobooks.bulk_retrieve,
         )
         self.list_chapters = to_streamed_response_wrapper(
             audiobooks.list_chapters,
@@ -480,8 +480,8 @@ class AsyncAudiobooksResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             audiobooks.retrieve,
         )
-        self.list = async_to_streamed_response_wrapper(
-            audiobooks.list,
+        self.bulk_retrieve = async_to_streamed_response_wrapper(
+            audiobooks.bulk_retrieve,
         )
         self.list_chapters = async_to_streamed_response_wrapper(
             audiobooks.list_chapters,

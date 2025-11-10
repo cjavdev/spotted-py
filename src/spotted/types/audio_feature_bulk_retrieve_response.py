@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["AudioFeatureListResponse", "AudioFeature"]
+__all__ = ["AudioFeatureBulkRetrieveResponse", "AudioFeature"]
 
 
 class AudioFeature(BaseModel):
@@ -129,5 +129,5 @@ class AudioFeature(BaseModel):
     """
 
 
-class AudioFeatureListResponse(BaseModel):
+class AudioFeatureBulkRetrieveResponse(BaseModel):
     audio_features: List[AudioFeature]

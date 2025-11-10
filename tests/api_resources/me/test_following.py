@@ -10,8 +10,8 @@ import pytest
 from spotted import Spotted, AsyncSpotted
 from tests.utils import assert_matches_type
 from spotted.types.me import (
-    FollowingListResponse,
     FollowingCheckResponse,
+    FollowingBulkRetrieveResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -22,45 +22,45 @@ class TestFollowing:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list(self, client: Spotted) -> None:
-        following = client.me.following.list(
+    def test_method_bulk_retrieve(self, client: Spotted) -> None:
+        following = client.me.following.bulk_retrieve(
             type="artist",
         )
-        assert_matches_type(FollowingListResponse, following, path=["response"])
+        assert_matches_type(FollowingBulkRetrieveResponse, following, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list_with_all_params(self, client: Spotted) -> None:
-        following = client.me.following.list(
+    def test_method_bulk_retrieve_with_all_params(self, client: Spotted) -> None:
+        following = client.me.following.bulk_retrieve(
             type="artist",
             after="0I2XqVXqHScXjHhk6AYYRe",
             limit=10,
         )
-        assert_matches_type(FollowingListResponse, following, path=["response"])
+        assert_matches_type(FollowingBulkRetrieveResponse, following, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: Spotted) -> None:
-        response = client.me.following.with_raw_response.list(
+    def test_raw_response_bulk_retrieve(self, client: Spotted) -> None:
+        response = client.me.following.with_raw_response.bulk_retrieve(
             type="artist",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         following = response.parse()
-        assert_matches_type(FollowingListResponse, following, path=["response"])
+        assert_matches_type(FollowingBulkRetrieveResponse, following, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: Spotted) -> None:
-        with client.me.following.with_streaming_response.list(
+    def test_streaming_response_bulk_retrieve(self, client: Spotted) -> None:
+        with client.me.following.with_streaming_response.bulk_retrieve(
             type="artist",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             following = response.parse()
-            assert_matches_type(FollowingListResponse, following, path=["response"])
+            assert_matches_type(FollowingBulkRetrieveResponse, following, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -179,45 +179,45 @@ class TestAsyncFollowing:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncSpotted) -> None:
-        following = await async_client.me.following.list(
+    async def test_method_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
+        following = await async_client.me.following.bulk_retrieve(
             type="artist",
         )
-        assert_matches_type(FollowingListResponse, following, path=["response"])
+        assert_matches_type(FollowingBulkRetrieveResponse, following, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncSpotted) -> None:
-        following = await async_client.me.following.list(
+    async def test_method_bulk_retrieve_with_all_params(self, async_client: AsyncSpotted) -> None:
+        following = await async_client.me.following.bulk_retrieve(
             type="artist",
             after="0I2XqVXqHScXjHhk6AYYRe",
             limit=10,
         )
-        assert_matches_type(FollowingListResponse, following, path=["response"])
+        assert_matches_type(FollowingBulkRetrieveResponse, following, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.following.with_raw_response.list(
+    async def test_raw_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
+        response = await async_client.me.following.with_raw_response.bulk_retrieve(
             type="artist",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         following = await response.parse()
-        assert_matches_type(FollowingListResponse, following, path=["response"])
+        assert_matches_type(FollowingBulkRetrieveResponse, following, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.following.with_streaming_response.list(
+    async def test_streaming_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
+        async with async_client.me.following.with_streaming_response.bulk_retrieve(
             type="artist",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             following = await response.parse()
-            assert_matches_type(FollowingListResponse, following, path=["response"])
+            assert_matches_type(FollowingBulkRetrieveResponse, following, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -3,10 +3,10 @@
 from typing import List
 
 from .._models import BaseModel
-from .shared.track_object import TrackObject
+from .shared.show_base import ShowBase
 
-__all__ = ["TrackListResponse"]
+__all__ = ["ShowBulkRetrieveResponse"]
 
 
-class TrackListResponse(BaseModel):
-    tracks: List[TrackObject]
+class ShowBulkRetrieveResponse(BaseModel):
+    shows: List[ShowBase]

@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["FollowingListParams"]
+__all__ = ["FollowingBulkRetrieveParams"]
 
 
-class FollowingListParams(TypedDict, total=False):
+class FollowingBulkRetrieveParams(TypedDict, total=False):
     type: Required[Literal["artist"]]
     """The ID type: currently only `artist` is supported."""
 

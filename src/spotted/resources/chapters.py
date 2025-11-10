@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import chapter_list_params, chapter_retrieve_params
+from ..types import chapter_retrieve_params, chapter_bulk_retrieve_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -16,8 +16,8 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.chapter_list_response import ChapterListResponse
 from ..types.chapter_retrieve_response import ChapterRetrieveResponse
+from ..types.chapter_bulk_retrieve_response import ChapterBulkRetrieveResponse
 
 __all__ = ["ChaptersResource", "AsyncChaptersResource"]
 
@@ -96,7 +96,7 @@ class ChaptersResource(SyncAPIResource):
             cast_to=ChapterRetrieveResponse,
         )
 
-    def list(
+    def bulk_retrieve(
         self,
         *,
         ids: str,
@@ -107,7 +107,7 @@ class ChaptersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ChapterListResponse:
+    ) -> ChapterBulkRetrieveResponse:
         """
         Get Spotify catalog information for several audiobook chapters identified by
         their Spotify IDs. Chapters are only available within the US, UK, Canada,
@@ -148,10 +148,10 @@ class ChaptersResource(SyncAPIResource):
                         "ids": ids,
                         "market": market,
                     },
-                    chapter_list_params.ChapterListParams,
+                    chapter_bulk_retrieve_params.ChapterBulkRetrieveParams,
                 ),
             ),
-            cast_to=ChapterListResponse,
+            cast_to=ChapterBulkRetrieveResponse,
         )
 
 
@@ -229,7 +229,7 @@ class AsyncChaptersResource(AsyncAPIResource):
             cast_to=ChapterRetrieveResponse,
         )
 
-    async def list(
+    async def bulk_retrieve(
         self,
         *,
         ids: str,
@@ -240,7 +240,7 @@ class AsyncChaptersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> ChapterListResponse:
+    ) -> ChapterBulkRetrieveResponse:
         """
         Get Spotify catalog information for several audiobook chapters identified by
         their Spotify IDs. Chapters are only available within the US, UK, Canada,
@@ -281,10 +281,10 @@ class AsyncChaptersResource(AsyncAPIResource):
                         "ids": ids,
                         "market": market,
                     },
-                    chapter_list_params.ChapterListParams,
+                    chapter_bulk_retrieve_params.ChapterBulkRetrieveParams,
                 ),
             ),
-            cast_to=ChapterListResponse,
+            cast_to=ChapterBulkRetrieveResponse,
         )
 
 
@@ -295,8 +295,8 @@ class ChaptersResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             chapters.retrieve,
         )
-        self.list = to_raw_response_wrapper(
-            chapters.list,
+        self.bulk_retrieve = to_raw_response_wrapper(
+            chapters.bulk_retrieve,
         )
 
 
@@ -307,8 +307,8 @@ class AsyncChaptersResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             chapters.retrieve,
         )
-        self.list = async_to_raw_response_wrapper(
-            chapters.list,
+        self.bulk_retrieve = async_to_raw_response_wrapper(
+            chapters.bulk_retrieve,
         )
 
 
@@ -319,8 +319,8 @@ class ChaptersResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             chapters.retrieve,
         )
-        self.list = to_streamed_response_wrapper(
-            chapters.list,
+        self.bulk_retrieve = to_streamed_response_wrapper(
+            chapters.bulk_retrieve,
         )
 
 
@@ -331,6 +331,6 @@ class AsyncChaptersResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             chapters.retrieve,
         )
-        self.list = async_to_streamed_response_wrapper(
-            chapters.list,
+        self.bulk_retrieve = async_to_streamed_response_wrapper(
+            chapters.bulk_retrieve,
         )

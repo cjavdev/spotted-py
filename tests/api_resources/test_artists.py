@@ -10,8 +10,8 @@ import pytest
 from spotted import Spotted, AsyncSpotted
 from tests.utils import assert_matches_type
 from spotted.types import (
-    ArtistListResponse,
     ArtistListAlbumsResponse,
+    ArtistBulkRetrieveResponse,
     ArtistListTopTracksResponse,
     ArtistListRelatedArtistsResponse,
 )
@@ -70,35 +70,35 @@ class TestArtists:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list(self, client: Spotted) -> None:
-        artist = client.artists.list(
+    def test_method_bulk_retrieve(self, client: Spotted) -> None:
+        artist = client.artists.bulk_retrieve(
             ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
         )
-        assert_matches_type(ArtistListResponse, artist, path=["response"])
+        assert_matches_type(ArtistBulkRetrieveResponse, artist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: Spotted) -> None:
-        response = client.artists.with_raw_response.list(
+    def test_raw_response_bulk_retrieve(self, client: Spotted) -> None:
+        response = client.artists.with_raw_response.bulk_retrieve(
             ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         artist = response.parse()
-        assert_matches_type(ArtistListResponse, artist, path=["response"])
+        assert_matches_type(ArtistBulkRetrieveResponse, artist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: Spotted) -> None:
-        with client.artists.with_streaming_response.list(
+    def test_streaming_response_bulk_retrieve(self, client: Spotted) -> None:
+        with client.artists.with_streaming_response.bulk_retrieve(
             ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             artist = response.parse()
-            assert_matches_type(ArtistListResponse, artist, path=["response"])
+            assert_matches_type(ArtistBulkRetrieveResponse, artist, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -304,35 +304,35 @@ class TestAsyncArtists:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncSpotted) -> None:
-        artist = await async_client.artists.list(
+    async def test_method_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
+        artist = await async_client.artists.bulk_retrieve(
             ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
         )
-        assert_matches_type(ArtistListResponse, artist, path=["response"])
+        assert_matches_type(ArtistBulkRetrieveResponse, artist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.artists.with_raw_response.list(
+    async def test_raw_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
+        response = await async_client.artists.with_raw_response.bulk_retrieve(
             ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         artist = await response.parse()
-        assert_matches_type(ArtistListResponse, artist, path=["response"])
+        assert_matches_type(ArtistBulkRetrieveResponse, artist, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncSpotted) -> None:
-        async with async_client.artists.with_streaming_response.list(
+    async def test_streaming_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
+        async with async_client.artists.with_streaming_response.bulk_retrieve(
             ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             artist = await response.parse()
-            assert_matches_type(ArtistListResponse, artist, path=["response"])
+            assert_matches_type(ArtistBulkRetrieveResponse, artist, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

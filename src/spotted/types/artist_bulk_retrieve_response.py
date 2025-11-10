@@ -5,8 +5,8 @@ from typing import List
 from .._models import BaseModel
 from .shared.artist_object import ArtistObject
 
-__all__ = ["ArtistListResponse"]
+__all__ = ["ArtistBulkRetrieveResponse"]
 
 
-class ArtistListResponse(BaseModel):
+class ArtistBulkRetrieveResponse(BaseModel):
     artists: List[ArtistObject]
