@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["SearchRetrieveParams"]
+__all__ = ["SearchSearchParams"]
 
 
-class SearchRetrieveParams(TypedDict, total=False):
+class SearchSearchParams(TypedDict, total=False):
     q: Required[str]
     """Your search query.
 

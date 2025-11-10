@@ -40,6 +40,7 @@ from .track_list_response import TrackListResponse as TrackListResponse
 from .artist_list_response import ArtistListResponse as ArtistListResponse
 from .market_list_response import MarketListResponse as MarketListResponse
 from .me_retrieve_response import MeRetrieveResponse as MeRetrieveResponse
+from .search_search_params import SearchSearchParams as SearchSearchParams
 from .show_retrieve_params import ShowRetrieveParams as ShowRetrieveParams
 from .time_interval_object import TimeIntervalObject as TimeIntervalObject
 from .album_retrieve_params import AlbumRetrieveParams as AlbumRetrieveParams
@@ -48,7 +49,7 @@ from .chapter_list_response import ChapterListResponse as ChapterListResponse
 from .episode_list_response import EpisodeListResponse as EpisodeListResponse
 from .track_retrieve_params import TrackRetrieveParams as TrackRetrieveParams
 from .playlist_update_params import PlaylistUpdateParams as PlaylistUpdateParams
-from .search_retrieve_params import SearchRetrieveParams as SearchRetrieveParams
+from .search_search_response import SearchSearchResponse as SearchSearchResponse
 from .show_retrieve_response import ShowRetrieveResponse as ShowRetrieveResponse
 from .album_retrieve_response import AlbumRetrieveResponse as AlbumRetrieveResponse
 from .audiobook_list_response import AudiobookListResponse as AudiobookListResponse
@@ -56,7 +57,6 @@ from .chapter_retrieve_params import ChapterRetrieveParams as ChapterRetrievePar
 from .episode_retrieve_params import EpisodeRetrieveParams as EpisodeRetrieveParams
 from .album_list_tracks_params import AlbumListTracksParams as AlbumListTracksParams
 from .playlist_retrieve_params import PlaylistRetrieveParams as PlaylistRetrieveParams
-from .search_retrieve_response import SearchRetrieveResponse as SearchRetrieveResponse
 from .artist_list_albums_params import ArtistListAlbumsParams as ArtistListAlbumsParams
 from .audio_feature_list_params import AudioFeatureListParams as AudioFeatureListParams
 from .audiobook_retrieve_params import AudiobookRetrieveParams as AudiobookRetrieveParams

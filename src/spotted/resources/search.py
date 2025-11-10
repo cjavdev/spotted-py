@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import search_retrieve_params
+from ..types import search_search_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -19,7 +19,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.search_retrieve_response import SearchRetrieveResponse
+from ..types.search_search_response import SearchSearchResponse
 
 __all__ = ["SearchResource", "AsyncSearchResource"]
 
@@ -44,7 +44,7 @@ class SearchResource(SyncAPIResource):
         """
         return SearchResourceWithStreamingResponse(self)
 
-    def retrieve(
+    def search(
         self,
         *,
         q: str,
@@ -59,7 +59,7 @@ class SearchResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SearchRetrieveResponse:
+    ) -> SearchSearchResponse:
         """
         Get Spotify catalog information about albums, artists, playlists, tracks, shows,
         episodes or audiobooks that match a keyword string. Audiobooks are only
@@ -129,10 +129,10 @@ class SearchResource(SyncAPIResource):
                         "market": market,
                         "offset": offset,
                     },
-                    search_retrieve_params.SearchRetrieveParams,
+                    search_search_params.SearchSearchParams,
                 ),
             ),
-            cast_to=SearchRetrieveResponse,
+            cast_to=SearchSearchResponse,
         )
 
 
@@ -156,7 +156,7 @@ class AsyncSearchResource(AsyncAPIResource):
         """
         return AsyncSearchResourceWithStreamingResponse(self)
 
-    async def retrieve(
+    async def search(
         self,
         *,
         q: str,
@@ -171,7 +171,7 @@ class AsyncSearchResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SearchRetrieveResponse:
+    ) -> SearchSearchResponse:
         """
         Get Spotify catalog information about albums, artists, playlists, tracks, shows,
         episodes or audiobooks that match a keyword string. Audiobooks are only
@@ -241,10 +241,10 @@ class AsyncSearchResource(AsyncAPIResource):
                         "market": market,
                         "offset": offset,
                     },
-                    search_retrieve_params.SearchRetrieveParams,
+                    search_search_params.SearchSearchParams,
                 ),
             ),
-            cast_to=SearchRetrieveResponse,
+            cast_to=SearchSearchResponse,
         )
 
 
@@ -252,8 +252,8 @@ class SearchResourceWithRawResponse:
     def __init__(self, search: SearchResource) -> None:
         self._search = search
 
-        self.retrieve = to_raw_response_wrapper(
-            search.retrieve,
+        self.search = to_raw_response_wrapper(
+            search.search,
         )
 
 
@@ -261,8 +261,8 @@ class AsyncSearchResourceWithRawResponse:
     def __init__(self, search: AsyncSearchResource) -> None:
         self._search = search
 
-        self.retrieve = async_to_raw_response_wrapper(
-            search.retrieve,
+        self.search = async_to_raw_response_wrapper(
+            search.search,
         )
 
 
@@ -270,8 +270,8 @@ class SearchResourceWithStreamingResponse:
     def __init__(self, search: SearchResource) -> None:
         self._search = search
 
-        self.retrieve = to_streamed_response_wrapper(
-            search.retrieve,
+        self.search = to_streamed_response_wrapper(
+            search.search,
         )
 
 
@@ -279,6 +279,6 @@ class AsyncSearchResourceWithStreamingResponse:
     def __init__(self, search: AsyncSearchResource) -> None:
         self._search = search
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            search.retrieve,
+        self.search = async_to_streamed_response_wrapper(
+            search.search,
         )
