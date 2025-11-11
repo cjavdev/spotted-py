@@ -19,8 +19,6 @@ class AlbumTracks(BaseModel):
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 
-    items: List[SimplifiedTrackObject]
-
     limit: int
     """
     The maximum number of items in the response (as set in the query or by default).
@@ -37,6 +35,8 @@ class AlbumTracks(BaseModel):
 
     total: int
     """The total number of items available to return."""
+
+    items: Optional[List[SimplifiedTrackObject]] = None
 
 
 class Album(BaseModel):

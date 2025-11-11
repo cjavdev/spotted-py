@@ -13,8 +13,6 @@ class AudiobookChapters(BaseModel):
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 
-    items: List[SimplifiedChapterObject]
-
     limit: int
     """
     The maximum number of items in the response (as set in the query or by default).
@@ -31,6 +29,8 @@ class AudiobookChapters(BaseModel):
 
     total: int
     """The total number of items available to return."""
+
+    items: Optional[List[SimplifiedChapterObject]] = None
 
 
 class Audiobook(AudiobookBase):

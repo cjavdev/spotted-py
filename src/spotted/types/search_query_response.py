@@ -84,8 +84,6 @@ class Albums(BaseModel):
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 
-    items: List[AlbumsItem]
-
     limit: int
     """
     The maximum number of items in the response (as set in the query or by default).
@@ -102,14 +100,14 @@ class Albums(BaseModel):
 
     total: int
     """The total number of items available to return."""
+
+    items: Optional[List[AlbumsItem]] = None
 
 
 class Artists(BaseModel):
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 
-    items: List[ArtistObject]
-
     limit: int
     """
     The maximum number of items in the response (as set in the query or by default).
@@ -126,14 +124,14 @@ class Artists(BaseModel):
 
     total: int
     """The total number of items available to return."""
+
+    items: Optional[List[ArtistObject]] = None
 
 
 class Audiobooks(BaseModel):
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 
-    items: List[AudiobookBase]
-
     limit: int
     """
     The maximum number of items in the response (as set in the query or by default).
@@ -150,14 +148,14 @@ class Audiobooks(BaseModel):
 
     total: int
     """The total number of items available to return."""
+
+    items: Optional[List[AudiobookBase]] = None
 
 
 class Episodes(BaseModel):
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 
-    items: List[SimplifiedEpisodeObject]
-
     limit: int
     """
     The maximum number of items in the response (as set in the query or by default).
@@ -174,14 +172,14 @@ class Episodes(BaseModel):
 
     total: int
     """The total number of items available to return."""
+
+    items: Optional[List[SimplifiedEpisodeObject]] = None
 
 
 class Shows(BaseModel):
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 
-    items: List[ShowBase]
-
     limit: int
     """
     The maximum number of items in the response (as set in the query or by default).
@@ -198,14 +196,14 @@ class Shows(BaseModel):
 
     total: int
     """The total number of items available to return."""
+
+    items: Optional[List[ShowBase]] = None
 
 
 class Tracks(BaseModel):
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 
-    items: List[TrackObject]
-
     limit: int
     """
     The maximum number of items in the response (as set in the query or by default).
@@ -222,6 +220,8 @@ class Tracks(BaseModel):
 
     total: int
     """The total number of items available to return."""
+
+    items: Optional[List[TrackObject]] = None
 
 
 class SearchQueryResponse(BaseModel):
