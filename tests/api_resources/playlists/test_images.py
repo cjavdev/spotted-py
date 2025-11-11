@@ -5,10 +5,18 @@ from __future__ import annotations
 import os
 from typing import Any, cast
 
+import httpx
 import pytest
+from respx import MockRouter
 
 from spotted import Spotted, AsyncSpotted
 from tests.utils import assert_matches_type
+from spotted._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
+)
 from spotted.types.playlists import ImageListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -17,50 +25,64 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestImages:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_update(self, client: Spotted) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_update(self, client: Spotted, respx_mock: MockRouter) -> None:
+        respx_mock.put("/playlists/3cEYpjA9oz9GiPac4AsH4n/images").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         image = client.playlists.images.update(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            body=b"raw file contents",
+            body="/9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z",
         )
-        assert image is None
+        assert image.is_closed
+        assert image.json() == {"foo": "bar"}
+        assert cast(Any, image.is_closed) is True
+        assert isinstance(image, BinaryAPIResponse)
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_update(self, client: Spotted) -> None:
-        response = client.playlists.images.with_raw_response.update(
+    @pytest.mark.respx(base_url=base_url)
+    def test_raw_response_update(self, client: Spotted, respx_mock: MockRouter) -> None:
+        respx_mock.put("/playlists/3cEYpjA9oz9GiPac4AsH4n/images").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+
+        image = client.playlists.images.with_raw_response.update(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            body=b"raw file contents",
+            body="/9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z",
         )
 
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        image = response.parse()
-        assert image is None
+        assert image.is_closed is True
+        assert image.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert image.json() == {"foo": "bar"}
+        assert isinstance(image, BinaryAPIResponse)
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_update(self, client: Spotted) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_streaming_response_update(self, client: Spotted, respx_mock: MockRouter) -> None:
+        respx_mock.put("/playlists/3cEYpjA9oz9GiPac4AsH4n/images").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         with client.playlists.images.with_streaming_response.update(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            body=b"raw file contents",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            body="/9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z",
+        ) as image:
+            assert not image.is_closed
+            assert image.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            image = response.parse()
-            assert image is None
+            assert image.json() == {"foo": "bar"}
+            assert cast(Any, image.is_closed) is True
+            assert isinstance(image, StreamedBinaryAPIResponse)
 
-        assert cast(Any, response.is_closed) is True
+        assert cast(Any, image.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    @pytest.mark.respx(base_url=base_url)
     def test_path_params_update(self, client: Spotted) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `playlist_id` but received ''"):
             client.playlists.images.with_raw_response.update(
                 playlist_id="",
-                body=b"raw file contents",
+                body="/9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -111,50 +133,64 @@ class TestAsyncImages:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_update(self, async_client: AsyncSpotted) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_update(self, async_client: AsyncSpotted, respx_mock: MockRouter) -> None:
+        respx_mock.put("/playlists/3cEYpjA9oz9GiPac4AsH4n/images").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         image = await async_client.playlists.images.update(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            body=b"raw file contents",
+            body="/9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z",
         )
-        assert image is None
+        assert image.is_closed
+        assert await image.json() == {"foo": "bar"}
+        assert cast(Any, image.is_closed) is True
+        assert isinstance(image, AsyncBinaryAPIResponse)
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.playlists.images.with_raw_response.update(
+    @pytest.mark.respx(base_url=base_url)
+    async def test_raw_response_update(self, async_client: AsyncSpotted, respx_mock: MockRouter) -> None:
+        respx_mock.put("/playlists/3cEYpjA9oz9GiPac4AsH4n/images").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+
+        image = await async_client.playlists.images.with_raw_response.update(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            body=b"raw file contents",
+            body="/9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z",
         )
 
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        image = await response.parse()
-        assert image is None
+        assert image.is_closed is True
+        assert image.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert await image.json() == {"foo": "bar"}
+        assert isinstance(image, AsyncBinaryAPIResponse)
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncSpotted) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_streaming_response_update(self, async_client: AsyncSpotted, respx_mock: MockRouter) -> None:
+        respx_mock.put("/playlists/3cEYpjA9oz9GiPac4AsH4n/images").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         async with async_client.playlists.images.with_streaming_response.update(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            body=b"raw file contents",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            body="/9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z",
+        ) as image:
+            assert not image.is_closed
+            assert image.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            image = await response.parse()
-            assert image is None
+            assert await image.json() == {"foo": "bar"}
+            assert cast(Any, image.is_closed) is True
+            assert isinstance(image, AsyncStreamedBinaryAPIResponse)
 
-        assert cast(Any, response.is_closed) is True
+        assert cast(Any, image.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    @pytest.mark.respx(base_url=base_url)
     async def test_path_params_update(self, async_client: AsyncSpotted) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `playlist_id` but received ''"):
             await async_client.playlists.images.with_raw_response.update(
                 playlist_id="",
-                body=b"raw file contents",
+                body="/9j/2wCEABoZGSccJz4lJT5CLy8vQkc9Ozs9R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHCcnMyYzPSYmPUc9Mj1HR0dEREdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//dAAQAAf/uAA5BZG9iZQBkwAAAAAH/wAARCAABAAEDACIAAREBAhEB/8QASwABAQAAAAAAAAAAAAAAAAAAAAYBAQAAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAARAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwAAARECEQA/AJgAH//Z",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
