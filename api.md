@@ -360,7 +360,7 @@ from spotted.types.playlists import ImageListResponse
 
 Methods:
 
-- <code title="put /playlists/{playlist_id}/images">client.playlists.images.<a href="./src/spotted/resources/playlists/images.py">update</a>(playlist_id, body, \*\*<a href="src/spotted/types/playlists/image_update_params.py">params</a>) -> None</code>
+- <code title="put /playlists/{playlist_id}/images">client.playlists.images.<a href="./src/spotted/resources/playlists/images.py">update</a>(playlist_id, \*\*<a href="src/spotted/types/playlists/image_update_params.py">params</a>) -> BinaryAPIResponse</code>
 - <code title="get /playlists/{playlist_id}/images">client.playlists.images.<a href="./src/spotted/resources/playlists/images.py">list</a>(playlist_id) -> <a href="./src/spotted/types/playlists/image_list_response.py">ImageListResponse</a></code>
 
 # Users
