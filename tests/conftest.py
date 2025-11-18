@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING, Iterator, AsyncIterator
 
 import httpx
 import pytest
+import respx
 from pytest_asyncio import is_async_test
 
 from spotted import Spotted, AsyncSpotted, DefaultAioHttpClient
@@ -47,6 +48,23 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 client_id = "My Client ID"
 client_secret = "My Client Secret"
+
+
+@pytest.fixture(autouse=True)
+def mock_oauth_token_endpoint() -> Iterator[None]:
+    """Automatically mock the OAuth token endpoint for all tests using respx"""
+    with respx.mock(base_url="https://accounts.spotify.com", assert_all_called=False) as respx_mock:
+        respx_mock.post("/api/token", params={"grant_type": "client_credentials"}).mock(
+            return_value=httpx.Response(
+                200,
+                json={
+                    "access_token": "test_access_token_1234567890",
+                    "token_type": "Bearer",
+                    "expires_in": 3600,
+                },
+            )
+        )
+        yield
 
 
 @pytest.fixture(scope="session")
