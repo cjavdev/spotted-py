@@ -7,8 +7,8 @@ import logging
 from typing import TYPE_CHECKING, Iterator, AsyncIterator
 
 import httpx
-import pytest
 import respx
+import pytest
 from pytest_asyncio import is_async_test
 
 from spotted import Spotted, AsyncSpotted, DefaultAioHttpClient
