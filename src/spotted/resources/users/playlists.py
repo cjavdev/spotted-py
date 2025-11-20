@@ -48,9 +48,9 @@ class PlaylistsResource(SyncAPIResource):
         user_id: str,
         *,
         name: str,
+        components_schemas_properties_published: bool | Omit = omit,
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
-        public: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -71,6 +71,14 @@ class PlaylistsResource(SyncAPIResource):
               does not need to be unique; a user may have several playlists with the same
               name.
 
+          components_schemas_properties_published: Defaults to `true`. The playlist's public/private status (if it should be added
+              to the user's profile or not): `true` the playlist will be public, `false` the
+              playlist will be private. To be able to create private playlists, the user must
+              have granted the `playlist-modify-private`
+              [scope](/documentation/web-api/concepts/scopes/#list-of-scopes). For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           collaborative: Defaults to `false`. If `true` the playlist will be collaborative. _**Note**: to
               create a collaborative playlist you must also set `public` to `false`. To create
               collaborative playlists you must have granted `playlist-modify-private` and
@@ -79,14 +87,6 @@ class PlaylistsResource(SyncAPIResource):
 
           description: value for playlist description as displayed in Spotify Clients and in the Web
               API.
-
-          public: Defaults to `true`. The playlist's public/private status (if it should be added
-              to the user's profile or not): `true` the playlist will be public, `false` the
-              playlist will be private. To be able to create private playlists, the user must
-              have granted the `playlist-modify-private`
-              [scope](/documentation/web-api/concepts/scopes/#list-of-scopes). For more about
-              public/private status, see
-              [Working with Playlists](/documentation/web-api/concepts/playlists)
 
           extra_headers: Send extra headers
 
@@ -103,9 +103,9 @@ class PlaylistsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
+                    "components_schemas_properties_published": components_schemas_properties_published,
                     "collaborative": collaborative,
                     "description": description,
-                    "public": public,
                 },
                 playlist_create_params.PlaylistCreateParams,
             ),
@@ -194,9 +194,9 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         user_id: str,
         *,
         name: str,
+        components_schemas_properties_published: bool | Omit = omit,
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
-        public: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,6 +217,14 @@ class AsyncPlaylistsResource(AsyncAPIResource):
               does not need to be unique; a user may have several playlists with the same
               name.
 
+          components_schemas_properties_published: Defaults to `true`. The playlist's public/private status (if it should be added
+              to the user's profile or not): `true` the playlist will be public, `false` the
+              playlist will be private. To be able to create private playlists, the user must
+              have granted the `playlist-modify-private`
+              [scope](/documentation/web-api/concepts/scopes/#list-of-scopes). For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           collaborative: Defaults to `false`. If `true` the playlist will be collaborative. _**Note**: to
               create a collaborative playlist you must also set `public` to `false`. To create
               collaborative playlists you must have granted `playlist-modify-private` and
@@ -225,14 +233,6 @@ class AsyncPlaylistsResource(AsyncAPIResource):
 
           description: value for playlist description as displayed in Spotify Clients and in the Web
               API.
-
-          public: Defaults to `true`. The playlist's public/private status (if it should be added
-              to the user's profile or not): `true` the playlist will be public, `false` the
-              playlist will be private. To be able to create private playlists, the user must
-              have granted the `playlist-modify-private`
-              [scope](/documentation/web-api/concepts/scopes/#list-of-scopes). For more about
-              public/private status, see
-              [Working with Playlists](/documentation/web-api/concepts/playlists)
 
           extra_headers: Send extra headers
 
@@ -249,9 +249,9 @@ class AsyncPlaylistsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
+                    "components_schemas_properties_published": components_schemas_properties_published,
                     "collaborative": collaborative,
                     "description": description,
-                    "public": public,
                 },
                 playlist_create_params.PlaylistCreateParams,
             ),
