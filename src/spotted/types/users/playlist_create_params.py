@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
-
-from ..._utils import PropertyInfo
+from typing_extensions import Required, TypedDict
 
 __all__ = ["PlaylistCreateParams"]
 
@@ -15,20 +13,6 @@ class PlaylistCreateParams(TypedDict, total=False):
 
     This name does not need to be unique; a user may have several playlists with the
     same name.
-    """
-
-    paths_request_body_content_application_json_schema_properties_published: Annotated[
-        bool, PropertyInfo(alias="$.paths['*'].*.requestBody.content['application/json'].schema.properties.published")
-    ]
-    """Defaults to `true`.
-
-    The playlist's public/private status (if it should be added to the user's
-    profile or not): `true` the playlist will be public, `false` the playlist will
-    be private. To be able to create private playlists, the user must have granted
-    the `playlist-modify-private`
-    [scope](/documentation/web-api/concepts/scopes/#list-of-scopes). For more about
-    public/private status, see
-    [Working with Playlists](/documentation/web-api/concepts/playlists)
     """
 
     collaborative: bool
@@ -45,4 +29,16 @@ class PlaylistCreateParams(TypedDict, total=False):
     """
     value for playlist description as displayed in Spotify Clients and in the Web
     API.
+    """
+
+    public: bool
+    """Defaults to `true`.
+
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private. To be able to create private playlists, the user must have granted
+    the `playlist-modify-private`
+    [scope](/documentation/web-api/concepts/scopes/#list-of-scopes). For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
     """
