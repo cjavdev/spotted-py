@@ -83,7 +83,7 @@ class TestPlaylists:
     def test_method_update_with_all_params(self, client: Spotted) -> None:
         playlist = client.playlists.update(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            components_schemas_properties_published=True,
+            paths_request_body_content_application_json_schema_properties_published=True,
             collaborative=True,
             description="Updated playlist description",
             name="Updated Playlist Name",
@@ -196,7 +196,7 @@ class TestAsyncPlaylists:
     async def test_method_update_with_all_params(self, async_client: AsyncSpotted) -> None:
         playlist = await async_client.playlists.update(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            components_schemas_properties_published=True,
+            paths_request_body_content_application_json_schema_properties_published=True,
             collaborative=True,
             description="Updated playlist description",
             name="Updated Playlist Name",
