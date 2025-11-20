@@ -34,9 +34,9 @@ class TestPlaylists:
         playlist = client.users.playlists.create(
             user_id="smedjan",
             name="New Playlist",
-            paths_request_body_content_application_json_schema_properties_published=True,
             collaborative=True,
             description="New playlist description",
+            public=False,
         )
         assert_matches_type(PlaylistCreateResponse, playlist, path=["response"])
 
@@ -150,9 +150,9 @@ class TestAsyncPlaylists:
         playlist = await async_client.users.playlists.create(
             user_id="smedjan",
             name="New Playlist",
-            paths_request_body_content_application_json_schema_properties_published=True,
             collaborative=True,
             description="New playlist description",
+            public=False,
         )
         assert_matches_type(PlaylistCreateResponse, playlist, path=["response"])
 
