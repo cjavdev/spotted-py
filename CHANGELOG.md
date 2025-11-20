@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 (2025-11-20)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/cjavdev/spotted-py/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** manual updates ([6e6dd96](https://github.com/cjavdev/spotted-py/commit/6e6dd969a1167eeb833e8e92bfd9593640edaea2))
+
 ## 0.3.0 (2025-11-20)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/cjavdev/spotted-py/compare/v0.2.0...v0.3.0)
