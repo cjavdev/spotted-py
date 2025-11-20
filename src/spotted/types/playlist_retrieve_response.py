@@ -50,8 +50,8 @@ class PlaylistRetrieveResponse(BaseModel):
     playlist.
     """
 
-    components_schemas_properties_is_public: Optional[bool] = FieldInfo(
-        alias="$.components.schemas.*.properties.is_public", default=None
+    components_schemas_properties_published: Optional[bool] = FieldInfo(
+        alias="$.components.schemas.*.properties.published", default=None
     )
     """
     The playlist's public/private status (if it is added to the user's profile):
