@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0 (2025-11-20)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/cjavdev/spotted-py/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* **api:** manual updates ([f0ac812](https://github.com/cjavdev/spotted-py/commit/f0ac8127edd6617494dbe1cfeda02dfb1625a489))
+* **api:** rename public to published for java ([114661e](https://github.com/cjavdev/spotted-py/commit/114661e6517185d0a30a1117d65537350f47dbdd))
+
 ## 0.4.0 (2025-11-20)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/cjavdev/spotted-py/compare/v0.3.0...v0.4.0)
