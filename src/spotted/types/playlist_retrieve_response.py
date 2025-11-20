@@ -2,8 +2,6 @@
 
 from typing import List, Optional
 
-from pydantic import Field as FieldInfo
-
 from .._models import BaseModel
 from .shared.image_object import ImageObject
 from .shared.followers_object import FollowersObject
@@ -50,16 +48,6 @@ class PlaylistRetrieveResponse(BaseModel):
     playlist.
     """
 
-    components_schemas_properties_published: Optional[bool] = FieldInfo(
-        alias="$.components.schemas.*.properties.published", default=None
-    )
-    """
-    The playlist's public/private status (if it is added to the user's profile):
-    `true` the playlist is public, `false` the playlist is private, `null` the
-    playlist status is not relevant. For more about public/private status, see
-    [Working with Playlists](/documentation/web-api/concepts/playlists)
-    """
-
     collaborative: Optional[bool] = None
     """`true` if the owner allows other users to modify the playlist."""
 
@@ -93,6 +81,14 @@ class PlaylistRetrieveResponse(BaseModel):
 
     owner: Optional[Owner] = None
     """The user who owns the playlist"""
+
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it is added to the user's profile):
+    `true` the playlist is public, `false` the playlist is private, `null` the
+    playlist status is not relevant. For more about public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
 
     snapshot_id: Optional[str] = None
     """The version identifier for the current playlist.
