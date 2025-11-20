@@ -6,6 +6,7 @@ from .track_add_params import TrackAddParams as TrackAddParams
 from .track_list_params import TrackListParams as TrackListParams
 from .track_add_response import TrackAddResponse as TrackAddResponse
 from .image_list_response import ImageListResponse as ImageListResponse
+from .image_update_params import ImageUpdateParams as ImageUpdateParams
 from .track_remove_params import TrackRemoveParams as TrackRemoveParams
 from .track_update_params import TrackUpdateParams as TrackUpdateParams
 from .follower_check_params import FollowerCheckParams as FollowerCheckParams
