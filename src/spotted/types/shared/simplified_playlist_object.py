@@ -2,6 +2,8 @@
 
 from typing import List, Optional
 
+from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
 from .image_object import ImageObject
 from .external_url_object import ExternalURLObject
@@ -21,6 +23,16 @@ class SimplifiedPlaylistObject(BaseModel):
     """
     The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the
     playlist.
+    """
+
+    components_schemas_properties_is_public: Optional[bool] = FieldInfo(
+        alias="$.components.schemas.*.properties.is_public", default=None
+    )
+    """
+    The playlist's public/private status (if it is added to the user's profile):
+    `true` the playlist is public, `false` the playlist is private, `null` the
+    playlist status is not relevant. For more about public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
     """
 
     collaborative: Optional[bool] = None
@@ -53,14 +65,6 @@ class SimplifiedPlaylistObject(BaseModel):
 
     owner: Optional[Owner] = None
     """The user who owns the playlist"""
-
-    public: Optional[bool] = None
-    """
-    The playlist's public/private status (if it is added to the user's profile):
-    `true` the playlist is public, `false` the playlist is private, `null` the
-    playlist status is not relevant. For more about public/private status, see
-    [Working with Playlists](/documentation/web-api/concepts/playlists)
-    """
 
     snapshot_id: Optional[str] = None
     """The version identifier for the current playlist.
