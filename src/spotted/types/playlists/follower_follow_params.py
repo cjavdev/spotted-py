@@ -2,17 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
-
-from ..._utils import PropertyInfo
+from typing_extensions import TypedDict
 
 __all__ = ["FollowerFollowParams"]
 
 
 class FollowerFollowParams(TypedDict, total=False):
-    paths_request_body_content_application_json_schema_properties_published: Annotated[
-        bool, PropertyInfo(alias="$.paths['*'].*.requestBody.content['application/json'].schema.properties.published")
-    ]
+    public: bool
     """Defaults to `true`.
 
     If `true` the playlist will be included in user's public playlists (added to
