@@ -17,8 +17,8 @@ class PlaylistCreateParams(TypedDict, total=False):
     same name.
     """
 
-    components_schemas_properties_published: Annotated[
-        bool, PropertyInfo(alias="$.components.schemas.*.properties.published")
+    paths_request_body_content_application_json_schema_properties_published: Annotated[
+        bool, PropertyInfo(alias="$.paths['*'].*.requestBody.content['application/json'].schema.properties.published")
     ]
     """Defaults to `true`.
 

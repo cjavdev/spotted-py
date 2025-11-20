@@ -10,8 +10,8 @@ __all__ = ["PlaylistUpdateParams"]
 
 
 class PlaylistUpdateParams(TypedDict, total=False):
-    components_schemas_properties_published: Annotated[
-        bool, PropertyInfo(alias="$.components.schemas.*.properties.published")
+    paths_request_body_content_application_json_schema_properties_published: Annotated[
+        bool, PropertyInfo(alias="$.paths['*'].*.requestBody.content['application/json'].schema.properties.published")
     ]
     """
     The playlist's public/private status (if it should be added to the user's
