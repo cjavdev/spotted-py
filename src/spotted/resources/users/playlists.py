@@ -48,7 +48,7 @@ class PlaylistsResource(SyncAPIResource):
         user_id: str,
         *,
         name: str,
-        components_schemas_properties_published: bool | Omit = omit,
+        paths_request_body_content_application_json_schema_properties_published: bool | Omit = omit,
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -71,7 +71,7 @@ class PlaylistsResource(SyncAPIResource):
               does not need to be unique; a user may have several playlists with the same
               name.
 
-          components_schemas_properties_published: Defaults to `true`. The playlist's public/private status (if it should be added
+          paths_request_body_content_application_json_schema_properties_published: Defaults to `true`. The playlist's public/private status (if it should be added
               to the user's profile or not): `true` the playlist will be public, `false` the
               playlist will be private. To be able to create private playlists, the user must
               have granted the `playlist-modify-private`
@@ -103,7 +103,7 @@ class PlaylistsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
-                    "components_schemas_properties_published": components_schemas_properties_published,
+                    "paths_request_body_content_application_json_schema_properties_published": paths_request_body_content_application_json_schema_properties_published,
                     "collaborative": collaborative,
                     "description": description,
                 },
@@ -194,7 +194,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         user_id: str,
         *,
         name: str,
-        components_schemas_properties_published: bool | Omit = omit,
+        paths_request_body_content_application_json_schema_properties_published: bool | Omit = omit,
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -217,7 +217,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
               does not need to be unique; a user may have several playlists with the same
               name.
 
-          components_schemas_properties_published: Defaults to `true`. The playlist's public/private status (if it should be added
+          paths_request_body_content_application_json_schema_properties_published: Defaults to `true`. The playlist's public/private status (if it should be added
               to the user's profile or not): `true` the playlist will be public, `false` the
               playlist will be private. To be able to create private playlists, the user must
               have granted the `playlist-modify-private`
@@ -249,7 +249,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
-                    "components_schemas_properties_published": components_schemas_properties_published,
+                    "paths_request_body_content_application_json_schema_properties_published": paths_request_body_content_application_json_schema_properties_published,
                     "collaborative": collaborative,
                     "description": description,
                 },

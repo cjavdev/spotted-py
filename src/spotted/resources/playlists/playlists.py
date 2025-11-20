@@ -159,7 +159,7 @@ class PlaylistsResource(SyncAPIResource):
         self,
         playlist_id: str,
         *,
-        components_schemas_properties_published: bool | Omit = omit,
+        paths_request_body_content_application_json_schema_properties_published: bool | Omit = omit,
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
         name: str | Omit = omit,
@@ -179,7 +179,7 @@ class PlaylistsResource(SyncAPIResource):
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
               playlist.
 
-          components_schemas_properties_published: The playlist's public/private status (if it should be added to the user's
+          paths_request_body_content_application_json_schema_properties_published: The playlist's public/private status (if it should be added to the user's
               profile or not): `true` the playlist will be public, `false` the playlist will
               be private, `null` the playlist status is not relevant. For more about
               public/private status, see
@@ -209,7 +209,7 @@ class PlaylistsResource(SyncAPIResource):
             f"/playlists/{playlist_id}",
             body=maybe_transform(
                 {
-                    "components_schemas_properties_published": components_schemas_properties_published,
+                    "paths_request_body_content_application_json_schema_properties_published": paths_request_body_content_application_json_schema_properties_published,
                     "collaborative": collaborative,
                     "description": description,
                     "name": name,
@@ -337,7 +337,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         self,
         playlist_id: str,
         *,
-        components_schemas_properties_published: bool | Omit = omit,
+        paths_request_body_content_application_json_schema_properties_published: bool | Omit = omit,
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
         name: str | Omit = omit,
@@ -357,7 +357,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
               playlist.
 
-          components_schemas_properties_published: The playlist's public/private status (if it should be added to the user's
+          paths_request_body_content_application_json_schema_properties_published: The playlist's public/private status (if it should be added to the user's
               profile or not): `true` the playlist will be public, `false` the playlist will
               be private, `null` the playlist status is not relevant. For more about
               public/private status, see
@@ -387,7 +387,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
             f"/playlists/{playlist_id}",
             body=await async_maybe_transform(
                 {
-                    "components_schemas_properties_published": components_schemas_properties_published,
+                    "paths_request_body_content_application_json_schema_properties_published": paths_request_body_content_application_json_schema_properties_published,
                     "collaborative": collaborative,
                     "description": description,
                     "name": name,
