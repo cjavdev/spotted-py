@@ -159,10 +159,10 @@ class PlaylistsResource(SyncAPIResource):
         self,
         playlist_id: str,
         *,
+        components_schemas_properties_published: bool | Omit = omit,
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
         name: str | Omit = omit,
-        public: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -179,6 +179,12 @@ class PlaylistsResource(SyncAPIResource):
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
               playlist.
 
+          components_schemas_properties_published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           collaborative: If `true`, the playlist will become collaborative and other users will be able
               to modify the playlist in their Spotify client. <br/> _**Note**: You can only
               set `collaborative` to `true` on non-public playlists._
@@ -187,12 +193,6 @@ class PlaylistsResource(SyncAPIResource):
               API.
 
           name: The new name for the playlist, for example `"My New Playlist Title"`
-
-          public: The playlist's public/private status (if it should be added to the user's
-              profile or not): `true` the playlist will be public, `false` the playlist will
-              be private, `null` the playlist status is not relevant. For more about
-              public/private status, see
-              [Working with Playlists](/documentation/web-api/concepts/playlists)
 
           extra_headers: Send extra headers
 
@@ -209,10 +209,10 @@ class PlaylistsResource(SyncAPIResource):
             f"/playlists/{playlist_id}",
             body=maybe_transform(
                 {
+                    "components_schemas_properties_published": components_schemas_properties_published,
                     "collaborative": collaborative,
                     "description": description,
                     "name": name,
-                    "public": public,
                 },
                 playlist_update_params.PlaylistUpdateParams,
             ),
@@ -337,10 +337,10 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         self,
         playlist_id: str,
         *,
+        components_schemas_properties_published: bool | Omit = omit,
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
         name: str | Omit = omit,
-        public: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -357,6 +357,12 @@ class AsyncPlaylistsResource(AsyncAPIResource):
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
               playlist.
 
+          components_schemas_properties_published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           collaborative: If `true`, the playlist will become collaborative and other users will be able
               to modify the playlist in their Spotify client. <br/> _**Note**: You can only
               set `collaborative` to `true` on non-public playlists._
@@ -365,12 +371,6 @@ class AsyncPlaylistsResource(AsyncAPIResource):
               API.
 
           name: The new name for the playlist, for example `"My New Playlist Title"`
-
-          public: The playlist's public/private status (if it should be added to the user's
-              profile or not): `true` the playlist will be public, `false` the playlist will
-              be private, `null` the playlist status is not relevant. For more about
-              public/private status, see
-              [Working with Playlists](/documentation/web-api/concepts/playlists)
 
           extra_headers: Send extra headers
 
@@ -387,10 +387,10 @@ class AsyncPlaylistsResource(AsyncAPIResource):
             f"/playlists/{playlist_id}",
             body=await async_maybe_transform(
                 {
+                    "components_schemas_properties_published": components_schemas_properties_published,
                     "collaborative": collaborative,
                     "description": description,
                     "name": name,
-                    "public": public,
                 },
                 playlist_update_params.PlaylistUpdateParams,
             ),
