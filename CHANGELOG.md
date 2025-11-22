@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.1 (2025-11-22)
+
+Full Changelog: [v0.7.0...v0.7.1](https://github.com/cjavdev/spotted-py/compare/v0.7.0...v0.7.1)
+
+### Chores
+
+* add Python 3.14 classifier and testing ([0efd78a](https://github.com/cjavdev/spotted-py/commit/0efd78a9e9ce1f1d48942d50b1da024adfeea782))
+
 ## 0.7.0 (2025-11-20)
 
 Full Changelog: [v0.6.0...v0.7.0](https://github.com/cjavdev/spotted-py/compare/v0.6.0...v0.7.0)
