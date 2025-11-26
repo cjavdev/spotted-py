@@ -86,7 +86,7 @@ class TestPlaylists:
             collaborative=True,
             description="Updated playlist description",
             name="Updated Playlist Name",
-            published=True,
+            public=False,
         )
         assert playlist is None
 
@@ -199,7 +199,7 @@ class TestAsyncPlaylists:
             collaborative=True,
             description="Updated playlist description",
             name="Updated Playlist Name",
-            published=True,
+            public=False,
         )
         assert playlist is None
 
