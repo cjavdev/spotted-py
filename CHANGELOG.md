@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.8.1 (2025-11-28)
+
+Full Changelog: [v0.8.0...v0.8.1](https://github.com/cjavdev/spotted-py/compare/v0.8.0...v0.8.1)
+
+### Bug Fixes
+
+* ensure streams are always closed ([2194393](https://github.com/cjavdev/spotted-py/commit/219439326768c39e40889229acb53da55a982513))
+
+
+### Chores
+
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([89caa9c](https://github.com/cjavdev/spotted-py/commit/89caa9c6b807bd9343aaa0f6f324f1447f80bc78))
+
 ## 0.8.0 (2025-11-26)
 
 Full Changelog: [v0.7.0...v0.8.0](https://github.com/cjavdev/spotted-py/compare/v0.7.0...v0.8.0)
