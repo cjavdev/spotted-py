@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.9.0 (2025-12-05)
+
+Full Changelog: [v0.8.1...v0.9.0](https://github.com/cjavdev/spotted-py/compare/v0.8.1...v0.9.0)
+
+### Features
+
+* **api:** Update readme titles. ([bb3dfe4](https://github.com/cjavdev/spotted-py/commit/bb3dfe4e9f61dc02aa184d9f3a40dc141b349476))
+
+
+### Chores
+
+* update lockfile ([042c44c](https://github.com/cjavdev/spotted-py/commit/042c44cd6915f9648639c331f9377cd7b7a7f276))
+
 ## 0.8.1 (2025-11-28)
 
 Full Changelog: [v0.8.0...v0.8.1](https://github.com/cjavdev/spotted-py/compare/v0.8.0...v0.8.1)
