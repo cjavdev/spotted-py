@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.2 (2025-12-09)
+
+Full Changelog: [v0.9.1...v0.9.2](https://github.com/cjavdev/spotted-py/compare/v0.9.1...v0.9.2)
+
+### Chores
+
+* add missing docstrings ([e01099a](https://github.com/cjavdev/spotted-py/commit/e01099a2459a9383438802b778f66d79102faf89))
+
 ## 0.9.1 (2025-12-09)
 
 Full Changelog: [v0.9.0...v0.9.1](https://github.com/cjavdev/spotted-py/compare/v0.9.0...v0.9.1)
