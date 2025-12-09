@@ -11,6 +11,11 @@ __all__ = ["MeRetrieveResponse", "ExplicitContent"]
 
 
 class ExplicitContent(BaseModel):
+    """The user's explicit content settings.
+
+    _This field is only available when the current user has granted access to the [user-read-private](/documentation/web-api/concepts/scopes/#list-of-scopes) scope._
+    """
+
     filter_enabled: Optional[bool] = None
     """When `true`, indicates that explicit content should not be played."""
 

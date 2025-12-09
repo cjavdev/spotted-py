@@ -14,6 +14,10 @@ __all__ = ["PlayerGetStateResponse", "Actions", "Item"]
 
 
 class Actions(BaseModel):
+    """
+    Allows to update the user interface based on which playback actions are available within the current context.
+    """
+
     interrupting_playback: Optional[bool] = None
     """Interrupting playback. Optional field."""
 

@@ -13,11 +13,15 @@ __all__ = ["PlaylistCreateResponse", "Owner", "Tracks"]
 
 
 class Owner(PlaylistUserObject):
+    """The user who owns the playlist"""
+
     display_name: Optional[str] = None
     """The name displayed on the user's profile. `null` if not available."""
 
 
 class Tracks(BaseModel):
+    """The tracks of the playlist."""
+
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 

@@ -16,6 +16,11 @@ __all__ = ["TrackObject", "Album"]
 
 
 class Album(BaseModel):
+    """The album on which the track appears.
+
+    The album object includes a link in `href` to full information about the album.
+    """
+
     id: str
     """
     The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the
