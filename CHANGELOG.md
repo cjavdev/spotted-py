@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.1 (2025-12-09)
+
+Full Changelog: [v0.9.0...v0.9.1](https://github.com/cjavdev/spotted-py/compare/v0.9.0...v0.9.1)
+
+### Bug Fixes
+
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([b9f9c2f](https://github.com/cjavdev/spotted-py/commit/b9f9c2fa5bfa695fe43985ddb56c3821542e5374))
+
 ## 0.9.0 (2025-12-05)
 
 Full Changelog: [v0.8.1...v0.9.0](https://github.com/cjavdev/spotted-py/compare/v0.8.1...v0.9.0)
