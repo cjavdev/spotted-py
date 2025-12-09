@@ -17,6 +17,8 @@ __all__ = ["AlbumListResponse", "Album", "AlbumTracks"]
 
 
 class AlbumTracks(BaseModel):
+    """The tracks of the album."""
+
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 
@@ -41,6 +43,8 @@ class AlbumTracks(BaseModel):
 
 
 class Album(BaseModel):
+    """Information about the album."""
+
     id: str
     """
     The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) for the

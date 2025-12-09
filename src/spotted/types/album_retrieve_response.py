@@ -16,6 +16,8 @@ __all__ = ["AlbumRetrieveResponse", "Tracks"]
 
 
 class Tracks(BaseModel):
+    """The tracks of the album."""
+
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 
