@@ -10,6 +10,8 @@ __all__ = ["AudiobookRetrieveResponse", "AudiobookRetrieveResponseChapters"]
 
 
 class AudiobookRetrieveResponseChapters(BaseModel):
+    """The chapters of the audiobook."""
+
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 

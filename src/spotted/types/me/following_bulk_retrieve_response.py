@@ -9,6 +9,8 @@ __all__ = ["FollowingBulkRetrieveResponse", "Artists", "ArtistsCursors"]
 
 
 class ArtistsCursors(BaseModel):
+    """The cursors used to find the next set of items."""
+
     after: Optional[str] = None
     """The cursor to use as key to find the next page of items."""
 

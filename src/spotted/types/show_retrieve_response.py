@@ -10,6 +10,8 @@ __all__ = ["ShowRetrieveResponse", "ShowRetrieveResponseEpisodes"]
 
 
 class ShowRetrieveResponseEpisodes(BaseModel):
+    """The episodes of the show."""
+
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 

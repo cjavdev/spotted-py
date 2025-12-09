@@ -12,6 +12,8 @@ __all__ = ["SimplifiedPlaylistObject", "Owner"]
 
 
 class Owner(PlaylistUserObject):
+    """The user who owns the playlist"""
+
     display_name: Optional[str] = None
     """The name displayed on the user's profile. `null` if not available."""
 

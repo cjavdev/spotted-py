@@ -11,6 +11,8 @@ __all__ = ["AudiobookListResponse", "Audiobook", "AudiobookChapters"]
 
 
 class AudiobookChapters(BaseModel):
+    """The chapters of the audiobook."""
+
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
 
@@ -35,6 +37,8 @@ class AudiobookChapters(BaseModel):
 
 
 class Audiobook(AudiobookBase):
+    """Information about the audiobook."""
+
     chapters: AudiobookChapters
     """The chapters of the audiobook."""
 
