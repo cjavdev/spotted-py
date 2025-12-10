@@ -86,7 +86,7 @@ class PlaylistCreateResponse(BaseModel):
     owner: Optional[Owner] = None
     """The user who owns the playlist"""
 
-    published: Optional[bool] = None
+    public: Optional[bool] = None
     """
     The playlist's public/private status (if it is added to the user's profile):
     `true` the playlist is public, `false` the playlist is private, `null` the
