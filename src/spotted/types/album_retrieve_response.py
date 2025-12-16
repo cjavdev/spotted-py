@@ -40,6 +40,15 @@ class Tracks(BaseModel):
 
     items: Optional[List[SimplifiedTrackObject]] = None
 
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
+
 
 class AlbumRetrieveResponse(BaseModel):
     id: str
@@ -115,6 +124,15 @@ class AlbumRetrieveResponse(BaseModel):
     """The popularity of the album.
 
     The value will be between 0 and 100, with 100 being the most popular.
+    """
+
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
     """
 
     restrictions: Optional[AlbumRestrictionObject] = None

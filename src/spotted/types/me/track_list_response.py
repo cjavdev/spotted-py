@@ -19,5 +19,14 @@ class TrackListResponse(BaseModel):
     release_date in an album object.
     """
 
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
+
     track: Optional[TrackObject] = None
     """Information about the track."""
