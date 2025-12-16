@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.14.0 (2025-12-16)
+
+Full Changelog: [v0.13.0...v0.14.0](https://github.com/cjavdev/spotted-py/compare/v0.13.0...v0.14.0)
+
+### Features
+
+* **api:** manual updates ([a23f4ca](https://github.com/cjavdev/spotted-py/commit/a23f4caf69a8b57e67d18afd57fdaefbe4dbf1e9))
+
+
+### Chores
+
+* **internal:** add missing files argument to base client ([c2909d5](https://github.com/cjavdev/spotted-py/commit/c2909d5faca376da921d7393f153fc27667bf263))
+
 ## 0.13.0 (2025-12-10)
 
 Full Changelog: [v0.12.0...v0.13.0](https://github.com/cjavdev/spotted-py/compare/v0.12.0...v0.13.0)
