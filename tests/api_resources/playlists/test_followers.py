@@ -81,7 +81,6 @@ class TestFollowers:
     def test_method_follow_with_all_params(self, client: Spotted) -> None:
         follower = client.playlists.followers.follow(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            public=False,
             published=True,
         )
         assert follower is None
@@ -232,7 +231,6 @@ class TestAsyncFollowers:
     async def test_method_follow_with_all_params(self, async_client: AsyncSpotted) -> None:
         follower = await async_client.playlists.followers.follow(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
-            public=False,
             published=True,
         )
         assert follower is None

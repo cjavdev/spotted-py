@@ -50,7 +50,6 @@ class PlaylistsResource(SyncAPIResource):
         name: str,
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
-        public: bool | Omit = omit,
         published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -81,14 +80,6 @@ class PlaylistsResource(SyncAPIResource):
           description: value for playlist description as displayed in Spotify Clients and in the Web
               API.
 
-          public: Defaults to `true`. The playlist's public/private status (if it should be added
-              to the user's profile or not): `true` the playlist will be public, `false` the
-              playlist will be private. To be able to create private playlists, the user must
-              have granted the `playlist-modify-private`
-              [scope](/documentation/web-api/concepts/scopes/#list-of-scopes). For more about
-              public/private status, see
-              [Working with Playlists](/documentation/web-api/concepts/playlists)
-
           published: The playlist's public/private status (if it should be added to the user's
               profile or not): `true` the playlist will be public, `false` the playlist will
               be private, `null` the playlist status is not relevant. For more about
@@ -112,7 +103,6 @@ class PlaylistsResource(SyncAPIResource):
                     "name": name,
                     "collaborative": collaborative,
                     "description": description,
-                    "public": public,
                     "published": published,
                 },
                 playlist_create_params.PlaylistCreateParams,
@@ -204,7 +194,6 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         name: str,
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
-        public: bool | Omit = omit,
         published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -235,14 +224,6 @@ class AsyncPlaylistsResource(AsyncAPIResource):
           description: value for playlist description as displayed in Spotify Clients and in the Web
               API.
 
-          public: Defaults to `true`. The playlist's public/private status (if it should be added
-              to the user's profile or not): `true` the playlist will be public, `false` the
-              playlist will be private. To be able to create private playlists, the user must
-              have granted the `playlist-modify-private`
-              [scope](/documentation/web-api/concepts/scopes/#list-of-scopes). For more about
-              public/private status, see
-              [Working with Playlists](/documentation/web-api/concepts/playlists)
-
           published: The playlist's public/private status (if it should be added to the user's
               profile or not): `true` the playlist will be public, `false` the playlist will
               be private, `null` the playlist status is not relevant. For more about
@@ -266,7 +247,6 @@ class AsyncPlaylistsResource(AsyncAPIResource):
                     "name": name,
                     "collaborative": collaborative,
                     "description": description,
-                    "public": public,
                     "published": published,
                 },
                 playlist_create_params.PlaylistCreateParams,
