@@ -90,7 +90,6 @@ class FollowersResource(SyncAPIResource):
         self,
         playlist_id: str,
         *,
-        public: bool | Omit = omit,
         published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -105,11 +104,6 @@ class FollowersResource(SyncAPIResource):
         Args:
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
               playlist.
-
-          public: Defaults to `true`. If `true` the playlist will be included in user's public
-              playlists (added to profile), if `false` it will remain private. For more about
-              public/private status, see
-              [Working with Playlists](/documentation/web-api/concepts/playlists)
 
           published: The playlist's public/private status (if it should be added to the user's
               profile or not): `true` the playlist will be public, `false` the playlist will
@@ -130,13 +124,7 @@ class FollowersResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             f"/playlists/{playlist_id}/followers",
-            body=maybe_transform(
-                {
-                    "public": public,
-                    "published": published,
-                },
-                follower_follow_params.FollowerFollowParams,
-            ),
+            body=maybe_transform({"published": published}, follower_follow_params.FollowerFollowParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -250,7 +238,6 @@ class AsyncFollowersResource(AsyncAPIResource):
         self,
         playlist_id: str,
         *,
-        public: bool | Omit = omit,
         published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -265,11 +252,6 @@ class AsyncFollowersResource(AsyncAPIResource):
         Args:
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
               playlist.
-
-          public: Defaults to `true`. If `true` the playlist will be included in user's public
-              playlists (added to profile), if `false` it will remain private. For more about
-              public/private status, see
-              [Working with Playlists](/documentation/web-api/concepts/playlists)
 
           published: The playlist's public/private status (if it should be added to the user's
               profile or not): `true` the playlist will be public, `false` the playlist will
@@ -290,13 +272,7 @@ class AsyncFollowersResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             f"/playlists/{playlist_id}/followers",
-            body=await async_maybe_transform(
-                {
-                    "public": public,
-                    "published": published,
-                },
-                follower_follow_params.FollowerFollowParams,
-            ),
+            body=await async_maybe_transform({"published": published}, follower_follow_params.FollowerFollowParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
