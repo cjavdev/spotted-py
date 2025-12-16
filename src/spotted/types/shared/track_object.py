@@ -78,6 +78,15 @@ class Album(BaseModel):
     album.
     """
 
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
+
     restrictions: Optional[AlbumRestrictionObject] = None
     """Included in the response when a content restriction is applied."""
 
@@ -167,6 +176,15 @@ class TrackObject(BaseModel):
 
     preview_url: Optional[str] = None
     """A link to a 30 second preview (MP3 format) of the track. Can be `null`"""
+
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
 
     restrictions: Optional[TrackRestrictionObject] = None
     """Included in the response when a content restriction is applied."""

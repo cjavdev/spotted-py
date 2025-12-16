@@ -24,6 +24,15 @@ class Actions(BaseModel):
     pausing: Optional[bool] = None
     """Pausing. Optional field."""
 
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
+
     resuming: Optional[bool] = None
     """Resuming. Optional field."""
 
@@ -79,6 +88,15 @@ class PlayerGetStateResponse(BaseModel):
 
     progress_ms: Optional[int] = None
     """Progress into the currently playing track or episode. Can be `null`."""
+
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
 
     repeat_state: Optional[str] = None
     """off, track, context"""

@@ -25,6 +25,15 @@ class ExplicitContent(BaseModel):
     changed by the user.
     """
 
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
+
 
 class MeRetrieveResponse(BaseModel):
     id: Optional[str] = None
@@ -83,6 +92,15 @@ class MeRetrieveResponse(BaseModel):
     field is only available when the current user has granted access to the
     [user-read-private](/documentation/web-api/concepts/scopes/#list-of-scopes)
     scope._
+    """
+
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
     """
 
     type: Optional[str] = None
