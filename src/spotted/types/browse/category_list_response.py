@@ -24,6 +24,15 @@ class CategoriesItem(BaseModel):
     name: str
     """The name of the category."""
 
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
+
 
 class Categories(BaseModel):
     href: str
@@ -47,6 +56,15 @@ class Categories(BaseModel):
     """The total number of items available to return."""
 
     items: Optional[List[CategoriesItem]] = None
+
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
 
 
 class CategoryListResponse(BaseModel):

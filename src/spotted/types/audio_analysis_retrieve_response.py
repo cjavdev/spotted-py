@@ -81,6 +81,15 @@ class Section(BaseModel):
     mode_confidence: Optional[float] = None
     """The confidence, from 0.0 to 1.0, of the reliability of the `mode`."""
 
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
+
     start: Optional[float] = None
     """The starting point (in seconds) of the section."""
 
@@ -164,6 +173,15 @@ class Segment(BaseModel):
     described by one value at 1 (the pitch) and others near 0. As can be seen below,
     the 12 vector indices are a combination of low-power spectrum values at their
     respective pitch frequencies. ![pitch vector](/assets/audio/Pitch_vector.png)
+    """
+
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
     """
 
     start: Optional[float] = None
@@ -345,6 +363,15 @@ class AudioAnalysisRetrieveResponse(BaseModel):
     """
 
     meta: Optional[Meta] = None
+
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
 
     sections: Optional[List[Section]] = None
     """Sections are defined by large variations in rhythm or timbre, e.g.

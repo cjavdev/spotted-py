@@ -85,6 +85,15 @@ class AudioFeature(BaseModel):
     which its melodic content is derived. Major is represented by 1 and minor is 0.
     """
 
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
+
     speechiness: Optional[float] = None
     """Speechiness detects the presence of spoken words in a track.
 
