@@ -37,6 +37,7 @@ class TestPlaylists:
             collaborative=True,
             description="New playlist description",
             public=False,
+            published=True,
         )
         assert_matches_type(PlaylistCreateResponse, playlist, path=["response"])
 
@@ -153,6 +154,7 @@ class TestAsyncPlaylists:
             collaborative=True,
             description="New playlist description",
             public=False,
+            published=True,
         )
         assert_matches_type(PlaylistCreateResponse, playlist, path=["response"])
 

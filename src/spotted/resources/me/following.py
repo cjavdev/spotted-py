@@ -153,6 +153,7 @@ class FollowingResource(SyncAPIResource):
         self,
         *,
         ids: SequenceNotStr[str],
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -171,6 +172,12 @@ class FollowingResource(SyncAPIResource):
               IDs can be sent in one request. _**Note**: if the `ids` parameter is present in
               the query string, any IDs listed here in the body will be ignored._
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -182,7 +189,13 @@ class FollowingResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             "/me/following",
-            body=maybe_transform({"ids": ids}, following_follow_params.FollowingFollowParams),
+            body=maybe_transform(
+                {
+                    "ids": ids,
+                    "published": published,
+                },
+                following_follow_params.FollowingFollowParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -193,6 +206,7 @@ class FollowingResource(SyncAPIResource):
         self,
         *,
         ids: SequenceNotStr[str] | Omit = omit,
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -211,6 +225,12 @@ class FollowingResource(SyncAPIResource):
               IDs can be sent in one request. _**Note**: if the `ids` parameter is present in
               the query string, any IDs listed here in the body will be ignored._
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -222,7 +242,13 @@ class FollowingResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             "/me/following",
-            body=maybe_transform({"ids": ids}, following_unfollow_params.FollowingUnfollowParams),
+            body=maybe_transform(
+                {
+                    "ids": ids,
+                    "published": published,
+                },
+                following_unfollow_params.FollowingUnfollowParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -354,6 +380,7 @@ class AsyncFollowingResource(AsyncAPIResource):
         self,
         *,
         ids: SequenceNotStr[str],
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -372,6 +399,12 @@ class AsyncFollowingResource(AsyncAPIResource):
               IDs can be sent in one request. _**Note**: if the `ids` parameter is present in
               the query string, any IDs listed here in the body will be ignored._
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -383,7 +416,13 @@ class AsyncFollowingResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             "/me/following",
-            body=await async_maybe_transform({"ids": ids}, following_follow_params.FollowingFollowParams),
+            body=await async_maybe_transform(
+                {
+                    "ids": ids,
+                    "published": published,
+                },
+                following_follow_params.FollowingFollowParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -394,6 +433,7 @@ class AsyncFollowingResource(AsyncAPIResource):
         self,
         *,
         ids: SequenceNotStr[str] | Omit = omit,
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -412,6 +452,12 @@ class AsyncFollowingResource(AsyncAPIResource):
               IDs can be sent in one request. _**Note**: if the `ids` parameter is present in
               the query string, any IDs listed here in the body will be ignored._
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -423,7 +469,13 @@ class AsyncFollowingResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             "/me/following",
-            body=await async_maybe_transform({"ids": ids}, following_unfollow_params.FollowingUnfollowParams),
+            body=await async_maybe_transform(
+                {
+                    "ids": ids,
+                    "published": published,
+                },
+                following_unfollow_params.FollowingUnfollowParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

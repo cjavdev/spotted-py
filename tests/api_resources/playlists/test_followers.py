@@ -82,6 +82,7 @@ class TestFollowers:
         follower = client.playlists.followers.follow(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
             public=False,
+            published=True,
         )
         assert follower is None
 
@@ -232,6 +233,7 @@ class TestAsyncFollowers:
         follower = await async_client.playlists.followers.follow(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
             public=False,
+            published=True,
         )
         assert follower is None
 

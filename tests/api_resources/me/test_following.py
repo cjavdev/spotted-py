@@ -111,6 +111,15 @@ class TestFollowing:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    def test_method_follow_with_all_params(self, client: Spotted) -> None:
+        following = client.me.following.follow(
+            ids=["string"],
+            published=True,
+        )
+        assert following is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     def test_raw_response_follow(self, client: Spotted) -> None:
         response = client.me.following.with_raw_response.follow(
             ids=["string"],
@@ -146,6 +155,7 @@ class TestFollowing:
     def test_method_unfollow_with_all_params(self, client: Spotted) -> None:
         following = client.me.following.unfollow(
             ids=["string"],
+            published=True,
         )
         assert following is None
 
@@ -268,6 +278,15 @@ class TestAsyncFollowing:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
+    async def test_method_follow_with_all_params(self, async_client: AsyncSpotted) -> None:
+        following = await async_client.me.following.follow(
+            ids=["string"],
+            published=True,
+        )
+        assert following is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
     async def test_raw_response_follow(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.following.with_raw_response.follow(
             ids=["string"],
@@ -303,6 +322,7 @@ class TestAsyncFollowing:
     async def test_method_unfollow_with_all_params(self, async_client: AsyncSpotted) -> None:
         following = await async_client.me.following.unfollow(
             ids=["string"],
+            published=True,
         )
         assert following is None
 

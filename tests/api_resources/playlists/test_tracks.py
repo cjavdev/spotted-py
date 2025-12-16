@@ -37,6 +37,7 @@ class TestTracks:
         track = client.playlists.tracks.update(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
             insert_before=3,
+            published=True,
             range_length=2,
             range_start=1,
             snapshot_id="snapshot_id",
@@ -147,6 +148,7 @@ class TestTracks:
         track = client.playlists.tracks.add(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
             position=0,
+            published=True,
             uris=["string"],
         )
         assert_matches_type(TrackAddResponse, track, path=["response"])
@@ -200,6 +202,7 @@ class TestTracks:
         track = client.playlists.tracks.remove(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
             tracks=[{"uri": "uri"}],
+            published=True,
             snapshot_id="snapshot_id",
         )
         assert_matches_type(TrackRemoveResponse, track, path=["response"])
@@ -261,6 +264,7 @@ class TestAsyncTracks:
         track = await async_client.playlists.tracks.update(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
             insert_before=3,
+            published=True,
             range_length=2,
             range_start=1,
             snapshot_id="snapshot_id",
@@ -371,6 +375,7 @@ class TestAsyncTracks:
         track = await async_client.playlists.tracks.add(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
             position=0,
+            published=True,
             uris=["string"],
         )
         assert_matches_type(TrackAddResponse, track, path=["response"])
@@ -424,6 +429,7 @@ class TestAsyncTracks:
         track = await async_client.playlists.tracks.remove(
             playlist_id="3cEYpjA9oz9GiPac4AsH4n",
             tracks=[{"uri": "uri"}],
+            published=True,
             snapshot_id="snapshot_id",
         )
         assert_matches_type(TrackRemoveResponse, track, path=["response"])

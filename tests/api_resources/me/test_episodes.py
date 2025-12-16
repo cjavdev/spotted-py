@@ -104,6 +104,7 @@ class TestEpisodes:
     def test_method_remove_with_all_params(self, client: Spotted) -> None:
         episode = client.me.episodes.remove(
             ids=["string"],
+            published=True,
         )
         assert episode is None
 
@@ -134,6 +135,15 @@ class TestEpisodes:
     def test_method_save(self, client: Spotted) -> None:
         episode = client.me.episodes.save(
             ids=["string"],
+        )
+        assert episode is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_save_with_all_params(self, client: Spotted) -> None:
+        episode = client.me.episodes.save(
+            ids=["string"],
+            published=True,
         )
         assert episode is None
 
@@ -252,6 +262,7 @@ class TestAsyncEpisodes:
     async def test_method_remove_with_all_params(self, async_client: AsyncSpotted) -> None:
         episode = await async_client.me.episodes.remove(
             ids=["string"],
+            published=True,
         )
         assert episode is None
 
@@ -282,6 +293,15 @@ class TestAsyncEpisodes:
     async def test_method_save(self, async_client: AsyncSpotted) -> None:
         episode = await async_client.me.episodes.save(
             ids=["string"],
+        )
+        assert episode is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_save_with_all_params(self, async_client: AsyncSpotted) -> None:
+        episode = await async_client.me.episodes.save(
+            ids=["string"],
+            published=True,
         )
         assert episode is None
 
