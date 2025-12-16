@@ -162,7 +162,6 @@ class PlaylistsResource(SyncAPIResource):
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
         name: str | Omit = omit,
-        public: bool | Omit = omit,
         published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -189,12 +188,6 @@ class PlaylistsResource(SyncAPIResource):
 
           name: The new name for the playlist, for example `"My New Playlist Title"`
 
-          public: The playlist's public/private status (if it should be added to the user's
-              profile or not): `true` the playlist will be public, `false` the playlist will
-              be private, `null` the playlist status is not relevant. For more about
-              public/private status, see
-              [Working with Playlists](/documentation/web-api/concepts/playlists)
-
           published: The playlist's public/private status (if it should be added to the user's
               profile or not): `true` the playlist will be public, `false` the playlist will
               be private, `null` the playlist status is not relevant. For more about
@@ -219,7 +212,6 @@ class PlaylistsResource(SyncAPIResource):
                     "collaborative": collaborative,
                     "description": description,
                     "name": name,
-                    "public": public,
                     "published": published,
                 },
                 playlist_update_params.PlaylistUpdateParams,
@@ -348,7 +340,6 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
         name: str | Omit = omit,
-        public: bool | Omit = omit,
         published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -375,12 +366,6 @@ class AsyncPlaylistsResource(AsyncAPIResource):
 
           name: The new name for the playlist, for example `"My New Playlist Title"`
 
-          public: The playlist's public/private status (if it should be added to the user's
-              profile or not): `true` the playlist will be public, `false` the playlist will
-              be private, `null` the playlist status is not relevant. For more about
-              public/private status, see
-              [Working with Playlists](/documentation/web-api/concepts/playlists)
-
           published: The playlist's public/private status (if it should be added to the user's
               profile or not): `true` the playlist will be public, `false` the playlist will
               be private, `null` the playlist status is not relevant. For more about
@@ -405,7 +390,6 @@ class AsyncPlaylistsResource(AsyncAPIResource):
                     "collaborative": collaborative,
                     "description": description,
                     "name": name,
-                    "public": public,
                     "published": published,
                 },
                 playlist_update_params.PlaylistUpdateParams,
