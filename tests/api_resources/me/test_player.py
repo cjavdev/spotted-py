@@ -414,6 +414,7 @@ class TestPlayer:
             context_uri="spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
             offset={"position": "bar"},
             position_ms=0,
+            published=True,
             uris=["string"],
         )
         assert player is None
@@ -497,6 +498,7 @@ class TestPlayer:
         player = client.me.player.transfer(
             device_ids=["74ASZWbe4lXaubB36ztrGX"],
             play=True,
+            published=True,
         )
         assert player is None
 
@@ -923,6 +925,7 @@ class TestAsyncPlayer:
             context_uri="spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
             offset={"position": "bar"},
             position_ms=0,
+            published=True,
             uris=["string"],
         )
         assert player is None
@@ -1006,6 +1009,7 @@ class TestAsyncPlayer:
         player = await async_client.me.player.transfer(
             device_ids=["74ASZWbe4lXaubB36ztrGX"],
             play=True,
+            published=True,
         )
         assert player is None
 

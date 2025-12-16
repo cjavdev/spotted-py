@@ -559,6 +559,7 @@ class PlayerResource(SyncAPIResource):
         context_uri: str | Omit = omit,
         offset: Dict[str, object] | Omit = omit,
         position_ms: int | Omit = omit,
+        published: bool | Omit = omit,
         uris: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -590,6 +591,12 @@ class PlayerResource(SyncAPIResource):
               Passing in a position that is greater than the length of the track will cause
               the player to start playing the next song.
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           uris:
               Optional. A JSON array of the Spotify track URIs to play. For example:
               `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh", "spotify:track:1301WleyT98MSxVHPZCA6M"]}`
@@ -610,6 +617,7 @@ class PlayerResource(SyncAPIResource):
                     "context_uri": context_uri,
                     "offset": offset,
                     "position_ms": position_ms,
+                    "published": published,
                     "uris": uris,
                 },
                 player_start_playback_params.PlayerStartPlaybackParams,
@@ -681,6 +689,7 @@ class PlayerResource(SyncAPIResource):
         *,
         device_ids: SequenceNotStr[str],
         play: bool | Omit = omit,
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -705,6 +714,12 @@ class PlayerResource(SyncAPIResource):
               **true**: ensure playback happens on new device.<br/>**false** or not provided:
               keep the current playback state.
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -720,6 +735,7 @@ class PlayerResource(SyncAPIResource):
                 {
                     "device_ids": device_ids,
                     "play": play,
+                    "published": published,
                 },
                 player_transfer_params.PlayerTransferParams,
             ),
@@ -1247,6 +1263,7 @@ class AsyncPlayerResource(AsyncAPIResource):
         context_uri: str | Omit = omit,
         offset: Dict[str, object] | Omit = omit,
         position_ms: int | Omit = omit,
+        published: bool | Omit = omit,
         uris: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1278,6 +1295,12 @@ class AsyncPlayerResource(AsyncAPIResource):
               Passing in a position that is greater than the length of the track will cause
               the player to start playing the next song.
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           uris:
               Optional. A JSON array of the Spotify track URIs to play. For example:
               `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh", "spotify:track:1301WleyT98MSxVHPZCA6M"]}`
@@ -1298,6 +1321,7 @@ class AsyncPlayerResource(AsyncAPIResource):
                     "context_uri": context_uri,
                     "offset": offset,
                     "position_ms": position_ms,
+                    "published": published,
                     "uris": uris,
                 },
                 player_start_playback_params.PlayerStartPlaybackParams,
@@ -1371,6 +1395,7 @@ class AsyncPlayerResource(AsyncAPIResource):
         *,
         device_ids: SequenceNotStr[str],
         play: bool | Omit = omit,
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1395,6 +1420,12 @@ class AsyncPlayerResource(AsyncAPIResource):
               **true**: ensure playback happens on new device.<br/>**false** or not provided:
               keep the current playback state.
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1410,6 +1441,7 @@ class AsyncPlayerResource(AsyncAPIResource):
                 {
                     "device_ids": device_ids,
                     "play": play,
+                    "published": published,
                 },
                 player_transfer_params.PlayerTransferParams,
             ),

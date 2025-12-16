@@ -20,6 +20,15 @@ class TrackUpdateParams(TypedDict, total=False):
     the playlist, set _range_start_ to 9, and _insert_before_ to 0.
     """
 
+    published: bool
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
+
     range_length: int
     """The amount of items to be reordered.
 

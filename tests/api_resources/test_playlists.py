@@ -87,6 +87,7 @@ class TestPlaylists:
             description="Updated playlist description",
             name="Updated Playlist Name",
             public=False,
+            published=True,
         )
         assert playlist is None
 
@@ -200,6 +201,7 @@ class TestAsyncPlaylists:
             description="Updated playlist description",
             name="Updated Playlist Name",
             public=False,
+            published=True,
         )
         assert playlist is None
 
