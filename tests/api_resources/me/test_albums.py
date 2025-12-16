@@ -104,6 +104,7 @@ class TestAlbums:
     def test_method_remove_with_all_params(self, client: Spotted) -> None:
         album = client.me.albums.remove(
             ids=["string"],
+            published=True,
         )
         assert album is None
 
@@ -140,6 +141,7 @@ class TestAlbums:
     def test_method_save_with_all_params(self, client: Spotted) -> None:
         album = client.me.albums.save(
             ids=["string"],
+            published=True,
         )
         assert album is None
 
@@ -254,6 +256,7 @@ class TestAsyncAlbums:
     async def test_method_remove_with_all_params(self, async_client: AsyncSpotted) -> None:
         album = await async_client.me.albums.remove(
             ids=["string"],
+            published=True,
         )
         assert album is None
 
@@ -290,6 +293,7 @@ class TestAsyncAlbums:
     async def test_method_save_with_all_params(self, async_client: AsyncSpotted) -> None:
         album = await async_client.me.albums.save(
             ids=["string"],
+            published=True,
         )
         assert album is None
 

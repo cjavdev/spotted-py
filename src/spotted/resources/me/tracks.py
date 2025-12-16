@@ -150,6 +150,7 @@ class TracksResource(SyncAPIResource):
         self,
         *,
         ids: SequenceNotStr[str] | Omit = omit,
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -167,6 +168,12 @@ class TracksResource(SyncAPIResource):
               can be specified in one request. _**Note**: if the `ids` parameter is present in
               the query string, any IDs listed here in the body will be ignored._
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -178,7 +185,13 @@ class TracksResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             "/me/tracks",
-            body=maybe_transform({"ids": ids}, track_remove_params.TrackRemoveParams),
+            body=maybe_transform(
+                {
+                    "ids": ids,
+                    "published": published,
+                },
+                track_remove_params.TrackRemoveParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -189,6 +202,7 @@ class TracksResource(SyncAPIResource):
         self,
         *,
         ids: SequenceNotStr[str],
+        published: bool | Omit = omit,
         timestamped_ids: Iterable[track_save_params.TimestampedID] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -207,6 +221,12 @@ class TracksResource(SyncAPIResource):
               can be specified in one request. _**Note**: if the `timestamped_ids` is present
               in the body, any IDs listed in the query parameters (deprecated) or the `ids`
               field in the body will be ignored._
+
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
 
           timestamped_ids: A JSON array of objects containing track IDs with their corresponding
               timestamps. Each object must include a track ID and an `added_at` timestamp.
@@ -230,6 +250,7 @@ class TracksResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "ids": ids,
+                    "published": published,
                     "timestamped_ids": timestamped_ids,
                 },
                 track_save_params.TrackSaveParams,
@@ -366,6 +387,7 @@ class AsyncTracksResource(AsyncAPIResource):
         self,
         *,
         ids: SequenceNotStr[str] | Omit = omit,
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -383,6 +405,12 @@ class AsyncTracksResource(AsyncAPIResource):
               can be specified in one request. _**Note**: if the `ids` parameter is present in
               the query string, any IDs listed here in the body will be ignored._
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -394,7 +422,13 @@ class AsyncTracksResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             "/me/tracks",
-            body=await async_maybe_transform({"ids": ids}, track_remove_params.TrackRemoveParams),
+            body=await async_maybe_transform(
+                {
+                    "ids": ids,
+                    "published": published,
+                },
+                track_remove_params.TrackRemoveParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -405,6 +439,7 @@ class AsyncTracksResource(AsyncAPIResource):
         self,
         *,
         ids: SequenceNotStr[str],
+        published: bool | Omit = omit,
         timestamped_ids: Iterable[track_save_params.TimestampedID] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -423,6 +458,12 @@ class AsyncTracksResource(AsyncAPIResource):
               can be specified in one request. _**Note**: if the `timestamped_ids` is present
               in the body, any IDs listed in the query parameters (deprecated) or the `ids`
               field in the body will be ignored._
+
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
 
           timestamped_ids: A JSON array of objects containing track IDs with their corresponding
               timestamps. Each object must include a track ID and an `added_at` timestamp.
@@ -446,6 +487,7 @@ class AsyncTracksResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "ids": ids,
+                    "published": published,
                     "timestamped_ids": timestamped_ids,
                 },
                 track_save_params.TrackSaveParams,

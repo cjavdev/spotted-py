@@ -105,6 +105,7 @@ class TestTracks:
     def test_method_remove_with_all_params(self, client: Spotted) -> None:
         track = client.me.tracks.remove(
             ids=["string"],
+            published=True,
         )
         assert track is None
 
@@ -143,6 +144,7 @@ class TestTracks:
     def test_method_save_with_all_params(self, client: Spotted) -> None:
         track = client.me.tracks.save(
             ids=["string"],
+            published=True,
             timestamped_ids=[
                 {
                     "id": "id",
@@ -267,6 +269,7 @@ class TestAsyncTracks:
     async def test_method_remove_with_all_params(self, async_client: AsyncSpotted) -> None:
         track = await async_client.me.tracks.remove(
             ids=["string"],
+            published=True,
         )
         assert track is None
 
@@ -305,6 +308,7 @@ class TestAsyncTracks:
     async def test_method_save_with_all_params(self, async_client: AsyncSpotted) -> None:
         track = await async_client.me.tracks.save(
             ids=["string"],
+            published=True,
             timestamped_ids=[
                 {
                     "id": "id",

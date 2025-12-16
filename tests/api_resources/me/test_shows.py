@@ -103,6 +103,7 @@ class TestShows:
     def test_method_remove_with_all_params(self, client: Spotted) -> None:
         show = client.me.shows.remove(
             ids=["string"],
+            published=True,
         )
         assert show is None
 
@@ -139,6 +140,7 @@ class TestShows:
     def test_method_save_with_all_params(self, client: Spotted) -> None:
         show = client.me.shows.save(
             ids=["string"],
+            published=True,
         )
         assert show is None
 
@@ -252,6 +254,7 @@ class TestAsyncShows:
     async def test_method_remove_with_all_params(self, async_client: AsyncSpotted) -> None:
         show = await async_client.me.shows.remove(
             ids=["string"],
+            published=True,
         )
         assert show is None
 
@@ -288,6 +291,7 @@ class TestAsyncShows:
     async def test_method_save_with_all_params(self, async_client: AsyncSpotted) -> None:
         show = await async_client.me.shows.save(
             ids=["string"],
+            published=True,
         )
         assert show is None
 

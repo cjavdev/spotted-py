@@ -153,6 +153,7 @@ class EpisodesResource(SyncAPIResource):
         self,
         *,
         ids: SequenceNotStr[str] | Omit = omit,
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -173,6 +174,12 @@ class EpisodesResource(SyncAPIResource):
               is present in the query string, any IDs listed here in the body will be
               ignored._
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -184,7 +191,13 @@ class EpisodesResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             "/me/episodes",
-            body=maybe_transform({"ids": ids}, episode_remove_params.EpisodeRemoveParams),
+            body=maybe_transform(
+                {
+                    "ids": ids,
+                    "published": published,
+                },
+                episode_remove_params.EpisodeRemoveParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -195,6 +208,7 @@ class EpisodesResource(SyncAPIResource):
         self,
         *,
         ids: SequenceNotStr[str],
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -215,6 +229,12 @@ class EpisodesResource(SyncAPIResource):
               is present in the query string, any IDs listed here in the body will be
               ignored._
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -226,7 +246,13 @@ class EpisodesResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
             "/me/episodes",
-            body=maybe_transform({"ids": ids}, episode_save_params.EpisodeSaveParams),
+            body=maybe_transform(
+                {
+                    "ids": ids,
+                    "published": published,
+                },
+                episode_save_params.EpisodeSaveParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -364,6 +390,7 @@ class AsyncEpisodesResource(AsyncAPIResource):
         self,
         *,
         ids: SequenceNotStr[str] | Omit = omit,
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -384,6 +411,12 @@ class AsyncEpisodesResource(AsyncAPIResource):
               is present in the query string, any IDs listed here in the body will be
               ignored._
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -395,7 +428,13 @@ class AsyncEpisodesResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             "/me/episodes",
-            body=await async_maybe_transform({"ids": ids}, episode_remove_params.EpisodeRemoveParams),
+            body=await async_maybe_transform(
+                {
+                    "ids": ids,
+                    "published": published,
+                },
+                episode_remove_params.EpisodeRemoveParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -406,6 +445,7 @@ class AsyncEpisodesResource(AsyncAPIResource):
         self,
         *,
         ids: SequenceNotStr[str],
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -426,6 +466,12 @@ class AsyncEpisodesResource(AsyncAPIResource):
               is present in the query string, any IDs listed here in the body will be
               ignored._
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -437,7 +483,13 @@ class AsyncEpisodesResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
             "/me/episodes",
-            body=await async_maybe_transform({"ids": ids}, episode_save_params.EpisodeSaveParams),
+            body=await async_maybe_transform(
+                {
+                    "ids": ids,
+                    "published": published,
+                },
+                episode_save_params.EpisodeSaveParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

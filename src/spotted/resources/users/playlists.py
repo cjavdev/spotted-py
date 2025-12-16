@@ -51,6 +51,7 @@ class PlaylistsResource(SyncAPIResource):
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
         public: bool | Omit = omit,
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -88,6 +89,12 @@ class PlaylistsResource(SyncAPIResource):
               public/private status, see
               [Working with Playlists](/documentation/web-api/concepts/playlists)
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -106,6 +113,7 @@ class PlaylistsResource(SyncAPIResource):
                     "collaborative": collaborative,
                     "description": description,
                     "public": public,
+                    "published": published,
                 },
                 playlist_create_params.PlaylistCreateParams,
             ),
@@ -197,6 +205,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         collaborative: bool | Omit = omit,
         description: str | Omit = omit,
         public: bool | Omit = omit,
+        published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -234,6 +243,12 @@ class AsyncPlaylistsResource(AsyncAPIResource):
               public/private status, see
               [Working with Playlists](/documentation/web-api/concepts/playlists)
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -252,6 +267,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
                     "collaborative": collaborative,
                     "description": description,
                     "public": public,
+                    "published": published,
                 },
                 playlist_create_params.PlaylistCreateParams,
             ),

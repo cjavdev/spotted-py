@@ -52,6 +52,7 @@ class TracksResource(SyncAPIResource):
         playlist_id: str,
         *,
         insert_before: int | Omit = omit,
+        published: bool | Omit = omit,
         range_length: int | Omit = omit,
         range_start: int | Omit = omit,
         snapshot_id: str | Omit = omit,
@@ -85,6 +86,12 @@ class TracksResource(SyncAPIResource):
               to 10.<br/>To reorder the last item in a playlist with 10 items to the start of
               the playlist, set _range_start_ to 9, and _insert_before_ to 0.
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           range_length: The amount of items to be reordered. Defaults to 1 if not set.<br/>The range of
               items to be reordered begins from the _range_start_ position, and includes the
               _range_length_ subsequent items.<br/>Example:<br/>To move the items at index
@@ -110,6 +117,7 @@ class TracksResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "insert_before": insert_before,
+                    "published": published,
                     "range_length": range_length,
                     "range_start": range_start,
                     "snapshot_id": snapshot_id,
@@ -216,6 +224,7 @@ class TracksResource(SyncAPIResource):
         playlist_id: str,
         *,
         position: int | Omit = omit,
+        published: bool | Omit = omit,
         uris: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -236,6 +245,12 @@ class TracksResource(SyncAPIResource):
               position: `position=2`. If omitted, the items will be appended to the playlist.
               Items are added in the order they appear in the uris array. For example:
               `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M"], "position": 3}`
+
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
 
           uris: A JSON array of the
               [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to add. For
@@ -260,6 +275,7 @@ class TracksResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "position": position,
+                    "published": published,
                     "uris": uris,
                 },
                 track_add_params.TrackAddParams,
@@ -275,6 +291,7 @@ class TracksResource(SyncAPIResource):
         playlist_id: str,
         *,
         tracks: Iterable[track_remove_params.Track],
+        published: bool | Omit = omit,
         snapshot_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -296,6 +313,12 @@ class TracksResource(SyncAPIResource):
               `{ "tracks": [{ "uri": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh" },{ "uri": "spotify:track:1301WleyT98MSxVHPZCA6M" }] }`.
               A maximum of 100 objects can be sent at once.
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           snapshot_id: The playlist's snapshot ID against which you want to make the changes. The API
               will validate that the specified items exist and in the specified positions and
               make the changes, even if more recent changes have been made to the playlist.
@@ -315,6 +338,7 @@ class TracksResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "tracks": tracks,
+                    "published": published,
                     "snapshot_id": snapshot_id,
                 },
                 track_remove_params.TrackRemoveParams,
@@ -351,6 +375,7 @@ class AsyncTracksResource(AsyncAPIResource):
         playlist_id: str,
         *,
         insert_before: int | Omit = omit,
+        published: bool | Omit = omit,
         range_length: int | Omit = omit,
         range_start: int | Omit = omit,
         snapshot_id: str | Omit = omit,
@@ -384,6 +409,12 @@ class AsyncTracksResource(AsyncAPIResource):
               to 10.<br/>To reorder the last item in a playlist with 10 items to the start of
               the playlist, set _range_start_ to 9, and _insert_before_ to 0.
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           range_length: The amount of items to be reordered. Defaults to 1 if not set.<br/>The range of
               items to be reordered begins from the _range_start_ position, and includes the
               _range_length_ subsequent items.<br/>Example:<br/>To move the items at index
@@ -409,6 +440,7 @@ class AsyncTracksResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "insert_before": insert_before,
+                    "published": published,
                     "range_length": range_length,
                     "range_start": range_start,
                     "snapshot_id": snapshot_id,
@@ -515,6 +547,7 @@ class AsyncTracksResource(AsyncAPIResource):
         playlist_id: str,
         *,
         position: int | Omit = omit,
+        published: bool | Omit = omit,
         uris: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -535,6 +568,12 @@ class AsyncTracksResource(AsyncAPIResource):
               position: `position=2`. If omitted, the items will be appended to the playlist.
               Items are added in the order they appear in the uris array. For example:
               `{"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh","spotify:track:1301WleyT98MSxVHPZCA6M"], "position": 3}`
+
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
 
           uris: A JSON array of the
               [Spotify URIs](/documentation/web-api/concepts/spotify-uris-ids) to add. For
@@ -559,6 +598,7 @@ class AsyncTracksResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "position": position,
+                    "published": published,
                     "uris": uris,
                 },
                 track_add_params.TrackAddParams,
@@ -574,6 +614,7 @@ class AsyncTracksResource(AsyncAPIResource):
         playlist_id: str,
         *,
         tracks: Iterable[track_remove_params.Track],
+        published: bool | Omit = omit,
         snapshot_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -595,6 +636,12 @@ class AsyncTracksResource(AsyncAPIResource):
               `{ "tracks": [{ "uri": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh" },{ "uri": "spotify:track:1301WleyT98MSxVHPZCA6M" }] }`.
               A maximum of 100 objects can be sent at once.
 
+          published: The playlist's public/private status (if it should be added to the user's
+              profile or not): `true` the playlist will be public, `false` the playlist will
+              be private, `null` the playlist status is not relevant. For more about
+              public/private status, see
+              [Working with Playlists](/documentation/web-api/concepts/playlists)
+
           snapshot_id: The playlist's snapshot ID against which you want to make the changes. The API
               will validate that the specified items exist and in the specified positions and
               make the changes, even if more recent changes have been made to the playlist.
@@ -614,6 +661,7 @@ class AsyncTracksResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "tracks": tracks,
+                    "published": published,
                     "snapshot_id": snapshot_id,
                 },
                 track_remove_params.TrackRemoveParams,

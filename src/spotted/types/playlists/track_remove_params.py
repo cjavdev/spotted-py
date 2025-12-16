@@ -18,6 +18,15 @@ class TrackRemoveParams(TypedDict, total=False):
     A maximum of 100 objects can be sent at once.
     """
 
+    published: bool
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
+
     snapshot_id: str
     """
     The playlist's snapshot ID against which you want to make the changes. The API
