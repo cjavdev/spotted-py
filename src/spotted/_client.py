@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,22 +20,9 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._oauth2 import OAuth2ClientCredentials, make_oauth2
 from ._version import __version__
-from .resources import (
-    shows,
-    albums,
-    search,
-    tracks,
-    artists,
-    markets,
-    chapters,
-    episodes,
-    audiobooks,
-    audio_analysis,
-    audio_features,
-    recommendations,
-)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -43,34 +30,47 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.me import me
-from .resources.users import users
-from .resources.browse import browse
-from .resources.playlists import playlists
+
+if TYPE_CHECKING:
+    from .resources import (
+        me,
+        shows,
+        users,
+        albums,
+        browse,
+        search,
+        tracks,
+        artists,
+        markets,
+        chapters,
+        episodes,
+        playlists,
+        audiobooks,
+        audio_analysis,
+        audio_features,
+        recommendations,
+    )
+    from .resources.me.me import MeResource, AsyncMeResource
+    from .resources.shows import ShowsResource, AsyncShowsResource
+    from .resources.albums import AlbumsResource, AsyncAlbumsResource
+    from .resources.search import SearchResource, AsyncSearchResource
+    from .resources.tracks import TracksResource, AsyncTracksResource
+    from .resources.artists import ArtistsResource, AsyncArtistsResource
+    from .resources.markets import MarketsResource, AsyncMarketsResource
+    from .resources.chapters import ChaptersResource, AsyncChaptersResource
+    from .resources.episodes import EpisodesResource, AsyncEpisodesResource
+    from .resources.audiobooks import AudiobooksResource, AsyncAudiobooksResource
+    from .resources.users.users import UsersResource, AsyncUsersResource
+    from .resources.browse.browse import BrowseResource, AsyncBrowseResource
+    from .resources.audio_analysis import AudioAnalysisResource, AsyncAudioAnalysisResource
+    from .resources.audio_features import AudioFeaturesResource, AsyncAudioFeaturesResource
+    from .resources.recommendations import RecommendationsResource, AsyncRecommendationsResource
+    from .resources.playlists.playlists import PlaylistsResource, AsyncPlaylistsResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Spotted", "AsyncSpotted", "Client", "AsyncClient"]
 
 
 class Spotted(SyncAPIClient):
-    albums: albums.AlbumsResource
-    artists: artists.ArtistsResource
-    shows: shows.ShowsResource
-    episodes: episodes.EpisodesResource
-    audiobooks: audiobooks.AudiobooksResource
-    me: me.MeResource
-    chapters: chapters.ChaptersResource
-    tracks: tracks.TracksResource
-    search: search.SearchResource
-    playlists: playlists.PlaylistsResource
-    users: users.UsersResource
-    browse: browse.BrowseResource
-    audio_features: audio_features.AudioFeaturesResource
-    audio_analysis: audio_analysis.AudioAnalysisResource
-    recommendations: recommendations.RecommendationsResource
-    markets: markets.MarketsResource
-    with_raw_response: SpottedWithRawResponse
-    with_streaming_response: SpottedWithStreamedResponse
-
     # client options
     client_id: str | None
     client_secret: str | None
@@ -136,24 +136,109 @@ class Spotted(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.albums = albums.AlbumsResource(self)
-        self.artists = artists.ArtistsResource(self)
-        self.shows = shows.ShowsResource(self)
-        self.episodes = episodes.EpisodesResource(self)
-        self.audiobooks = audiobooks.AudiobooksResource(self)
-        self.me = me.MeResource(self)
-        self.chapters = chapters.ChaptersResource(self)
-        self.tracks = tracks.TracksResource(self)
-        self.search = search.SearchResource(self)
-        self.playlists = playlists.PlaylistsResource(self)
-        self.users = users.UsersResource(self)
-        self.browse = browse.BrowseResource(self)
-        self.audio_features = audio_features.AudioFeaturesResource(self)
-        self.audio_analysis = audio_analysis.AudioAnalysisResource(self)
-        self.recommendations = recommendations.RecommendationsResource(self)
-        self.markets = markets.MarketsResource(self)
-        self.with_raw_response = SpottedWithRawResponse(self)
-        self.with_streaming_response = SpottedWithStreamedResponse(self)
+    @cached_property
+    def albums(self) -> AlbumsResource:
+        from .resources.albums import AlbumsResource
+
+        return AlbumsResource(self)
+
+    @cached_property
+    def artists(self) -> ArtistsResource:
+        from .resources.artists import ArtistsResource
+
+        return ArtistsResource(self)
+
+    @cached_property
+    def shows(self) -> ShowsResource:
+        from .resources.shows import ShowsResource
+
+        return ShowsResource(self)
+
+    @cached_property
+    def episodes(self) -> EpisodesResource:
+        from .resources.episodes import EpisodesResource
+
+        return EpisodesResource(self)
+
+    @cached_property
+    def audiobooks(self) -> AudiobooksResource:
+        from .resources.audiobooks import AudiobooksResource
+
+        return AudiobooksResource(self)
+
+    @cached_property
+    def me(self) -> MeResource:
+        from .resources.me import MeResource
+
+        return MeResource(self)
+
+    @cached_property
+    def chapters(self) -> ChaptersResource:
+        from .resources.chapters import ChaptersResource
+
+        return ChaptersResource(self)
+
+    @cached_property
+    def tracks(self) -> TracksResource:
+        from .resources.tracks import TracksResource
+
+        return TracksResource(self)
+
+    @cached_property
+    def search(self) -> SearchResource:
+        from .resources.search import SearchResource
+
+        return SearchResource(self)
+
+    @cached_property
+    def playlists(self) -> PlaylistsResource:
+        from .resources.playlists import PlaylistsResource
+
+        return PlaylistsResource(self)
+
+    @cached_property
+    def users(self) -> UsersResource:
+        from .resources.users import UsersResource
+
+        return UsersResource(self)
+
+    @cached_property
+    def browse(self) -> BrowseResource:
+        from .resources.browse import BrowseResource
+
+        return BrowseResource(self)
+
+    @cached_property
+    def audio_features(self) -> AudioFeaturesResource:
+        from .resources.audio_features import AudioFeaturesResource
+
+        return AudioFeaturesResource(self)
+
+    @cached_property
+    def audio_analysis(self) -> AudioAnalysisResource:
+        from .resources.audio_analysis import AudioAnalysisResource
+
+        return AudioAnalysisResource(self)
+
+    @cached_property
+    def recommendations(self) -> RecommendationsResource:
+        from .resources.recommendations import RecommendationsResource
+
+        return RecommendationsResource(self)
+
+    @cached_property
+    def markets(self) -> MarketsResource:
+        from .resources.markets import MarketsResource
+
+        return MarketsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> SpottedWithRawResponse:
+        return SpottedWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> SpottedWithStreamedResponse:
+        return SpottedWithStreamedResponse(self)
 
     @property
     @override
@@ -288,25 +373,6 @@ class Spotted(SyncAPIClient):
 
 
 class AsyncSpotted(AsyncAPIClient):
-    albums: albums.AsyncAlbumsResource
-    artists: artists.AsyncArtistsResource
-    shows: shows.AsyncShowsResource
-    episodes: episodes.AsyncEpisodesResource
-    audiobooks: audiobooks.AsyncAudiobooksResource
-    me: me.AsyncMeResource
-    chapters: chapters.AsyncChaptersResource
-    tracks: tracks.AsyncTracksResource
-    search: search.AsyncSearchResource
-    playlists: playlists.AsyncPlaylistsResource
-    users: users.AsyncUsersResource
-    browse: browse.AsyncBrowseResource
-    audio_features: audio_features.AsyncAudioFeaturesResource
-    audio_analysis: audio_analysis.AsyncAudioAnalysisResource
-    recommendations: recommendations.AsyncRecommendationsResource
-    markets: markets.AsyncMarketsResource
-    with_raw_response: AsyncSpottedWithRawResponse
-    with_streaming_response: AsyncSpottedWithStreamedResponse
-
     # client options
     client_id: str | None
     client_secret: str | None
@@ -372,24 +438,109 @@ class AsyncSpotted(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.albums = albums.AsyncAlbumsResource(self)
-        self.artists = artists.AsyncArtistsResource(self)
-        self.shows = shows.AsyncShowsResource(self)
-        self.episodes = episodes.AsyncEpisodesResource(self)
-        self.audiobooks = audiobooks.AsyncAudiobooksResource(self)
-        self.me = me.AsyncMeResource(self)
-        self.chapters = chapters.AsyncChaptersResource(self)
-        self.tracks = tracks.AsyncTracksResource(self)
-        self.search = search.AsyncSearchResource(self)
-        self.playlists = playlists.AsyncPlaylistsResource(self)
-        self.users = users.AsyncUsersResource(self)
-        self.browse = browse.AsyncBrowseResource(self)
-        self.audio_features = audio_features.AsyncAudioFeaturesResource(self)
-        self.audio_analysis = audio_analysis.AsyncAudioAnalysisResource(self)
-        self.recommendations = recommendations.AsyncRecommendationsResource(self)
-        self.markets = markets.AsyncMarketsResource(self)
-        self.with_raw_response = AsyncSpottedWithRawResponse(self)
-        self.with_streaming_response = AsyncSpottedWithStreamedResponse(self)
+    @cached_property
+    def albums(self) -> AsyncAlbumsResource:
+        from .resources.albums import AsyncAlbumsResource
+
+        return AsyncAlbumsResource(self)
+
+    @cached_property
+    def artists(self) -> AsyncArtistsResource:
+        from .resources.artists import AsyncArtistsResource
+
+        return AsyncArtistsResource(self)
+
+    @cached_property
+    def shows(self) -> AsyncShowsResource:
+        from .resources.shows import AsyncShowsResource
+
+        return AsyncShowsResource(self)
+
+    @cached_property
+    def episodes(self) -> AsyncEpisodesResource:
+        from .resources.episodes import AsyncEpisodesResource
+
+        return AsyncEpisodesResource(self)
+
+    @cached_property
+    def audiobooks(self) -> AsyncAudiobooksResource:
+        from .resources.audiobooks import AsyncAudiobooksResource
+
+        return AsyncAudiobooksResource(self)
+
+    @cached_property
+    def me(self) -> AsyncMeResource:
+        from .resources.me import AsyncMeResource
+
+        return AsyncMeResource(self)
+
+    @cached_property
+    def chapters(self) -> AsyncChaptersResource:
+        from .resources.chapters import AsyncChaptersResource
+
+        return AsyncChaptersResource(self)
+
+    @cached_property
+    def tracks(self) -> AsyncTracksResource:
+        from .resources.tracks import AsyncTracksResource
+
+        return AsyncTracksResource(self)
+
+    @cached_property
+    def search(self) -> AsyncSearchResource:
+        from .resources.search import AsyncSearchResource
+
+        return AsyncSearchResource(self)
+
+    @cached_property
+    def playlists(self) -> AsyncPlaylistsResource:
+        from .resources.playlists import AsyncPlaylistsResource
+
+        return AsyncPlaylistsResource(self)
+
+    @cached_property
+    def users(self) -> AsyncUsersResource:
+        from .resources.users import AsyncUsersResource
+
+        return AsyncUsersResource(self)
+
+    @cached_property
+    def browse(self) -> AsyncBrowseResource:
+        from .resources.browse import AsyncBrowseResource
+
+        return AsyncBrowseResource(self)
+
+    @cached_property
+    def audio_features(self) -> AsyncAudioFeaturesResource:
+        from .resources.audio_features import AsyncAudioFeaturesResource
+
+        return AsyncAudioFeaturesResource(self)
+
+    @cached_property
+    def audio_analysis(self) -> AsyncAudioAnalysisResource:
+        from .resources.audio_analysis import AsyncAudioAnalysisResource
+
+        return AsyncAudioAnalysisResource(self)
+
+    @cached_property
+    def recommendations(self) -> AsyncRecommendationsResource:
+        from .resources.recommendations import AsyncRecommendationsResource
+
+        return AsyncRecommendationsResource(self)
+
+    @cached_property
+    def markets(self) -> AsyncMarketsResource:
+        from .resources.markets import AsyncMarketsResource
+
+        return AsyncMarketsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncSpottedWithRawResponse:
+        return AsyncSpottedWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncSpottedWithStreamedResponse:
+        return AsyncSpottedWithStreamedResponse(self)
 
     @property
     @override
@@ -524,83 +675,415 @@ class AsyncSpotted(AsyncAPIClient):
 
 
 class SpottedWithRawResponse:
+    _client: Spotted
+
     def __init__(self, client: Spotted) -> None:
-        self.albums = albums.AlbumsResourceWithRawResponse(client.albums)
-        self.artists = artists.ArtistsResourceWithRawResponse(client.artists)
-        self.shows = shows.ShowsResourceWithRawResponse(client.shows)
-        self.episodes = episodes.EpisodesResourceWithRawResponse(client.episodes)
-        self.audiobooks = audiobooks.AudiobooksResourceWithRawResponse(client.audiobooks)
-        self.me = me.MeResourceWithRawResponse(client.me)
-        self.chapters = chapters.ChaptersResourceWithRawResponse(client.chapters)
-        self.tracks = tracks.TracksResourceWithRawResponse(client.tracks)
-        self.search = search.SearchResourceWithRawResponse(client.search)
-        self.playlists = playlists.PlaylistsResourceWithRawResponse(client.playlists)
-        self.users = users.UsersResourceWithRawResponse(client.users)
-        self.browse = browse.BrowseResourceWithRawResponse(client.browse)
-        self.audio_features = audio_features.AudioFeaturesResourceWithRawResponse(client.audio_features)
-        self.audio_analysis = audio_analysis.AudioAnalysisResourceWithRawResponse(client.audio_analysis)
-        self.recommendations = recommendations.RecommendationsResourceWithRawResponse(client.recommendations)
-        self.markets = markets.MarketsResourceWithRawResponse(client.markets)
+        self._client = client
+
+    @cached_property
+    def albums(self) -> albums.AlbumsResourceWithRawResponse:
+        from .resources.albums import AlbumsResourceWithRawResponse
+
+        return AlbumsResourceWithRawResponse(self._client.albums)
+
+    @cached_property
+    def artists(self) -> artists.ArtistsResourceWithRawResponse:
+        from .resources.artists import ArtistsResourceWithRawResponse
+
+        return ArtistsResourceWithRawResponse(self._client.artists)
+
+    @cached_property
+    def shows(self) -> shows.ShowsResourceWithRawResponse:
+        from .resources.shows import ShowsResourceWithRawResponse
+
+        return ShowsResourceWithRawResponse(self._client.shows)
+
+    @cached_property
+    def episodes(self) -> episodes.EpisodesResourceWithRawResponse:
+        from .resources.episodes import EpisodesResourceWithRawResponse
+
+        return EpisodesResourceWithRawResponse(self._client.episodes)
+
+    @cached_property
+    def audiobooks(self) -> audiobooks.AudiobooksResourceWithRawResponse:
+        from .resources.audiobooks import AudiobooksResourceWithRawResponse
+
+        return AudiobooksResourceWithRawResponse(self._client.audiobooks)
+
+    @cached_property
+    def me(self) -> me.MeResourceWithRawResponse:
+        from .resources.me import MeResourceWithRawResponse
+
+        return MeResourceWithRawResponse(self._client.me)
+
+    @cached_property
+    def chapters(self) -> chapters.ChaptersResourceWithRawResponse:
+        from .resources.chapters import ChaptersResourceWithRawResponse
+
+        return ChaptersResourceWithRawResponse(self._client.chapters)
+
+    @cached_property
+    def tracks(self) -> tracks.TracksResourceWithRawResponse:
+        from .resources.tracks import TracksResourceWithRawResponse
+
+        return TracksResourceWithRawResponse(self._client.tracks)
+
+    @cached_property
+    def search(self) -> search.SearchResourceWithRawResponse:
+        from .resources.search import SearchResourceWithRawResponse
+
+        return SearchResourceWithRawResponse(self._client.search)
+
+    @cached_property
+    def playlists(self) -> playlists.PlaylistsResourceWithRawResponse:
+        from .resources.playlists import PlaylistsResourceWithRawResponse
+
+        return PlaylistsResourceWithRawResponse(self._client.playlists)
+
+    @cached_property
+    def users(self) -> users.UsersResourceWithRawResponse:
+        from .resources.users import UsersResourceWithRawResponse
+
+        return UsersResourceWithRawResponse(self._client.users)
+
+    @cached_property
+    def browse(self) -> browse.BrowseResourceWithRawResponse:
+        from .resources.browse import BrowseResourceWithRawResponse
+
+        return BrowseResourceWithRawResponse(self._client.browse)
+
+    @cached_property
+    def audio_features(self) -> audio_features.AudioFeaturesResourceWithRawResponse:
+        from .resources.audio_features import AudioFeaturesResourceWithRawResponse
+
+        return AudioFeaturesResourceWithRawResponse(self._client.audio_features)
+
+    @cached_property
+    def audio_analysis(self) -> audio_analysis.AudioAnalysisResourceWithRawResponse:
+        from .resources.audio_analysis import AudioAnalysisResourceWithRawResponse
+
+        return AudioAnalysisResourceWithRawResponse(self._client.audio_analysis)
+
+    @cached_property
+    def recommendations(self) -> recommendations.RecommendationsResourceWithRawResponse:
+        from .resources.recommendations import RecommendationsResourceWithRawResponse
+
+        return RecommendationsResourceWithRawResponse(self._client.recommendations)
+
+    @cached_property
+    def markets(self) -> markets.MarketsResourceWithRawResponse:
+        from .resources.markets import MarketsResourceWithRawResponse
+
+        return MarketsResourceWithRawResponse(self._client.markets)
 
 
 class AsyncSpottedWithRawResponse:
+    _client: AsyncSpotted
+
     def __init__(self, client: AsyncSpotted) -> None:
-        self.albums = albums.AsyncAlbumsResourceWithRawResponse(client.albums)
-        self.artists = artists.AsyncArtistsResourceWithRawResponse(client.artists)
-        self.shows = shows.AsyncShowsResourceWithRawResponse(client.shows)
-        self.episodes = episodes.AsyncEpisodesResourceWithRawResponse(client.episodes)
-        self.audiobooks = audiobooks.AsyncAudiobooksResourceWithRawResponse(client.audiobooks)
-        self.me = me.AsyncMeResourceWithRawResponse(client.me)
-        self.chapters = chapters.AsyncChaptersResourceWithRawResponse(client.chapters)
-        self.tracks = tracks.AsyncTracksResourceWithRawResponse(client.tracks)
-        self.search = search.AsyncSearchResourceWithRawResponse(client.search)
-        self.playlists = playlists.AsyncPlaylistsResourceWithRawResponse(client.playlists)
-        self.users = users.AsyncUsersResourceWithRawResponse(client.users)
-        self.browse = browse.AsyncBrowseResourceWithRawResponse(client.browse)
-        self.audio_features = audio_features.AsyncAudioFeaturesResourceWithRawResponse(client.audio_features)
-        self.audio_analysis = audio_analysis.AsyncAudioAnalysisResourceWithRawResponse(client.audio_analysis)
-        self.recommendations = recommendations.AsyncRecommendationsResourceWithRawResponse(client.recommendations)
-        self.markets = markets.AsyncMarketsResourceWithRawResponse(client.markets)
+        self._client = client
+
+    @cached_property
+    def albums(self) -> albums.AsyncAlbumsResourceWithRawResponse:
+        from .resources.albums import AsyncAlbumsResourceWithRawResponse
+
+        return AsyncAlbumsResourceWithRawResponse(self._client.albums)
+
+    @cached_property
+    def artists(self) -> artists.AsyncArtistsResourceWithRawResponse:
+        from .resources.artists import AsyncArtistsResourceWithRawResponse
+
+        return AsyncArtistsResourceWithRawResponse(self._client.artists)
+
+    @cached_property
+    def shows(self) -> shows.AsyncShowsResourceWithRawResponse:
+        from .resources.shows import AsyncShowsResourceWithRawResponse
+
+        return AsyncShowsResourceWithRawResponse(self._client.shows)
+
+    @cached_property
+    def episodes(self) -> episodes.AsyncEpisodesResourceWithRawResponse:
+        from .resources.episodes import AsyncEpisodesResourceWithRawResponse
+
+        return AsyncEpisodesResourceWithRawResponse(self._client.episodes)
+
+    @cached_property
+    def audiobooks(self) -> audiobooks.AsyncAudiobooksResourceWithRawResponse:
+        from .resources.audiobooks import AsyncAudiobooksResourceWithRawResponse
+
+        return AsyncAudiobooksResourceWithRawResponse(self._client.audiobooks)
+
+    @cached_property
+    def me(self) -> me.AsyncMeResourceWithRawResponse:
+        from .resources.me import AsyncMeResourceWithRawResponse
+
+        return AsyncMeResourceWithRawResponse(self._client.me)
+
+    @cached_property
+    def chapters(self) -> chapters.AsyncChaptersResourceWithRawResponse:
+        from .resources.chapters import AsyncChaptersResourceWithRawResponse
+
+        return AsyncChaptersResourceWithRawResponse(self._client.chapters)
+
+    @cached_property
+    def tracks(self) -> tracks.AsyncTracksResourceWithRawResponse:
+        from .resources.tracks import AsyncTracksResourceWithRawResponse
+
+        return AsyncTracksResourceWithRawResponse(self._client.tracks)
+
+    @cached_property
+    def search(self) -> search.AsyncSearchResourceWithRawResponse:
+        from .resources.search import AsyncSearchResourceWithRawResponse
+
+        return AsyncSearchResourceWithRawResponse(self._client.search)
+
+    @cached_property
+    def playlists(self) -> playlists.AsyncPlaylistsResourceWithRawResponse:
+        from .resources.playlists import AsyncPlaylistsResourceWithRawResponse
+
+        return AsyncPlaylistsResourceWithRawResponse(self._client.playlists)
+
+    @cached_property
+    def users(self) -> users.AsyncUsersResourceWithRawResponse:
+        from .resources.users import AsyncUsersResourceWithRawResponse
+
+        return AsyncUsersResourceWithRawResponse(self._client.users)
+
+    @cached_property
+    def browse(self) -> browse.AsyncBrowseResourceWithRawResponse:
+        from .resources.browse import AsyncBrowseResourceWithRawResponse
+
+        return AsyncBrowseResourceWithRawResponse(self._client.browse)
+
+    @cached_property
+    def audio_features(self) -> audio_features.AsyncAudioFeaturesResourceWithRawResponse:
+        from .resources.audio_features import AsyncAudioFeaturesResourceWithRawResponse
+
+        return AsyncAudioFeaturesResourceWithRawResponse(self._client.audio_features)
+
+    @cached_property
+    def audio_analysis(self) -> audio_analysis.AsyncAudioAnalysisResourceWithRawResponse:
+        from .resources.audio_analysis import AsyncAudioAnalysisResourceWithRawResponse
+
+        return AsyncAudioAnalysisResourceWithRawResponse(self._client.audio_analysis)
+
+    @cached_property
+    def recommendations(self) -> recommendations.AsyncRecommendationsResourceWithRawResponse:
+        from .resources.recommendations import AsyncRecommendationsResourceWithRawResponse
+
+        return AsyncRecommendationsResourceWithRawResponse(self._client.recommendations)
+
+    @cached_property
+    def markets(self) -> markets.AsyncMarketsResourceWithRawResponse:
+        from .resources.markets import AsyncMarketsResourceWithRawResponse
+
+        return AsyncMarketsResourceWithRawResponse(self._client.markets)
 
 
 class SpottedWithStreamedResponse:
+    _client: Spotted
+
     def __init__(self, client: Spotted) -> None:
-        self.albums = albums.AlbumsResourceWithStreamingResponse(client.albums)
-        self.artists = artists.ArtistsResourceWithStreamingResponse(client.artists)
-        self.shows = shows.ShowsResourceWithStreamingResponse(client.shows)
-        self.episodes = episodes.EpisodesResourceWithStreamingResponse(client.episodes)
-        self.audiobooks = audiobooks.AudiobooksResourceWithStreamingResponse(client.audiobooks)
-        self.me = me.MeResourceWithStreamingResponse(client.me)
-        self.chapters = chapters.ChaptersResourceWithStreamingResponse(client.chapters)
-        self.tracks = tracks.TracksResourceWithStreamingResponse(client.tracks)
-        self.search = search.SearchResourceWithStreamingResponse(client.search)
-        self.playlists = playlists.PlaylistsResourceWithStreamingResponse(client.playlists)
-        self.users = users.UsersResourceWithStreamingResponse(client.users)
-        self.browse = browse.BrowseResourceWithStreamingResponse(client.browse)
-        self.audio_features = audio_features.AudioFeaturesResourceWithStreamingResponse(client.audio_features)
-        self.audio_analysis = audio_analysis.AudioAnalysisResourceWithStreamingResponse(client.audio_analysis)
-        self.recommendations = recommendations.RecommendationsResourceWithStreamingResponse(client.recommendations)
-        self.markets = markets.MarketsResourceWithStreamingResponse(client.markets)
+        self._client = client
+
+    @cached_property
+    def albums(self) -> albums.AlbumsResourceWithStreamingResponse:
+        from .resources.albums import AlbumsResourceWithStreamingResponse
+
+        return AlbumsResourceWithStreamingResponse(self._client.albums)
+
+    @cached_property
+    def artists(self) -> artists.ArtistsResourceWithStreamingResponse:
+        from .resources.artists import ArtistsResourceWithStreamingResponse
+
+        return ArtistsResourceWithStreamingResponse(self._client.artists)
+
+    @cached_property
+    def shows(self) -> shows.ShowsResourceWithStreamingResponse:
+        from .resources.shows import ShowsResourceWithStreamingResponse
+
+        return ShowsResourceWithStreamingResponse(self._client.shows)
+
+    @cached_property
+    def episodes(self) -> episodes.EpisodesResourceWithStreamingResponse:
+        from .resources.episodes import EpisodesResourceWithStreamingResponse
+
+        return EpisodesResourceWithStreamingResponse(self._client.episodes)
+
+    @cached_property
+    def audiobooks(self) -> audiobooks.AudiobooksResourceWithStreamingResponse:
+        from .resources.audiobooks import AudiobooksResourceWithStreamingResponse
+
+        return AudiobooksResourceWithStreamingResponse(self._client.audiobooks)
+
+    @cached_property
+    def me(self) -> me.MeResourceWithStreamingResponse:
+        from .resources.me import MeResourceWithStreamingResponse
+
+        return MeResourceWithStreamingResponse(self._client.me)
+
+    @cached_property
+    def chapters(self) -> chapters.ChaptersResourceWithStreamingResponse:
+        from .resources.chapters import ChaptersResourceWithStreamingResponse
+
+        return ChaptersResourceWithStreamingResponse(self._client.chapters)
+
+    @cached_property
+    def tracks(self) -> tracks.TracksResourceWithStreamingResponse:
+        from .resources.tracks import TracksResourceWithStreamingResponse
+
+        return TracksResourceWithStreamingResponse(self._client.tracks)
+
+    @cached_property
+    def search(self) -> search.SearchResourceWithStreamingResponse:
+        from .resources.search import SearchResourceWithStreamingResponse
+
+        return SearchResourceWithStreamingResponse(self._client.search)
+
+    @cached_property
+    def playlists(self) -> playlists.PlaylistsResourceWithStreamingResponse:
+        from .resources.playlists import PlaylistsResourceWithStreamingResponse
+
+        return PlaylistsResourceWithStreamingResponse(self._client.playlists)
+
+    @cached_property
+    def users(self) -> users.UsersResourceWithStreamingResponse:
+        from .resources.users import UsersResourceWithStreamingResponse
+
+        return UsersResourceWithStreamingResponse(self._client.users)
+
+    @cached_property
+    def browse(self) -> browse.BrowseResourceWithStreamingResponse:
+        from .resources.browse import BrowseResourceWithStreamingResponse
+
+        return BrowseResourceWithStreamingResponse(self._client.browse)
+
+    @cached_property
+    def audio_features(self) -> audio_features.AudioFeaturesResourceWithStreamingResponse:
+        from .resources.audio_features import AudioFeaturesResourceWithStreamingResponse
+
+        return AudioFeaturesResourceWithStreamingResponse(self._client.audio_features)
+
+    @cached_property
+    def audio_analysis(self) -> audio_analysis.AudioAnalysisResourceWithStreamingResponse:
+        from .resources.audio_analysis import AudioAnalysisResourceWithStreamingResponse
+
+        return AudioAnalysisResourceWithStreamingResponse(self._client.audio_analysis)
+
+    @cached_property
+    def recommendations(self) -> recommendations.RecommendationsResourceWithStreamingResponse:
+        from .resources.recommendations import RecommendationsResourceWithStreamingResponse
+
+        return RecommendationsResourceWithStreamingResponse(self._client.recommendations)
+
+    @cached_property
+    def markets(self) -> markets.MarketsResourceWithStreamingResponse:
+        from .resources.markets import MarketsResourceWithStreamingResponse
+
+        return MarketsResourceWithStreamingResponse(self._client.markets)
 
 
 class AsyncSpottedWithStreamedResponse:
+    _client: AsyncSpotted
+
     def __init__(self, client: AsyncSpotted) -> None:
-        self.albums = albums.AsyncAlbumsResourceWithStreamingResponse(client.albums)
-        self.artists = artists.AsyncArtistsResourceWithStreamingResponse(client.artists)
-        self.shows = shows.AsyncShowsResourceWithStreamingResponse(client.shows)
-        self.episodes = episodes.AsyncEpisodesResourceWithStreamingResponse(client.episodes)
-        self.audiobooks = audiobooks.AsyncAudiobooksResourceWithStreamingResponse(client.audiobooks)
-        self.me = me.AsyncMeResourceWithStreamingResponse(client.me)
-        self.chapters = chapters.AsyncChaptersResourceWithStreamingResponse(client.chapters)
-        self.tracks = tracks.AsyncTracksResourceWithStreamingResponse(client.tracks)
-        self.search = search.AsyncSearchResourceWithStreamingResponse(client.search)
-        self.playlists = playlists.AsyncPlaylistsResourceWithStreamingResponse(client.playlists)
-        self.users = users.AsyncUsersResourceWithStreamingResponse(client.users)
-        self.browse = browse.AsyncBrowseResourceWithStreamingResponse(client.browse)
-        self.audio_features = audio_features.AsyncAudioFeaturesResourceWithStreamingResponse(client.audio_features)
-        self.audio_analysis = audio_analysis.AsyncAudioAnalysisResourceWithStreamingResponse(client.audio_analysis)
-        self.recommendations = recommendations.AsyncRecommendationsResourceWithStreamingResponse(client.recommendations)
-        self.markets = markets.AsyncMarketsResourceWithStreamingResponse(client.markets)
+        self._client = client
+
+    @cached_property
+    def albums(self) -> albums.AsyncAlbumsResourceWithStreamingResponse:
+        from .resources.albums import AsyncAlbumsResourceWithStreamingResponse
+
+        return AsyncAlbumsResourceWithStreamingResponse(self._client.albums)
+
+    @cached_property
+    def artists(self) -> artists.AsyncArtistsResourceWithStreamingResponse:
+        from .resources.artists import AsyncArtistsResourceWithStreamingResponse
+
+        return AsyncArtistsResourceWithStreamingResponse(self._client.artists)
+
+    @cached_property
+    def shows(self) -> shows.AsyncShowsResourceWithStreamingResponse:
+        from .resources.shows import AsyncShowsResourceWithStreamingResponse
+
+        return AsyncShowsResourceWithStreamingResponse(self._client.shows)
+
+    @cached_property
+    def episodes(self) -> episodes.AsyncEpisodesResourceWithStreamingResponse:
+        from .resources.episodes import AsyncEpisodesResourceWithStreamingResponse
+
+        return AsyncEpisodesResourceWithStreamingResponse(self._client.episodes)
+
+    @cached_property
+    def audiobooks(self) -> audiobooks.AsyncAudiobooksResourceWithStreamingResponse:
+        from .resources.audiobooks import AsyncAudiobooksResourceWithStreamingResponse
+
+        return AsyncAudiobooksResourceWithStreamingResponse(self._client.audiobooks)
+
+    @cached_property
+    def me(self) -> me.AsyncMeResourceWithStreamingResponse:
+        from .resources.me import AsyncMeResourceWithStreamingResponse
+
+        return AsyncMeResourceWithStreamingResponse(self._client.me)
+
+    @cached_property
+    def chapters(self) -> chapters.AsyncChaptersResourceWithStreamingResponse:
+        from .resources.chapters import AsyncChaptersResourceWithStreamingResponse
+
+        return AsyncChaptersResourceWithStreamingResponse(self._client.chapters)
+
+    @cached_property
+    def tracks(self) -> tracks.AsyncTracksResourceWithStreamingResponse:
+        from .resources.tracks import AsyncTracksResourceWithStreamingResponse
+
+        return AsyncTracksResourceWithStreamingResponse(self._client.tracks)
+
+    @cached_property
+    def search(self) -> search.AsyncSearchResourceWithStreamingResponse:
+        from .resources.search import AsyncSearchResourceWithStreamingResponse
+
+        return AsyncSearchResourceWithStreamingResponse(self._client.search)
+
+    @cached_property
+    def playlists(self) -> playlists.AsyncPlaylistsResourceWithStreamingResponse:
+        from .resources.playlists import AsyncPlaylistsResourceWithStreamingResponse
+
+        return AsyncPlaylistsResourceWithStreamingResponse(self._client.playlists)
+
+    @cached_property
+    def users(self) -> users.AsyncUsersResourceWithStreamingResponse:
+        from .resources.users import AsyncUsersResourceWithStreamingResponse
+
+        return AsyncUsersResourceWithStreamingResponse(self._client.users)
+
+    @cached_property
+    def browse(self) -> browse.AsyncBrowseResourceWithStreamingResponse:
+        from .resources.browse import AsyncBrowseResourceWithStreamingResponse
+
+        return AsyncBrowseResourceWithStreamingResponse(self._client.browse)
+
+    @cached_property
+    def audio_features(self) -> audio_features.AsyncAudioFeaturesResourceWithStreamingResponse:
+        from .resources.audio_features import AsyncAudioFeaturesResourceWithStreamingResponse
+
+        return AsyncAudioFeaturesResourceWithStreamingResponse(self._client.audio_features)
+
+    @cached_property
+    def audio_analysis(self) -> audio_analysis.AsyncAudioAnalysisResourceWithStreamingResponse:
+        from .resources.audio_analysis import AsyncAudioAnalysisResourceWithStreamingResponse
+
+        return AsyncAudioAnalysisResourceWithStreamingResponse(self._client.audio_analysis)
+
+    @cached_property
+    def recommendations(self) -> recommendations.AsyncRecommendationsResourceWithStreamingResponse:
+        from .resources.recommendations import AsyncRecommendationsResourceWithStreamingResponse
+
+        return AsyncRecommendationsResourceWithStreamingResponse(self._client.recommendations)
+
+    @cached_property
+    def markets(self) -> markets.AsyncMarketsResourceWithStreamingResponse:
+        from .resources.markets import AsyncMarketsResourceWithStreamingResponse
+
+        return AsyncMarketsResourceWithStreamingResponse(self._client.markets)
 
 
 Client = Spotted

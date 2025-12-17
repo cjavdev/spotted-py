@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.16.1 (2025-12-17)
+
+Full Changelog: [v0.16.0...v0.16.1](https://github.com/cjavdev/spotted-py/compare/v0.16.0...v0.16.1)
+
+### Chores
+
+* speedup initial import ([09883dd](https://github.com/cjavdev/spotted-py/commit/09883ddda64c909c008366377a4d6f766d8cace1))
+
 ## 0.16.0 (2025-12-16)
 
 Full Changelog: [v0.15.0...v0.16.0](https://github.com/cjavdev/spotted-py/compare/v0.15.0...v0.16.0)
