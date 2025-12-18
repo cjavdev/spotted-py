@@ -119,8 +119,8 @@ all_shows = []
 # Automatically fetches more pages as needed.
 for show in client.shows.list_episodes(
     id="showid",
-    limit=5,
-    offset=10,
+    limit=10,
+    offset=20,
 ):
     # Do something with show here
     all_shows.append(show)
@@ -141,8 +141,8 @@ async def main() -> None:
     # Iterate through items across all pages, issuing requests as needed.
     async for show in client.shows.list_episodes(
         id="showid",
-        limit=5,
-        offset=10,
+        limit=10,
+        offset=20,
     ):
         all_shows.append(show)
     print(all_shows)
@@ -156,8 +156,8 @@ Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get
 ```python
 first_page = await client.shows.list_episodes(
     id="showid",
-    limit=5,
-    offset=10,
+    limit=10,
+    offset=20,
 )
 if first_page.has_next_page():
     print(f"will fetch next page using these details: {first_page.next_page_info()}")
@@ -172,8 +172,8 @@ Or just work directly with the returned data:
 ```python
 first_page = await client.shows.list_episodes(
     id="showid",
-    limit=5,
-    offset=10,
+    limit=10,
+    offset=20,
 )
 
 print(f"next URL: {first_page.next}")  # => "next URL: ..."
