@@ -416,7 +416,7 @@ from spotted.types.browse import (
 Methods:
 
 - <code title="get /browse/categories/{category_id}">client.browse.categories.<a href="./src/spotted/resources/browse/categories.py">retrieve</a>(category_id, \*\*<a href="src/spotted/types/browse/category_retrieve_params.py">params</a>) -> <a href="./src/spotted/types/browse/category_retrieve_response.py">CategoryRetrieveResponse</a></code>
-- <code title="get /browse/categories">client.browse.categories.<a href="./src/spotted/resources/browse/categories.py">list</a>(\*\*<a href="src/spotted/types/browse/category_list_params.py">params</a>) -> <a href="./src/spotted/types/browse/category_list_response.py">CategoryListResponse</a></code>
+- <code title="get /browse/categories">client.browse.categories.<a href="./src/spotted/resources/browse/categories.py">list</a>(\*\*<a href="src/spotted/types/browse/category_list_params.py">params</a>) -> <a href="./src/spotted/types/browse/category_list_response.py">SyncCursorURLPage[CategoryListResponse]</a></code>
 - <code title="get /browse/categories/{category_id}/playlists">client.browse.categories.<a href="./src/spotted/resources/browse/categories.py">get_playlists</a>(category_id, \*\*<a href="src/spotted/types/browse/category_get_playlists_params.py">params</a>) -> <a href="./src/spotted/types/browse/category_get_playlists_response.py">CategoryGetPlaylistsResponse</a></code>
 
 # AudioFeatures
