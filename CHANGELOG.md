@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.16.2 (2025-12-18)
+
+Full Changelog: [v0.16.1...v0.16.2](https://github.com/cjavdev/spotted-py/compare/v0.16.1...v0.16.2)
+
+### Bug Fixes
+
+* use async_to_httpx_files in patch method ([4089eec](https://github.com/cjavdev/spotted-py/commit/4089eec5269ef828aeeb400e45cd1f7c8a0843a1))
+
 ## 0.16.1 (2025-12-17)
 
 Full Changelog: [v0.16.0...v0.16.1](https://github.com/cjavdev/spotted-py/compare/v0.16.0...v0.16.1)
