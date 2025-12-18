@@ -9,6 +9,7 @@ import pytest
 
 from spotted import Spotted, AsyncSpotted
 from tests.utils import assert_matches_type
+from spotted.pagination import SyncCursorURLPage, AsyncCursorURLPage
 from spotted.types.browse import (
     CategoryListResponse,
     CategoryRetrieveResponse,
@@ -78,7 +79,7 @@ class TestCategories:
     @parametrize
     def test_method_list(self, client: Spotted) -> None:
         category = client.browse.categories.list()
-        assert_matches_type(CategoryListResponse, category, path=["response"])
+        assert_matches_type(SyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -88,7 +89,7 @@ class TestCategories:
             locale="sv_SE",
             offset=5,
         )
-        assert_matches_type(CategoryListResponse, category, path=["response"])
+        assert_matches_type(SyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -98,7 +99,7 @@ class TestCategories:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         category = response.parse()
-        assert_matches_type(CategoryListResponse, category, path=["response"])
+        assert_matches_type(SyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -108,7 +109,7 @@ class TestCategories:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             category = response.parse()
-            assert_matches_type(CategoryListResponse, category, path=["response"])
+            assert_matches_type(SyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -232,7 +233,7 @@ class TestAsyncCategories:
     @parametrize
     async def test_method_list(self, async_client: AsyncSpotted) -> None:
         category = await async_client.browse.categories.list()
-        assert_matches_type(CategoryListResponse, category, path=["response"])
+        assert_matches_type(AsyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -242,7 +243,7 @@ class TestAsyncCategories:
             locale="sv_SE",
             offset=5,
         )
-        assert_matches_type(CategoryListResponse, category, path=["response"])
+        assert_matches_type(AsyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -252,7 +253,7 @@ class TestAsyncCategories:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         category = await response.parse()
-        assert_matches_type(CategoryListResponse, category, path=["response"])
+        assert_matches_type(AsyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -262,7 +263,7 @@ class TestAsyncCategories:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             category = await response.parse()
-            assert_matches_type(CategoryListResponse, category, path=["response"])
+            assert_matches_type(AsyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
