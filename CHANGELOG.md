@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.18.1 (2025-12-19)
+
+Full Changelog: [v0.18.0...v0.18.1](https://github.com/cjavdev/spotted-py/compare/v0.18.0...v0.18.1)
+
+### Chores
+
+* **internal:** add `--fix` argument to lint script ([3d18b27](https://github.com/cjavdev/spotted-py/commit/3d18b27ecfce829aa4a48573c23a4361a2c12ecb))
+
 ## 0.18.0 (2025-12-18)
 
 Full Changelog: [v0.17.0...v0.18.0](https://github.com/cjavdev/spotted-py/compare/v0.17.0...v0.18.0)
