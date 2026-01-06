@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.19.1 (2026-01-06)
+
+Full Changelog: [v0.19.0...v0.19.1](https://github.com/cjavdev/spotted-py/compare/v0.19.0...v0.19.1)
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([5b4f5ff](https://github.com/cjavdev/spotted-py/commit/5b4f5ff7b77c03e31286f1ede4efed7afd2c9978))
+
 ## 0.19.0 (2026-01-05)
 
 Full Changelog: [v0.18.1...v0.19.0](https://github.com/cjavdev/spotted-py/compare/v0.18.1...v0.19.0)
