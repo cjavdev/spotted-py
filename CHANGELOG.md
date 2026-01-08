@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.21.0 (2026-01-08)
+
+Full Changelog: [v0.20.0...v0.21.0](https://github.com/cjavdev/spotted-py/compare/v0.20.0...v0.21.0)
+
+### Features
+
+* **api:** oidc for python ([1856b26](https://github.com/cjavdev/spotted-py/commit/1856b261ef3d61071f9ce0d0abf90dc41fb221ca))
+
 ## 0.20.0 (2026-01-06)
 
 Full Changelog: [v0.19.1...v0.20.0](https://github.com/cjavdev/spotted-py/compare/v0.19.1...v0.20.0)
