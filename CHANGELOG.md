@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.22.0 (2026-01-08)
+
+Full Changelog: [v0.21.0...v0.22.0](https://github.com/cjavdev/spotted-py/compare/v0.21.0...v0.22.0)
+
+### Features
+
+* **api:** manual updates ([260ee56](https://github.com/cjavdev/spotted-py/commit/260ee5601935c31ed3994aaccbd8ace96f6bb9c8))
+
+
+### Refactors
+
+* switch from rye to uv ([dcba363](https://github.com/cjavdev/spotted-py/commit/dcba363c8a4d15fe2db212838045660bdbb8645e))
+
 ## 0.21.0 (2026-01-08)
 
 Full Changelog: [v0.20.0...v0.21.0](https://github.com/cjavdev/spotted-py/compare/v0.20.0...v0.21.0)
