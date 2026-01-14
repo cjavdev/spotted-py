@@ -2,10 +2,21 @@
 
 from __future__ import annotations
 
+import os
+
 import httpx
 
 from ..._files import read_file_content, async_read_file_content
-from ..._types import Body, Query, Headers, NotGiven, FileContent, not_given
+from ..._types import (
+    Body,
+    Query,
+    Headers,
+    NotGiven,
+    BinaryTypes,
+    FileContent,
+    AsyncBinaryTypes,
+    not_given,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -51,7 +62,7 @@ class ImagesResource(SyncAPIResource):
     def update(
         self,
         playlist_id: str,
-        body: FileContent,
+        body: FileContent | BinaryTypes,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -83,7 +94,7 @@ class ImagesResource(SyncAPIResource):
         extra_headers = {"Content-Type": "image/jpeg", **(extra_headers or {})}
         return self._put(
             f"/playlists/{playlist_id}/images",
-            body=read_file_content(body),
+            content=read_file_content(body) if isinstance(body, os.PathLike) else body,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -150,7 +161,7 @@ class AsyncImagesResource(AsyncAPIResource):
     async def update(
         self,
         playlist_id: str,
-        body: FileContent,
+        body: FileContent | AsyncBinaryTypes,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -182,7 +193,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_headers = {"Content-Type": "image/jpeg", **(extra_headers or {})}
         return await self._put(
             f"/playlists/{playlist_id}/images",
-            body=await async_read_file_content(body),
+            content=await async_read_file_content(body) if isinstance(body, os.PathLike) else body,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
