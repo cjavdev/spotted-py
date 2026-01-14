@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.24.0 (2026-01-14)
+
+Full Changelog: [v0.23.0...v0.24.0](https://github.com/cjavdev/spotted-py/compare/v0.23.0...v0.24.0)
+
+### Features
+
+* **api:** api update ([63a5475](https://github.com/cjavdev/spotted-py/commit/63a547540d16193d5256d8a3796a85d6a7632e54))
+* **client:** add support for binary request streaming ([0e4df6b](https://github.com/cjavdev/spotted-py/commit/0e4df6b66f8a6ac524284f24beaac246f87d09e8))
+
 ## 0.23.0 (2026-01-08)
 
 Full Changelog: [v0.22.0...v0.23.0](https://github.com/cjavdev/spotted-py/compare/v0.22.0...v0.23.0)
