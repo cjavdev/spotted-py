@@ -39,8 +39,7 @@ from .utils import update_env
 
 T = TypeVar("T")
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-client_id = "My Client ID"
-client_secret = "My Client Secret"
+access_token = "My Access Token"
 
 
 def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
@@ -137,13 +136,9 @@ class TestSpotted:
         copied = client.copy()
         assert id(copied) != id(client)
 
-        copied = client.copy(client_id="another My Client ID")
-        assert copied.client_id == "another My Client ID"
-        assert client.client_id == "My Client ID"
-
-        copied = client.copy(client_secret="another My Client Secret")
-        assert copied.client_secret == "another My Client Secret"
-        assert client.client_secret == "My Client Secret"
+        copied = client.copy(access_token="another My Access Token")
+        assert copied.access_token == "another My Access Token"
+        assert client.access_token == "My Access Token"
 
     def test_copy_default_options(self, client: Spotted) -> None:
         # options that have a default are overridden correctly
@@ -164,8 +159,7 @@ class TestSpotted:
     def test_copy_default_headers(self) -> None:
         client = Spotted(
             base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
+            access_token=access_token,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -202,11 +196,7 @@ class TestSpotted:
 
     def test_copy_default_query(self) -> None:
         client = Spotted(
-            base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
-            _strict_response_validation=True,
-            default_query={"foo": "bar"},
+            base_url=base_url, access_token=access_token, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
 
@@ -332,11 +322,7 @@ class TestSpotted:
 
     def test_client_timeout_option(self) -> None:
         client = Spotted(
-            base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
-            _strict_response_validation=True,
-            timeout=httpx.Timeout(0),
+            base_url=base_url, access_token=access_token, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -349,11 +335,7 @@ class TestSpotted:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
             client = Spotted(
-                base_url=base_url,
-                client_id=client_id,
-                client_secret=client_secret,
-                _strict_response_validation=True,
-                http_client=http_client,
+                base_url=base_url, access_token=access_token, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -365,11 +347,7 @@ class TestSpotted:
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
             client = Spotted(
-                base_url=base_url,
-                client_id=client_id,
-                client_secret=client_secret,
-                _strict_response_validation=True,
-                http_client=http_client,
+                base_url=base_url, access_token=access_token, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -381,11 +359,7 @@ class TestSpotted:
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
             client = Spotted(
-                base_url=base_url,
-                client_id=client_id,
-                client_secret=client_secret,
-                _strict_response_validation=True,
-                http_client=http_client,
+                base_url=base_url, access_token=access_token, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -399,8 +373,7 @@ class TestSpotted:
             async with httpx.AsyncClient() as http_client:
                 Spotted(
                     base_url=base_url,
-                    client_id=client_id,
-                    client_secret=client_secret,
+                    access_token=access_token,
                     _strict_response_validation=True,
                     http_client=cast(Any, http_client),
                 )
@@ -408,8 +381,7 @@ class TestSpotted:
     def test_default_headers_option(self) -> None:
         test_client = Spotted(
             base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
+            access_token=access_token,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -419,8 +391,7 @@ class TestSpotted:
 
         test_client2 = Spotted(
             base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
+            access_token=access_token,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -437,8 +408,7 @@ class TestSpotted:
     def test_default_query_option(self) -> None:
         client = Spotted(
             base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
+            access_token=access_token,
             _strict_response_validation=True,
             default_query={"query_param": "bar"},
         )
@@ -612,8 +582,7 @@ class TestSpotted:
 
         with Spotted(
             base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
+            access_token=access_token,
             _strict_response_validation=True,
             http_client=httpx.Client(transport=MockTransport(handler=mock_handler)),
         ) as client:
@@ -708,10 +677,7 @@ class TestSpotted:
 
     def test_base_url_setter(self) -> None:
         client = Spotted(
-            base_url="https://example.com/from_init",
-            client_id=client_id,
-            client_secret=client_secret,
-            _strict_response_validation=True,
+            base_url="https://example.com/from_init", access_token=access_token, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
 
@@ -723,7 +689,7 @@ class TestSpotted:
 
     def test_base_url_env(self) -> None:
         with update_env(SPOTTED_BASE_URL="http://localhost:5000/from/env"):
-            client = Spotted(client_id=client_id, client_secret=client_secret, _strict_response_validation=True)
+            client = Spotted(access_token=access_token, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
@@ -731,14 +697,12 @@ class TestSpotted:
         [
             Spotted(
                 base_url="http://localhost:5000/custom/path/",
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
             ),
             Spotted(
                 base_url="http://localhost:5000/custom/path/",
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -761,14 +725,12 @@ class TestSpotted:
         [
             Spotted(
                 base_url="http://localhost:5000/custom/path/",
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
             ),
             Spotted(
                 base_url="http://localhost:5000/custom/path/",
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -791,14 +753,12 @@ class TestSpotted:
         [
             Spotted(
                 base_url="http://localhost:5000/custom/path/",
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
             ),
             Spotted(
                 base_url="http://localhost:5000/custom/path/",
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
@@ -817,9 +777,7 @@ class TestSpotted:
         client.close()
 
     def test_copied_client_does_not_close_http(self) -> None:
-        test_client = Spotted(
-            base_url=base_url, client_id=client_id, client_secret=client_secret, _strict_response_validation=True
-        )
+        test_client = Spotted(base_url=base_url, access_token=access_token, _strict_response_validation=True)
         assert not test_client.is_closed()
 
         copied = test_client.copy()
@@ -830,9 +788,7 @@ class TestSpotted:
         assert not test_client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        test_client = Spotted(
-            base_url=base_url, client_id=client_id, client_secret=client_secret, _strict_response_validation=True
-        )
+        test_client = Spotted(base_url=base_url, access_token=access_token, _strict_response_validation=True)
         with test_client as c2:
             assert c2 is test_client
             assert not c2.is_closed()
@@ -855,8 +811,7 @@ class TestSpotted:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
             Spotted(
                 base_url=base_url,
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
                 max_retries=cast(Any, None),
             )
@@ -868,16 +823,12 @@ class TestSpotted:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = Spotted(
-            base_url=base_url, client_id=client_id, client_secret=client_secret, _strict_response_validation=True
-        )
+        strict_client = Spotted(base_url=base_url, access_token=access_token, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        non_strict_client = Spotted(
-            base_url=base_url, client_id=client_id, client_secret=client_secret, _strict_response_validation=False
-        )
+        non_strict_client = Spotted(base_url=base_url, access_token=access_token, _strict_response_validation=False)
 
         response = non_strict_client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -1088,13 +1039,9 @@ class TestAsyncSpotted:
         copied = async_client.copy()
         assert id(copied) != id(async_client)
 
-        copied = async_client.copy(client_id="another My Client ID")
-        assert copied.client_id == "another My Client ID"
-        assert async_client.client_id == "My Client ID"
-
-        copied = async_client.copy(client_secret="another My Client Secret")
-        assert copied.client_secret == "another My Client Secret"
-        assert async_client.client_secret == "My Client Secret"
+        copied = async_client.copy(access_token="another My Access Token")
+        assert copied.access_token == "another My Access Token"
+        assert async_client.access_token == "My Access Token"
 
     def test_copy_default_options(self, async_client: AsyncSpotted) -> None:
         # options that have a default are overridden correctly
@@ -1115,8 +1062,7 @@ class TestAsyncSpotted:
     async def test_copy_default_headers(self) -> None:
         client = AsyncSpotted(
             base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
+            access_token=access_token,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -1153,11 +1099,7 @@ class TestAsyncSpotted:
 
     async def test_copy_default_query(self) -> None:
         client = AsyncSpotted(
-            base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
-            _strict_response_validation=True,
-            default_query={"foo": "bar"},
+            base_url=base_url, access_token=access_token, _strict_response_validation=True, default_query={"foo": "bar"}
         )
         assert _get_params(client)["foo"] == "bar"
 
@@ -1285,11 +1227,7 @@ class TestAsyncSpotted:
 
     async def test_client_timeout_option(self) -> None:
         client = AsyncSpotted(
-            base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
-            _strict_response_validation=True,
-            timeout=httpx.Timeout(0),
+            base_url=base_url, access_token=access_token, _strict_response_validation=True, timeout=httpx.Timeout(0)
         )
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1302,11 +1240,7 @@ class TestAsyncSpotted:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
             client = AsyncSpotted(
-                base_url=base_url,
-                client_id=client_id,
-                client_secret=client_secret,
-                _strict_response_validation=True,
-                http_client=http_client,
+                base_url=base_url, access_token=access_token, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1318,11 +1252,7 @@ class TestAsyncSpotted:
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
             client = AsyncSpotted(
-                base_url=base_url,
-                client_id=client_id,
-                client_secret=client_secret,
-                _strict_response_validation=True,
-                http_client=http_client,
+                base_url=base_url, access_token=access_token, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1334,11 +1264,7 @@ class TestAsyncSpotted:
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
             client = AsyncSpotted(
-                base_url=base_url,
-                client_id=client_id,
-                client_secret=client_secret,
-                _strict_response_validation=True,
-                http_client=http_client,
+                base_url=base_url, access_token=access_token, _strict_response_validation=True, http_client=http_client
             )
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
@@ -1352,8 +1278,7 @@ class TestAsyncSpotted:
             with httpx.Client() as http_client:
                 AsyncSpotted(
                     base_url=base_url,
-                    client_id=client_id,
-                    client_secret=client_secret,
+                    access_token=access_token,
                     _strict_response_validation=True,
                     http_client=cast(Any, http_client),
                 )
@@ -1361,8 +1286,7 @@ class TestAsyncSpotted:
     async def test_default_headers_option(self) -> None:
         test_client = AsyncSpotted(
             base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
+            access_token=access_token,
             _strict_response_validation=True,
             default_headers={"X-Foo": "bar"},
         )
@@ -1372,8 +1296,7 @@ class TestAsyncSpotted:
 
         test_client2 = AsyncSpotted(
             base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
+            access_token=access_token,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -1390,8 +1313,7 @@ class TestAsyncSpotted:
     async def test_default_query_option(self) -> None:
         client = AsyncSpotted(
             base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
+            access_token=access_token,
             _strict_response_validation=True,
             default_query={"query_param": "bar"},
         )
@@ -1565,8 +1487,7 @@ class TestAsyncSpotted:
 
         async with AsyncSpotted(
             base_url=base_url,
-            client_id=client_id,
-            client_secret=client_secret,
+            access_token=access_token,
             _strict_response_validation=True,
             http_client=httpx.AsyncClient(transport=MockTransport(handler=mock_handler)),
         ) as client:
@@ -1665,10 +1586,7 @@ class TestAsyncSpotted:
 
     async def test_base_url_setter(self) -> None:
         client = AsyncSpotted(
-            base_url="https://example.com/from_init",
-            client_id=client_id,
-            client_secret=client_secret,
-            _strict_response_validation=True,
+            base_url="https://example.com/from_init", access_token=access_token, _strict_response_validation=True
         )
         assert client.base_url == "https://example.com/from_init/"
 
@@ -1680,7 +1598,7 @@ class TestAsyncSpotted:
 
     async def test_base_url_env(self) -> None:
         with update_env(SPOTTED_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncSpotted(client_id=client_id, client_secret=client_secret, _strict_response_validation=True)
+            client = AsyncSpotted(access_token=access_token, _strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
     @pytest.mark.parametrize(
@@ -1688,14 +1606,12 @@ class TestAsyncSpotted:
         [
             AsyncSpotted(
                 base_url="http://localhost:5000/custom/path/",
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
             ),
             AsyncSpotted(
                 base_url="http://localhost:5000/custom/path/",
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1718,14 +1634,12 @@ class TestAsyncSpotted:
         [
             AsyncSpotted(
                 base_url="http://localhost:5000/custom/path/",
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
             ),
             AsyncSpotted(
                 base_url="http://localhost:5000/custom/path/",
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1748,14 +1662,12 @@ class TestAsyncSpotted:
         [
             AsyncSpotted(
                 base_url="http://localhost:5000/custom/path/",
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
             ),
             AsyncSpotted(
                 base_url="http://localhost:5000/custom/path/",
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
@@ -1774,9 +1686,7 @@ class TestAsyncSpotted:
         await client.close()
 
     async def test_copied_client_does_not_close_http(self) -> None:
-        test_client = AsyncSpotted(
-            base_url=base_url, client_id=client_id, client_secret=client_secret, _strict_response_validation=True
-        )
+        test_client = AsyncSpotted(base_url=base_url, access_token=access_token, _strict_response_validation=True)
         assert not test_client.is_closed()
 
         copied = test_client.copy()
@@ -1788,9 +1698,7 @@ class TestAsyncSpotted:
         assert not test_client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        test_client = AsyncSpotted(
-            base_url=base_url, client_id=client_id, client_secret=client_secret, _strict_response_validation=True
-        )
+        test_client = AsyncSpotted(base_url=base_url, access_token=access_token, _strict_response_validation=True)
         async with test_client as c2:
             assert c2 is test_client
             assert not c2.is_closed()
@@ -1813,8 +1721,7 @@ class TestAsyncSpotted:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
             AsyncSpotted(
                 base_url=base_url,
-                client_id=client_id,
-                client_secret=client_secret,
+                access_token=access_token,
                 _strict_response_validation=True,
                 max_retries=cast(Any, None),
             )
@@ -1826,15 +1733,13 @@ class TestAsyncSpotted:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncSpotted(
-            base_url=base_url, client_id=client_id, client_secret=client_secret, _strict_response_validation=True
-        )
+        strict_client = AsyncSpotted(base_url=base_url, access_token=access_token, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
         non_strict_client = AsyncSpotted(
-            base_url=base_url, client_id=client_id, client_secret=client_secret, _strict_response_validation=False
+            base_url=base_url, access_token=access_token, _strict_response_validation=False
         )
 
         response = await non_strict_client.get("/foo", cast_to=Model)
