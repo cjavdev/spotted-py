@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.25.0 (2026-01-15)
+
+Full Changelog: [v0.24.0...v0.25.0](https://github.com/cjavdev/spotted-py/compare/v0.24.0...v0.25.0)
+
+### Features
+
+* **api:** manual updates ([af5c0d5](https://github.com/cjavdev/spotted-py/commit/af5c0d5bd25eea89919447e5d69cef98ca5eaa1a))
+* **api:** manual updates ([b56b710](https://github.com/cjavdev/spotted-py/commit/b56b710b8a7a98b6c58f3d6c4ebbf34dc8f15a09))
+* **api:** turn off oauth ([da51d4c](https://github.com/cjavdev/spotted-py/commit/da51d4ca819c28a02f7cc1a158c3355fc3b116d4))
+
 ## 0.24.0 (2026-01-14)
 
 Full Changelog: [v0.23.0...v0.24.0](https://github.com/cjavdev/spotted-py/compare/v0.23.0...v0.24.0)
