@@ -34,10 +34,11 @@ pip install spotted
 The full API of this library can be found in [api.md](api.md).
 
 ```python
+import os
 from spotted import Spotted
 
 client = Spotted(
-    access_token="My Access Token",
+    access_token=os.environ.get("SPOTIFY_ACCESS_TOKEN"),  # This is the default and can be omitted
 )
 
 album = client.albums.retrieve(
@@ -46,16 +47,22 @@ album = client.albums.retrieve(
 print(album.id)
 ```
 
+While you can provide a `access_token` keyword argument,
+we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
+to add `SPOTIFY_ACCESS_TOKEN="My Access Token"` to your `.env` file
+so that your Access Token is not stored in source control.
+
 ## Async usage
 
 Simply import `AsyncSpotted` instead of `Spotted` and use `await` with each API call:
 
 ```python
+import os
 import asyncio
 from spotted import AsyncSpotted
 
 client = AsyncSpotted(
-    access_token="My Access Token",
+    access_token=os.environ.get("SPOTIFY_ACCESS_TOKEN"),  # This is the default and can be omitted
 )
 
 
@@ -85,6 +92,7 @@ pip install spotted[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from spotted import DefaultAioHttpClient
 from spotted import AsyncSpotted
@@ -92,7 +100,9 @@ from spotted import AsyncSpotted
 
 async def main() -> None:
     async with AsyncSpotted(
-        access_token="My Access Token",
+        access_token=os.environ.get(
+            "SPOTIFY_ACCESS_TOKEN"
+        ),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         album = await client.albums.retrieve(
@@ -122,9 +132,7 @@ This library provides auto-paginating iterators with each list response, so you 
 ```python
 from spotted import Spotted
 
-client = Spotted(
-    access_token="My Access Token",
-)
+client = Spotted()
 
 all_shows = []
 # Automatically fetches more pages as needed.
@@ -144,9 +152,7 @@ Or, asynchronously:
 import asyncio
 from spotted import AsyncSpotted
 
-client = AsyncSpotted(
-    access_token="My Access Token",
-)
+client = AsyncSpotted()
 
 
 async def main() -> None:
@@ -209,9 +215,7 @@ All errors inherit from `spotted.APIError`.
 import spotted
 from spotted import Spotted
 
-client = Spotted(
-    access_token="My Access Token",
-)
+client = Spotted()
 
 try:
     client.albums.retrieve(
@@ -254,7 +258,6 @@ from spotted import Spotted
 
 # Configure the default for all requests:
 client = Spotted(
-    access_token="My Access Token",
     # default is 2
     max_retries=0,
 )
@@ -275,14 +278,12 @@ from spotted import Spotted
 
 # Configure the default for all requests:
 client = Spotted(
-    access_token="My Access Token",
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
 client = Spotted(
-    access_token="My Access Token",
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
@@ -329,9 +330,7 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 ```py
 from spotted import Spotted
 
-client = Spotted(
-    access_token="My Access Token",
-)
+client = Spotted()
 response = client.albums.with_raw_response.retrieve(
     id="4aawyAB9vmqN3uQ7FjRGTy",
 )
@@ -410,7 +409,6 @@ import httpx
 from spotted import Spotted, DefaultHttpxClient
 
 client = Spotted(
-    access_token="My Access Token",
     # Or use the `SPOTTED_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
@@ -433,9 +431,7 @@ By default the library closes underlying HTTP connections whenever the client is
 ```py
 from spotted import Spotted
 
-with Spotted(
-    access_token="My Access Token",
-) as client:
+with Spotted() as client:
   # make requests here
   ...
 

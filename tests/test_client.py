@@ -23,7 +23,7 @@ from spotted import Spotted, AsyncSpotted, APIResponseValidationError
 from spotted._types import Omit
 from spotted._utils import asyncify
 from spotted._models import BaseModel, FinalRequestOptions
-from spotted._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
+from spotted._exceptions import SpottedError, APIStatusError, APITimeoutError, APIResponseValidationError
 from spotted._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
@@ -404,6 +404,16 @@ class TestSpotted:
 
         test_client.close()
         test_client2.close()
+
+    def test_validate_headers(self) -> None:
+        client = Spotted(base_url=base_url, access_token=access_token, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("Authorization") == f"Bearer {access_token}"
+
+        with pytest.raises(SpottedError):
+            with update_env(**{"SPOTIFY_ACCESS_TOKEN": Omit()}):
+                client2 = Spotted(base_url=base_url, access_token=None, _strict_response_validation=True)
+            _ = client2
 
     def test_default_query_option(self) -> None:
         client = Spotted(
@@ -1309,6 +1319,16 @@ class TestAsyncSpotted:
 
         await test_client.close()
         await test_client2.close()
+
+    def test_validate_headers(self) -> None:
+        client = AsyncSpotted(base_url=base_url, access_token=access_token, _strict_response_validation=True)
+        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
+        assert request.headers.get("Authorization") == f"Bearer {access_token}"
+
+        with pytest.raises(SpottedError):
+            with update_env(**{"SPOTIFY_ACCESS_TOKEN": Omit()}):
+                client2 = AsyncSpotted(base_url=base_url, access_token=None, _strict_response_validation=True)
+            _ = client2
 
     async def test_default_query_option(self) -> None:
         client = AsyncSpotted(
