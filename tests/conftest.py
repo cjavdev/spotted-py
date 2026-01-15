@@ -46,8 +46,7 @@ def pytest_collection_modifyitems(items: list[pytest.Function]) -> None:
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-client_id = "My Client ID"
-client_secret = "My Client Secret"
+access_token = "My Access Token"
 
 
 @pytest.fixture(autouse=True)
@@ -73,9 +72,7 @@ def client(request: FixtureRequest) -> Iterator[Spotted]:
     if not isinstance(strict, bool):
         raise TypeError(f"Unexpected fixture parameter type {type(strict)}, expected {bool}")
 
-    with Spotted(
-        base_url=base_url, client_id=client_id, client_secret=client_secret, _strict_response_validation=strict
-    ) as client:
+    with Spotted(base_url=base_url, access_token=access_token, _strict_response_validation=strict) as client:
         yield client
 
 
@@ -100,10 +97,6 @@ async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncSpotted]:
         raise TypeError(f"Unexpected fixture parameter type {type(param)}, expected bool or dict")
 
     async with AsyncSpotted(
-        base_url=base_url,
-        client_id=client_id,
-        client_secret=client_secret,
-        _strict_response_validation=strict,
-        http_client=http_client,
+        base_url=base_url, access_token=access_token, _strict_response_validation=strict, http_client=http_client
     ) as client:
         yield client
