@@ -21,10 +21,9 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._compat import cached_property
-from ._oauth2 import OAuth2ClientCredentials, make_oauth2
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import APIStatusError
+from ._exceptions import SpottedError, APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -72,15 +71,11 @@ __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Spotted", 
 
 class Spotted(SyncAPIClient):
     # client options
-    client_id: str | None
-    client_secret: str | None
-    access_token: str | None
+    access_token: str
 
     def __init__(
         self,
         *,
-        client_id: str | None = None,
-        client_secret: str | None = None,
         access_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -103,21 +98,14 @@ class Spotted(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous Spotted client instance.
 
-        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
-        - `client_id` from `SPOTIFY_CLIENT_ID`
-        - `client_secret` from `SPOTIFY_CLIENT_SECRET`
-        - `access_token` from `SPOTIFY_ACCESS_TOKEN`
+        This automatically infers the `access_token` argument from the `SPOTIFY_ACCESS_TOKEN` environment variable if it is not provided.
         """
-        if client_id is None:
-            client_id = os.environ.get("SPOTIFY_CLIENT_ID")
-        self.client_id = client_id
-
-        if client_secret is None:
-            client_secret = os.environ.get("SPOTIFY_CLIENT_SECRET")
-        self.client_secret = client_secret
-
         if access_token is None:
             access_token = os.environ.get("SPOTIFY_ACCESS_TOKEN")
+        if access_token is None:
+            raise SpottedError(
+                "The access_token client option must be set either by passing access_token to the client or by setting the SPOTIFY_ACCESS_TOKEN environment variable"
+            )
         self.access_token = access_token
 
         if base_url is None:
@@ -247,26 +235,6 @@ class Spotted(SyncAPIClient):
 
     @property
     @override
-    def auth_headers(self) -> dict[str, str]:
-        access_token = self.access_token
-        if access_token is None:
-            return {}
-        return {"Authorization": f"Bearer {access_token}"}
-
-    @property
-    @override
-    def custom_auth(self) -> httpx.Auth | None:
-        if self.client_id and self.client_secret:
-            return make_oauth2(
-                client_id=self.client_id,
-                client_secret=self.client_secret,
-                token_url=self._prepare_url("https://accounts.spotify.com/api/token"),
-                header="Authorization",
-            )
-        return None
-
-    @property
-    @override
     def default_headers(self) -> dict[str, str | Omit]:
         return {
             **super().default_headers,
@@ -274,20 +242,9 @@ class Spotted(SyncAPIClient):
             **self._custom_headers,
         }
 
-    @override
-    def _should_retry(self, response: httpx.Response) -> bool:
-        # Retry on 401 if we are using OAuth2 and the token might be expired
-        if response.status_code == 401 and isinstance(self.custom_auth, OAuth2ClientCredentials):
-            if self.custom_auth.token_is_expired():
-                self.custom_auth.invalidate_token()
-                return True
-        return super()._should_retry(response)
-
     def copy(
         self,
         *,
-        client_id: str | None = None,
-        client_secret: str | None = None,
         access_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -322,8 +279,6 @@ class Spotted(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            client_id=client_id or self.client_id,
-            client_secret=client_secret or self.client_secret,
             access_token=access_token or self.access_token,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -374,15 +329,11 @@ class Spotted(SyncAPIClient):
 
 class AsyncSpotted(AsyncAPIClient):
     # client options
-    client_id: str | None
-    client_secret: str | None
-    access_token: str | None
+    access_token: str
 
     def __init__(
         self,
         *,
-        client_id: str | None = None,
-        client_secret: str | None = None,
         access_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -405,21 +356,14 @@ class AsyncSpotted(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncSpotted client instance.
 
-        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
-        - `client_id` from `SPOTIFY_CLIENT_ID`
-        - `client_secret` from `SPOTIFY_CLIENT_SECRET`
-        - `access_token` from `SPOTIFY_ACCESS_TOKEN`
+        This automatically infers the `access_token` argument from the `SPOTIFY_ACCESS_TOKEN` environment variable if it is not provided.
         """
-        if client_id is None:
-            client_id = os.environ.get("SPOTIFY_CLIENT_ID")
-        self.client_id = client_id
-
-        if client_secret is None:
-            client_secret = os.environ.get("SPOTIFY_CLIENT_SECRET")
-        self.client_secret = client_secret
-
         if access_token is None:
             access_token = os.environ.get("SPOTIFY_ACCESS_TOKEN")
+        if access_token is None:
+            raise SpottedError(
+                "The access_token client option must be set either by passing access_token to the client or by setting the SPOTIFY_ACCESS_TOKEN environment variable"
+            )
         self.access_token = access_token
 
         if base_url is None:
@@ -549,26 +493,6 @@ class AsyncSpotted(AsyncAPIClient):
 
     @property
     @override
-    def auth_headers(self) -> dict[str, str]:
-        access_token = self.access_token
-        if access_token is None:
-            return {}
-        return {"Authorization": f"Bearer {access_token}"}
-
-    @property
-    @override
-    def custom_auth(self) -> httpx.Auth | None:
-        if self.client_id and self.client_secret:
-            return make_oauth2(
-                client_id=self.client_id,
-                client_secret=self.client_secret,
-                token_url=self._prepare_url("https://accounts.spotify.com/api/token"),
-                header="Authorization",
-            )
-        return None
-
-    @property
-    @override
     def default_headers(self) -> dict[str, str | Omit]:
         return {
             **super().default_headers,
@@ -576,20 +500,9 @@ class AsyncSpotted(AsyncAPIClient):
             **self._custom_headers,
         }
 
-    @override
-    def _should_retry(self, response: httpx.Response) -> bool:
-        # Retry on 401 if we are using OAuth2 and the token might be expired
-        if response.status_code == 401 and isinstance(self.custom_auth, OAuth2ClientCredentials):
-            if self.custom_auth.token_is_expired():
-                self.custom_auth.invalidate_token()
-                return True
-        return super()._should_retry(response)
-
     def copy(
         self,
         *,
-        client_id: str | None = None,
-        client_secret: str | None = None,
         access_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
@@ -624,8 +537,6 @@ class AsyncSpotted(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            client_id=client_id or self.client_id,
-            client_secret=client_secret or self.client_secret,
             access_token=access_token or self.access_token,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
