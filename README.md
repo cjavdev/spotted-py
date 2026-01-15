@@ -20,7 +20,7 @@ Use the Spotted MCP Server to enable AI assistants to interact with this API, al
 
 ## Documentation
 
-The REST API documentation can be found on [spotted.stldocs.com](https://spotted.stldocs.com?docs). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [spotted.cjav.dev](https://spotted.cjav.dev). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
