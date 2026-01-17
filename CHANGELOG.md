@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.25.1 (2026-01-17)
+
+Full Changelog: [v0.25.0...v0.25.1](https://github.com/cjavdev/spotted-py/compare/v0.25.0...v0.25.1)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([f7e7247](https://github.com/cjavdev/spotted-py/commit/f7e7247bc3677745e1329bdd13582f33aa677cd8))
+
 ## 0.25.0 (2026-01-15)
 
 Full Changelog: [v0.24.0...v0.25.0](https://github.com/cjavdev/spotted-py/compare/v0.24.0...v0.25.0)
