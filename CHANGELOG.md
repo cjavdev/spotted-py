@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.25.2 (2026-01-29)
+
+Full Changelog: [v0.25.1...v0.25.2](https://github.com/cjavdev/spotted-py/compare/v0.25.1...v0.25.2)
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([9a609f5](https://github.com/cjavdev/spotted-py/commit/9a609f5c71c5b59e0c8f228af8e996b8325c03f2))
+
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([3a7b4d8](https://github.com/cjavdev/spotted-py/commit/3a7b4d897b31180b7419c4c1cf3073c91d3464e5))
+
 ## 0.25.1 (2026-01-17)
 
 Full Changelog: [v0.25.0...v0.25.1](https://github.com/cjavdev/spotted-py/compare/v0.25.0...v0.25.1)
