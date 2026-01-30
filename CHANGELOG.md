@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.26.0 (2026-01-30)
+
+Full Changelog: [v0.25.2...v0.26.0](https://github.com/cjavdev/spotted-py/compare/v0.25.2...v0.26.0)
+
+### Features
+
+* **client:** add custom JSON encoder for extended type support ([39da5f7](https://github.com/cjavdev/spotted-py/commit/39da5f79f73316c6b87fb0da7d29b7286c6f3042))
+
 ## 0.25.2 (2026-01-29)
 
 Full Changelog: [v0.25.1...v0.25.2](https://github.com/cjavdev/spotted-py/compare/v0.25.1...v0.25.2)
