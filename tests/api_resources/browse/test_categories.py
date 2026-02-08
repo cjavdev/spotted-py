@@ -27,26 +27,31 @@ class TestCategories:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Spotted) -> None:
-        category = client.browse.categories.retrieve(
-            category_id="dinner",
-        )
+        with pytest.warns(DeprecationWarning):
+            category = client.browse.categories.retrieve(
+                category_id="dinner",
+            )
+
         assert_matches_type(CategoryRetrieveResponse, category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Spotted) -> None:
-        category = client.browse.categories.retrieve(
-            category_id="dinner",
-            locale="sv_SE",
-        )
+        with pytest.warns(DeprecationWarning):
+            category = client.browse.categories.retrieve(
+                category_id="dinner",
+                locale="sv_SE",
+            )
+
         assert_matches_type(CategoryRetrieveResponse, category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Spotted) -> None:
-        response = client.browse.categories.with_raw_response.retrieve(
-            category_id="dinner",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.browse.categories.with_raw_response.retrieve(
+                category_id="dinner",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -56,45 +61,52 @@ class TestCategories:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Spotted) -> None:
-        with client.browse.categories.with_streaming_response.retrieve(
-            category_id="dinner",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.browse.categories.with_streaming_response.retrieve(
+                category_id="dinner",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            category = response.parse()
-            assert_matches_type(CategoryRetrieveResponse, category, path=["response"])
+                category = response.parse()
+                assert_matches_type(CategoryRetrieveResponse, category, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Spotted) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `category_id` but received ''"):
-            client.browse.categories.with_raw_response.retrieve(
-                category_id="",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `category_id` but received ''"):
+                client.browse.categories.with_raw_response.retrieve(
+                    category_id="",
+                )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Spotted) -> None:
-        category = client.browse.categories.list()
+        with pytest.warns(DeprecationWarning):
+            category = client.browse.categories.list()
+
         assert_matches_type(SyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Spotted) -> None:
-        category = client.browse.categories.list(
-            limit=10,
-            locale="sv_SE",
-            offset=5,
-        )
+        with pytest.warns(DeprecationWarning):
+            category = client.browse.categories.list(
+                limit=10,
+                locale="sv_SE",
+                offset=5,
+            )
+
         assert_matches_type(SyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Spotted) -> None:
-        response = client.browse.categories.with_raw_response.list()
+        with pytest.warns(DeprecationWarning):
+            response = client.browse.categories.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -104,12 +116,13 @@ class TestCategories:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Spotted) -> None:
-        with client.browse.categories.with_streaming_response.list() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.browse.categories.with_streaming_response.list() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            category = response.parse()
-            assert_matches_type(SyncCursorURLPage[CategoryListResponse], category, path=["response"])
+                category = response.parse()
+                assert_matches_type(SyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -181,26 +194,31 @@ class TestAsyncCategories:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncSpotted) -> None:
-        category = await async_client.browse.categories.retrieve(
-            category_id="dinner",
-        )
+        with pytest.warns(DeprecationWarning):
+            category = await async_client.browse.categories.retrieve(
+                category_id="dinner",
+            )
+
         assert_matches_type(CategoryRetrieveResponse, category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncSpotted) -> None:
-        category = await async_client.browse.categories.retrieve(
-            category_id="dinner",
-            locale="sv_SE",
-        )
+        with pytest.warns(DeprecationWarning):
+            category = await async_client.browse.categories.retrieve(
+                category_id="dinner",
+                locale="sv_SE",
+            )
+
         assert_matches_type(CategoryRetrieveResponse, category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.browse.categories.with_raw_response.retrieve(
-            category_id="dinner",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.browse.categories.with_raw_response.retrieve(
+                category_id="dinner",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -210,45 +228,52 @@ class TestAsyncCategories:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncSpotted) -> None:
-        async with async_client.browse.categories.with_streaming_response.retrieve(
-            category_id="dinner",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.browse.categories.with_streaming_response.retrieve(
+                category_id="dinner",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            category = await response.parse()
-            assert_matches_type(CategoryRetrieveResponse, category, path=["response"])
+                category = await response.parse()
+                assert_matches_type(CategoryRetrieveResponse, category, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncSpotted) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `category_id` but received ''"):
-            await async_client.browse.categories.with_raw_response.retrieve(
-                category_id="",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `category_id` but received ''"):
+                await async_client.browse.categories.with_raw_response.retrieve(
+                    category_id="",
+                )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncSpotted) -> None:
-        category = await async_client.browse.categories.list()
+        with pytest.warns(DeprecationWarning):
+            category = await async_client.browse.categories.list()
+
         assert_matches_type(AsyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncSpotted) -> None:
-        category = await async_client.browse.categories.list(
-            limit=10,
-            locale="sv_SE",
-            offset=5,
-        )
+        with pytest.warns(DeprecationWarning):
+            category = await async_client.browse.categories.list(
+                limit=10,
+                locale="sv_SE",
+                offset=5,
+            )
+
         assert_matches_type(AsyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.browse.categories.with_raw_response.list()
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.browse.categories.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -258,12 +283,13 @@ class TestAsyncCategories:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncSpotted) -> None:
-        async with async_client.browse.categories.with_streaming_response.list() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.browse.categories.with_streaming_response.list() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            category = await response.parse()
-            assert_matches_type(AsyncCursorURLPage[CategoryListResponse], category, path=["response"])
+                category = await response.parse()
+                assert_matches_type(AsyncCursorURLPage[CategoryListResponse], category, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

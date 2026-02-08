@@ -16,6 +16,8 @@ from spotted.types import (
 from spotted.pagination import SyncCursorURLPage, AsyncCursorURLPage
 from spotted.types.shared import SimplifiedEpisodeObject
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -76,26 +78,31 @@ class TestShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_bulk_retrieve(self, client: Spotted) -> None:
-        show = client.shows.bulk_retrieve(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        with pytest.warns(DeprecationWarning):
+            show = client.shows.bulk_retrieve(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+            )
+
         assert_matches_type(ShowBulkRetrieveResponse, show, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_bulk_retrieve_with_all_params(self, client: Spotted) -> None:
-        show = client.shows.bulk_retrieve(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-            market="ES",
-        )
+        with pytest.warns(DeprecationWarning):
+            show = client.shows.bulk_retrieve(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+                market="ES",
+            )
+
         assert_matches_type(ShowBulkRetrieveResponse, show, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_bulk_retrieve(self, client: Spotted) -> None:
-        response = client.shows.with_raw_response.bulk_retrieve(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.shows.with_raw_response.bulk_retrieve(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -105,14 +112,15 @@ class TestShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_bulk_retrieve(self, client: Spotted) -> None:
-        with client.shows.with_streaming_response.bulk_retrieve(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.shows.with_streaming_response.bulk_retrieve(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            show = response.parse()
-            assert_matches_type(ShowBulkRetrieveResponse, show, path=["response"])
+                show = response.parse()
+                assert_matches_type(ShowBulkRetrieveResponse, show, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -229,26 +237,31 @@ class TestAsyncShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
-        show = await async_client.shows.bulk_retrieve(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        with pytest.warns(DeprecationWarning):
+            show = await async_client.shows.bulk_retrieve(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+            )
+
         assert_matches_type(ShowBulkRetrieveResponse, show, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_bulk_retrieve_with_all_params(self, async_client: AsyncSpotted) -> None:
-        show = await async_client.shows.bulk_retrieve(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-            market="ES",
-        )
+        with pytest.warns(DeprecationWarning):
+            show = await async_client.shows.bulk_retrieve(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+                market="ES",
+            )
+
         assert_matches_type(ShowBulkRetrieveResponse, show, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.shows.with_raw_response.bulk_retrieve(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.shows.with_raw_response.bulk_retrieve(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -258,14 +271,15 @@ class TestAsyncShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
-        async with async_client.shows.with_streaming_response.bulk_retrieve(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.shows.with_streaming_response.bulk_retrieve(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            show = await response.parse()
-            assert_matches_type(ShowBulkRetrieveResponse, show, path=["response"])
+                show = await response.parse()
+                assert_matches_type(ShowBulkRetrieveResponse, show, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
