@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..types import album_retrieve_params, album_list_tracks_params, album_bulk_retrieve_params
@@ -94,6 +96,7 @@ class AlbumsResource(SyncAPIResource):
             cast_to=AlbumRetrieveResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def bulk_retrieve(
         self,
         *,
@@ -289,6 +292,7 @@ class AsyncAlbumsResource(AsyncAPIResource):
             cast_to=AlbumRetrieveResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def bulk_retrieve(
         self,
         *,
@@ -421,8 +425,10 @@ class AlbumsResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             albums.retrieve,
         )
-        self.bulk_retrieve = to_raw_response_wrapper(
-            albums.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                albums.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list_tracks = to_raw_response_wrapper(
             albums.list_tracks,
@@ -436,8 +442,10 @@ class AsyncAlbumsResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             albums.retrieve,
         )
-        self.bulk_retrieve = async_to_raw_response_wrapper(
-            albums.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                albums.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list_tracks = async_to_raw_response_wrapper(
             albums.list_tracks,
@@ -451,8 +459,10 @@ class AlbumsResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             albums.retrieve,
         )
-        self.bulk_retrieve = to_streamed_response_wrapper(
-            albums.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                albums.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list_tracks = to_streamed_response_wrapper(
             albums.list_tracks,
@@ -466,8 +476,10 @@ class AsyncAlbumsResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             albums.retrieve,
         )
-        self.bulk_retrieve = async_to_streamed_response_wrapper(
-            albums.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                albums.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list_tracks = async_to_streamed_response_wrapper(
             albums.list_tracks,

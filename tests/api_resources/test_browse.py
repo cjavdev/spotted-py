@@ -69,22 +69,27 @@ class TestBrowse:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_get_new_releases(self, client: Spotted) -> None:
-        browse = client.browse.get_new_releases()
+        with pytest.warns(DeprecationWarning):
+            browse = client.browse.get_new_releases()
+
         assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_get_new_releases_with_all_params(self, client: Spotted) -> None:
-        browse = client.browse.get_new_releases(
-            limit=10,
-            offset=5,
-        )
+        with pytest.warns(DeprecationWarning):
+            browse = client.browse.get_new_releases(
+                limit=10,
+                offset=5,
+            )
+
         assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_get_new_releases(self, client: Spotted) -> None:
-        response = client.browse.with_raw_response.get_new_releases()
+        with pytest.warns(DeprecationWarning):
+            response = client.browse.with_raw_response.get_new_releases()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -94,12 +99,13 @@ class TestBrowse:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_get_new_releases(self, client: Spotted) -> None:
-        with client.browse.with_streaming_response.get_new_releases() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.browse.with_streaming_response.get_new_releases() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            browse = response.parse()
-            assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
+                browse = response.parse()
+                assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -156,22 +162,27 @@ class TestAsyncBrowse:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_get_new_releases(self, async_client: AsyncSpotted) -> None:
-        browse = await async_client.browse.get_new_releases()
+        with pytest.warns(DeprecationWarning):
+            browse = await async_client.browse.get_new_releases()
+
         assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_get_new_releases_with_all_params(self, async_client: AsyncSpotted) -> None:
-        browse = await async_client.browse.get_new_releases(
-            limit=10,
-            offset=5,
-        )
+        with pytest.warns(DeprecationWarning):
+            browse = await async_client.browse.get_new_releases(
+                limit=10,
+                offset=5,
+            )
+
         assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_get_new_releases(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.browse.with_raw_response.get_new_releases()
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.browse.with_raw_response.get_new_releases()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -181,11 +192,12 @@ class TestAsyncBrowse:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_get_new_releases(self, async_client: AsyncSpotted) -> None:
-        async with async_client.browse.with_streaming_response.get_new_releases() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.browse.with_streaming_response.get_new_releases() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            browse = await response.parse()
-            assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
+                browse = await response.parse()
+                assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
 
         assert cast(Any, response.is_closed) is True

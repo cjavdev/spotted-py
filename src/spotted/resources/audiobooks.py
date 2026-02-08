@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..types import audiobook_retrieve_params, audiobook_bulk_retrieve_params, audiobook_list_chapters_params
@@ -97,6 +99,7 @@ class AudiobooksResource(SyncAPIResource):
             cast_to=AudiobookRetrieveResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def bulk_retrieve(
         self,
         *,
@@ -300,6 +303,7 @@ class AsyncAudiobooksResource(AsyncAPIResource):
             cast_to=AudiobookRetrieveResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def bulk_retrieve(
         self,
         *,
@@ -435,8 +439,10 @@ class AudiobooksResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             audiobooks.retrieve,
         )
-        self.bulk_retrieve = to_raw_response_wrapper(
-            audiobooks.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                audiobooks.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list_chapters = to_raw_response_wrapper(
             audiobooks.list_chapters,
@@ -450,8 +456,10 @@ class AsyncAudiobooksResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             audiobooks.retrieve,
         )
-        self.bulk_retrieve = async_to_raw_response_wrapper(
-            audiobooks.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                audiobooks.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list_chapters = async_to_raw_response_wrapper(
             audiobooks.list_chapters,
@@ -465,8 +473,10 @@ class AudiobooksResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             audiobooks.retrieve,
         )
-        self.bulk_retrieve = to_streamed_response_wrapper(
-            audiobooks.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                audiobooks.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list_chapters = to_streamed_response_wrapper(
             audiobooks.list_chapters,
@@ -480,8 +490,10 @@ class AsyncAudiobooksResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             audiobooks.retrieve,
         )
-        self.bulk_retrieve = async_to_streamed_response_wrapper(
-            audiobooks.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                audiobooks.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list_chapters = async_to_streamed_response_wrapper(
             audiobooks.list_chapters,

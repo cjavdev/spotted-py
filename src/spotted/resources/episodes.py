@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..types import episode_retrieve_params, episode_bulk_retrieve_params
@@ -94,6 +96,7 @@ class EpisodesResource(SyncAPIResource):
             cast_to=EpisodeObject,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def bulk_retrieve(
         self,
         *,
@@ -223,6 +226,7 @@ class AsyncEpisodesResource(AsyncAPIResource):
             cast_to=EpisodeObject,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def bulk_retrieve(
         self,
         *,
@@ -287,8 +291,10 @@ class EpisodesResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             episodes.retrieve,
         )
-        self.bulk_retrieve = to_raw_response_wrapper(
-            episodes.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                episodes.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -299,8 +305,10 @@ class AsyncEpisodesResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             episodes.retrieve,
         )
-        self.bulk_retrieve = async_to_raw_response_wrapper(
-            episodes.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                episodes.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -311,8 +319,10 @@ class EpisodesResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             episodes.retrieve,
         )
-        self.bulk_retrieve = to_streamed_response_wrapper(
-            episodes.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                episodes.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -323,6 +333,8 @@ class AsyncEpisodesResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             episodes.retrieve,
         )
-        self.bulk_retrieve = async_to_streamed_response_wrapper(
-            episodes.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                episodes.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )

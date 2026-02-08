@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from .._types import Body, Query, Headers, NotGiven, not_given
@@ -39,6 +41,7 @@ class MarketsResource(SyncAPIResource):
         """
         return MarketsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -79,6 +82,7 @@ class AsyncMarketsResource(AsyncAPIResource):
         """
         return AsyncMarketsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def list(
         self,
         *,
@@ -103,8 +107,10 @@ class MarketsResourceWithRawResponse:
     def __init__(self, markets: MarketsResource) -> None:
         self._markets = markets
 
-        self.list = to_raw_response_wrapper(
-            markets.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                markets.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -112,8 +118,10 @@ class AsyncMarketsResourceWithRawResponse:
     def __init__(self, markets: AsyncMarketsResource) -> None:
         self._markets = markets
 
-        self.list = async_to_raw_response_wrapper(
-            markets.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                markets.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -121,8 +129,10 @@ class MarketsResourceWithStreamingResponse:
     def __init__(self, markets: MarketsResource) -> None:
         self._markets = markets
 
-        self.list = to_streamed_response_wrapper(
-            markets.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                markets.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -130,6 +140,8 @@ class AsyncMarketsResourceWithStreamingResponse:
     def __init__(self, markets: AsyncMarketsResource) -> None:
         self._markets = markets
 
-        self.list = async_to_streamed_response_wrapper(
-            markets.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                markets.list,  # pyright: ignore[reportDeprecated],
+            )
         )
