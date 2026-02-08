@@ -17,7 +17,7 @@ class ArtistListAlbumsParams(TypedDict, total=False):
     """
 
     limit: int
-    """The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50."""
+    """The maximum number of items to return. Default: 5. Minimum: 1. Maximum: 10."""
 
     market: str
     """

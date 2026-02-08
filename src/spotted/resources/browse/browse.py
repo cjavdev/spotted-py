@@ -116,6 +116,7 @@ class BrowseResource(SyncAPIResource):
             cast_to=BrowseGetFeaturedPlaylistsResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def get_new_releases(
         self,
         *,
@@ -249,6 +250,7 @@ class AsyncBrowseResource(AsyncAPIResource):
             cast_to=BrowseGetFeaturedPlaylistsResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def get_new_releases(
         self,
         *,
@@ -307,8 +309,10 @@ class BrowseResourceWithRawResponse:
                 browse.get_featured_playlists,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.get_new_releases = to_raw_response_wrapper(
-            browse.get_new_releases,
+        self.get_new_releases = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                browse.get_new_releases,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -325,8 +329,10 @@ class AsyncBrowseResourceWithRawResponse:
                 browse.get_featured_playlists,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.get_new_releases = async_to_raw_response_wrapper(
-            browse.get_new_releases,
+        self.get_new_releases = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                browse.get_new_releases,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -343,8 +349,10 @@ class BrowseResourceWithStreamingResponse:
                 browse.get_featured_playlists,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.get_new_releases = to_streamed_response_wrapper(
-            browse.get_new_releases,
+        self.get_new_releases = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                browse.get_new_releases,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -361,8 +369,10 @@ class AsyncBrowseResourceWithStreamingResponse:
                 browse.get_featured_playlists,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.get_new_releases = async_to_streamed_response_wrapper(
-            browse.get_new_releases,
+        self.get_new_releases = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                browse.get_new_releases,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

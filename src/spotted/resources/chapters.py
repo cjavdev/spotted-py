@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..types import chapter_retrieve_params, chapter_bulk_retrieve_params
@@ -96,6 +98,7 @@ class ChaptersResource(SyncAPIResource):
             cast_to=ChapterRetrieveResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def bulk_retrieve(
         self,
         *,
@@ -229,6 +232,7 @@ class AsyncChaptersResource(AsyncAPIResource):
             cast_to=ChapterRetrieveResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def bulk_retrieve(
         self,
         *,
@@ -295,8 +299,10 @@ class ChaptersResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             chapters.retrieve,
         )
-        self.bulk_retrieve = to_raw_response_wrapper(
-            chapters.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                chapters.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -307,8 +313,10 @@ class AsyncChaptersResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             chapters.retrieve,
         )
-        self.bulk_retrieve = async_to_raw_response_wrapper(
-            chapters.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                chapters.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -319,8 +327,10 @@ class ChaptersResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             chapters.retrieve,
         )
-        self.bulk_retrieve = to_streamed_response_wrapper(
-            chapters.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                chapters.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -331,6 +341,8 @@ class AsyncChaptersResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             chapters.retrieve,
         )
-        self.bulk_retrieve = async_to_streamed_response_wrapper(
-            chapters.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                chapters.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )

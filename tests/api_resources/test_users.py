@@ -11,6 +11,8 @@ from spotted import Spotted, AsyncSpotted
 from tests.utils import assert_matches_type
 from spotted.types import UserRetrieveProfileResponse
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -20,17 +22,20 @@ class TestUsers:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve_profile(self, client: Spotted) -> None:
-        user = client.users.retrieve_profile(
-            "smedjan",
-        )
+        with pytest.warns(DeprecationWarning):
+            user = client.users.retrieve_profile(
+                "smedjan",
+            )
+
         assert_matches_type(UserRetrieveProfileResponse, user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve_profile(self, client: Spotted) -> None:
-        response = client.users.with_raw_response.retrieve_profile(
-            "smedjan",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.users.with_raw_response.retrieve_profile(
+                "smedjan",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -40,24 +45,26 @@ class TestUsers:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve_profile(self, client: Spotted) -> None:
-        with client.users.with_streaming_response.retrieve_profile(
-            "smedjan",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.users.with_streaming_response.retrieve_profile(
+                "smedjan",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            user = response.parse()
-            assert_matches_type(UserRetrieveProfileResponse, user, path=["response"])
+                user = response.parse()
+                assert_matches_type(UserRetrieveProfileResponse, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_path_params_retrieve_profile(self, client: Spotted) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
-            client.users.with_raw_response.retrieve_profile(
-                "",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
+                client.users.with_raw_response.retrieve_profile(
+                    "",
+                )
 
 
 class TestAsyncUsers:
@@ -68,17 +75,20 @@ class TestAsyncUsers:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve_profile(self, async_client: AsyncSpotted) -> None:
-        user = await async_client.users.retrieve_profile(
-            "smedjan",
-        )
+        with pytest.warns(DeprecationWarning):
+            user = await async_client.users.retrieve_profile(
+                "smedjan",
+            )
+
         assert_matches_type(UserRetrieveProfileResponse, user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve_profile(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.users.with_raw_response.retrieve_profile(
-            "smedjan",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.users.with_raw_response.retrieve_profile(
+                "smedjan",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -88,21 +98,23 @@ class TestAsyncUsers:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve_profile(self, async_client: AsyncSpotted) -> None:
-        async with async_client.users.with_streaming_response.retrieve_profile(
-            "smedjan",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.users.with_streaming_response.retrieve_profile(
+                "smedjan",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            user = await response.parse()
-            assert_matches_type(UserRetrieveProfileResponse, user, path=["response"])
+                user = await response.parse()
+                assert_matches_type(UserRetrieveProfileResponse, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_path_params_retrieve_profile(self, async_client: AsyncSpotted) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
-            await async_client.users.with_raw_response.retrieve_profile(
-                "",
-            )
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
+                await async_client.users.with_raw_response.retrieve_profile(
+                    "",
+                )

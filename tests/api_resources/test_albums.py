@@ -16,6 +16,8 @@ from spotted.types import (
 from spotted.pagination import SyncCursorURLPage, AsyncCursorURLPage
 from spotted.types.shared import SimplifiedTrackObject
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -76,26 +78,31 @@ class TestAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_bulk_retrieve(self, client: Spotted) -> None:
-        album = client.albums.bulk_retrieve(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        with pytest.warns(DeprecationWarning):
+            album = client.albums.bulk_retrieve(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+            )
+
         assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_bulk_retrieve_with_all_params(self, client: Spotted) -> None:
-        album = client.albums.bulk_retrieve(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-            market="ES",
-        )
+        with pytest.warns(DeprecationWarning):
+            album = client.albums.bulk_retrieve(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+                market="ES",
+            )
+
         assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_bulk_retrieve(self, client: Spotted) -> None:
-        response = client.albums.with_raw_response.bulk_retrieve(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.albums.with_raw_response.bulk_retrieve(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -105,14 +112,15 @@ class TestAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_bulk_retrieve(self, client: Spotted) -> None:
-        with client.albums.with_streaming_response.bulk_retrieve(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.albums.with_streaming_response.bulk_retrieve(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            album = response.parse()
-            assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
+                album = response.parse()
+                assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -229,26 +237,31 @@ class TestAsyncAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
-        album = await async_client.albums.bulk_retrieve(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        with pytest.warns(DeprecationWarning):
+            album = await async_client.albums.bulk_retrieve(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+            )
+
         assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_bulk_retrieve_with_all_params(self, async_client: AsyncSpotted) -> None:
-        album = await async_client.albums.bulk_retrieve(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-            market="ES",
-        )
+        with pytest.warns(DeprecationWarning):
+            album = await async_client.albums.bulk_retrieve(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+                market="ES",
+            )
+
         assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.albums.with_raw_response.bulk_retrieve(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.albums.with_raw_response.bulk_retrieve(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -258,14 +271,15 @@ class TestAsyncAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
-        async with async_client.albums.with_streaming_response.bulk_retrieve(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.albums.with_streaming_response.bulk_retrieve(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            album = await response.parse()
-            assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
+                album = await response.parse()
+                assert_matches_type(AlbumBulkRetrieveResponse, album, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -20,7 +20,10 @@ class Owner(PlaylistUserObject):
 
 
 class Tracks(BaseModel):
-    """The tracks of the playlist."""
+    """The tracks of the playlist.
+
+    _**Note**: This field is only available for playlists owned by the current user._
+    """
 
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
@@ -111,7 +114,11 @@ class PlaylistCreateResponse(BaseModel):
     """
 
     tracks: Optional[Tracks] = None
-    """The tracks of the playlist."""
+    """The tracks of the playlist.
+
+    _**Note**: This field is only available for playlists owned by the current
+    user._
+    """
 
     type: Optional[str] = None
     """The object type: "playlist" """

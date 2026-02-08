@@ -46,6 +46,7 @@ class CategoriesResource(SyncAPIResource):
         """
         return CategoriesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def retrieve(
         self,
         category_id: str,
@@ -97,6 +98,7 @@ class CategoriesResource(SyncAPIResource):
             cast_to=CategoryRetrieveResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -232,6 +234,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
         """
         return AsyncCategoriesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def retrieve(
         self,
         category_id: str,
@@ -283,6 +286,7 @@ class AsyncCategoriesResource(AsyncAPIResource):
             cast_to=CategoryRetrieveResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         *,
@@ -402,11 +406,15 @@ class CategoriesResourceWithRawResponse:
     def __init__(self, categories: CategoriesResource) -> None:
         self._categories = categories
 
-        self.retrieve = to_raw_response_wrapper(
-            categories.retrieve,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                categories.retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            categories.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                categories.list,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get_playlists = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -419,11 +427,15 @@ class AsyncCategoriesResourceWithRawResponse:
     def __init__(self, categories: AsyncCategoriesResource) -> None:
         self._categories = categories
 
-        self.retrieve = async_to_raw_response_wrapper(
-            categories.retrieve,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                categories.retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            categories.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                categories.list,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get_playlists = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -436,11 +448,15 @@ class CategoriesResourceWithStreamingResponse:
     def __init__(self, categories: CategoriesResource) -> None:
         self._categories = categories
 
-        self.retrieve = to_streamed_response_wrapper(
-            categories.retrieve,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                categories.retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            categories.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                categories.list,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get_playlists = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -453,11 +469,15 @@ class AsyncCategoriesResourceWithStreamingResponse:
     def __init__(self, categories: AsyncCategoriesResource) -> None:
         self._categories = categories
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            categories.retrieve,
+        self.retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                categories.retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            categories.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                categories.list,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.get_playlists = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(

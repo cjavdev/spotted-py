@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..types import track_retrieve_params, track_bulk_retrieve_params
@@ -94,6 +96,7 @@ class TracksResource(SyncAPIResource):
             cast_to=TrackObject,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def bulk_retrieve(
         self,
         *,
@@ -223,6 +226,7 @@ class AsyncTracksResource(AsyncAPIResource):
             cast_to=TrackObject,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def bulk_retrieve(
         self,
         *,
@@ -287,8 +291,10 @@ class TracksResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             tracks.retrieve,
         )
-        self.bulk_retrieve = to_raw_response_wrapper(
-            tracks.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                tracks.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -299,8 +305,10 @@ class AsyncTracksResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             tracks.retrieve,
         )
-        self.bulk_retrieve = async_to_raw_response_wrapper(
-            tracks.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                tracks.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -311,8 +319,10 @@ class TracksResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             tracks.retrieve,
         )
-        self.bulk_retrieve = to_streamed_response_wrapper(
-            tracks.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                tracks.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -323,6 +333,8 @@ class AsyncTracksResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             tracks.retrieve,
         )
-        self.bulk_retrieve = async_to_streamed_response_wrapper(
-            tracks.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                tracks.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )

@@ -85,6 +85,7 @@ class ArtistsResource(SyncAPIResource):
             cast_to=ArtistObject,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def bulk_retrieve(
         self,
         *,
@@ -124,6 +125,7 @@ class ArtistsResource(SyncAPIResource):
             cast_to=ArtistBulkRetrieveResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list_albums(
         self,
         id: str,
@@ -151,7 +153,7 @@ class ArtistsResource(SyncAPIResource):
               `album`<br/>- `single`<br/>- `appears_on`<br/>- `compilation`<br/>For example:
               `include_groups=album,single`.
 
-          limit: The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
+          limit: The maximum number of items to return. Default: 5. Minimum: 1. Maximum: 10.
 
           market: An
               [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
@@ -235,6 +237,7 @@ class ArtistsResource(SyncAPIResource):
             cast_to=ArtistListRelatedArtistsResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def top_tracks(
         self,
         id: str,
@@ -344,6 +347,7 @@ class AsyncArtistsResource(AsyncAPIResource):
             cast_to=ArtistObject,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def bulk_retrieve(
         self,
         *,
@@ -383,6 +387,7 @@ class AsyncArtistsResource(AsyncAPIResource):
             cast_to=ArtistBulkRetrieveResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list_albums(
         self,
         id: str,
@@ -410,7 +415,7 @@ class AsyncArtistsResource(AsyncAPIResource):
               `album`<br/>- `single`<br/>- `appears_on`<br/>- `compilation`<br/>For example:
               `include_groups=album,single`.
 
-          limit: The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
+          limit: The maximum number of items to return. Default: 5. Minimum: 1. Maximum: 10.
 
           market: An
               [ISO 3166-1 alpha-2 country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
@@ -494,6 +499,7 @@ class AsyncArtistsResource(AsyncAPIResource):
             cast_to=ArtistListRelatedArtistsResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def top_tracks(
         self,
         id: str,
@@ -553,19 +559,25 @@ class ArtistsResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             artists.retrieve,
         )
-        self.bulk_retrieve = to_raw_response_wrapper(
-            artists.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                artists.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list_albums = to_raw_response_wrapper(
-            artists.list_albums,
+        self.list_albums = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                artists.list_albums,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list_related_artists = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 artists.list_related_artists,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.top_tracks = to_raw_response_wrapper(
-            artists.top_tracks,
+        self.top_tracks = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                artists.top_tracks,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -576,19 +588,25 @@ class AsyncArtistsResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             artists.retrieve,
         )
-        self.bulk_retrieve = async_to_raw_response_wrapper(
-            artists.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                artists.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list_albums = async_to_raw_response_wrapper(
-            artists.list_albums,
+        self.list_albums = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                artists.list_albums,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list_related_artists = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 artists.list_related_artists,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.top_tracks = async_to_raw_response_wrapper(
-            artists.top_tracks,
+        self.top_tracks = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                artists.top_tracks,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -599,19 +617,25 @@ class ArtistsResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             artists.retrieve,
         )
-        self.bulk_retrieve = to_streamed_response_wrapper(
-            artists.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                artists.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list_albums = to_streamed_response_wrapper(
-            artists.list_albums,
+        self.list_albums = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                artists.list_albums,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list_related_artists = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 artists.list_related_artists,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.top_tracks = to_streamed_response_wrapper(
-            artists.top_tracks,
+        self.top_tracks = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                artists.top_tracks,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -622,17 +646,23 @@ class AsyncArtistsResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             artists.retrieve,
         )
-        self.bulk_retrieve = async_to_streamed_response_wrapper(
-            artists.bulk_retrieve,
+        self.bulk_retrieve = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                artists.bulk_retrieve,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list_albums = async_to_streamed_response_wrapper(
-            artists.list_albums,
+        self.list_albums = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                artists.list_albums,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.list_related_artists = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 artists.list_related_artists,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.top_tracks = async_to_streamed_response_wrapper(
-            artists.top_tracks,
+        self.top_tracks = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                artists.top_tracks,  # pyright: ignore[reportDeprecated],
+            )
         )

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
@@ -43,6 +45,7 @@ class PlaylistsResource(SyncAPIResource):
         """
         return PlaylistsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def create(
         self,
         user_id: str,
@@ -58,9 +61,11 @@ class PlaylistsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlaylistCreateResponse:
-        """Create a playlist for a Spotify user.
+        """
+        **Deprecated**: Use
+        [Create Playlist](/documentation/web-api/reference/create-playlist) instead.
 
-        (The playlist will be empty until you
+        Create a playlist for a Spotify user. (The playlist will be empty until you
         [add tracks](/documentation/web-api/reference/add-tracks-to-playlist).) Each
         user is generally limited to a maximum of 11000 playlists.
 
@@ -113,6 +118,7 @@ class PlaylistsResource(SyncAPIResource):
             cast_to=PlaylistCreateResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         user_id: str,
@@ -187,6 +193,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         """
         return AsyncPlaylistsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def create(
         self,
         user_id: str,
@@ -202,9 +209,11 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PlaylistCreateResponse:
-        """Create a playlist for a Spotify user.
+        """
+        **Deprecated**: Use
+        [Create Playlist](/documentation/web-api/reference/create-playlist) instead.
 
-        (The playlist will be empty until you
+        Create a playlist for a Spotify user. (The playlist will be empty until you
         [add tracks](/documentation/web-api/reference/add-tracks-to-playlist).) Each
         user is generally limited to a maximum of 11000 playlists.
 
@@ -257,6 +266,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
             cast_to=PlaylistCreateResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         user_id: str,
@@ -315,11 +325,15 @@ class PlaylistsResourceWithRawResponse:
     def __init__(self, playlists: PlaylistsResource) -> None:
         self._playlists = playlists
 
-        self.create = to_raw_response_wrapper(
-            playlists.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                playlists.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            playlists.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                playlists.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -327,11 +341,15 @@ class AsyncPlaylistsResourceWithRawResponse:
     def __init__(self, playlists: AsyncPlaylistsResource) -> None:
         self._playlists = playlists
 
-        self.create = async_to_raw_response_wrapper(
-            playlists.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                playlists.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            playlists.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                playlists.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -339,11 +357,15 @@ class PlaylistsResourceWithStreamingResponse:
     def __init__(self, playlists: PlaylistsResource) -> None:
         self._playlists = playlists
 
-        self.create = to_streamed_response_wrapper(
-            playlists.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                playlists.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            playlists.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                playlists.list,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -351,9 +373,13 @@ class AsyncPlaylistsResourceWithStreamingResponse:
     def __init__(self, playlists: AsyncPlaylistsResource) -> None:
         self._playlists = playlists
 
-        self.create = async_to_streamed_response_wrapper(
-            playlists.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                playlists.create,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            playlists.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                playlists.list,  # pyright: ignore[reportDeprecated],
+            )
         )

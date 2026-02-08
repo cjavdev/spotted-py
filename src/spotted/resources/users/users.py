@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
@@ -51,6 +53,7 @@ class UsersResource(SyncAPIResource):
         """
         return UsersResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def retrieve_profile(
         self,
         user_id: str,
@@ -111,6 +114,7 @@ class AsyncUsersResource(AsyncAPIResource):
         """
         return AsyncUsersResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def retrieve_profile(
         self,
         user_id: str,
@@ -151,8 +155,10 @@ class UsersResourceWithRawResponse:
     def __init__(self, users: UsersResource) -> None:
         self._users = users
 
-        self.retrieve_profile = to_raw_response_wrapper(
-            users.retrieve_profile,
+        self.retrieve_profile = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                users.retrieve_profile,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -164,8 +170,10 @@ class AsyncUsersResourceWithRawResponse:
     def __init__(self, users: AsyncUsersResource) -> None:
         self._users = users
 
-        self.retrieve_profile = async_to_raw_response_wrapper(
-            users.retrieve_profile,
+        self.retrieve_profile = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                users.retrieve_profile,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -177,8 +185,10 @@ class UsersResourceWithStreamingResponse:
     def __init__(self, users: UsersResource) -> None:
         self._users = users
 
-        self.retrieve_profile = to_streamed_response_wrapper(
-            users.retrieve_profile,
+        self.retrieve_profile = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                users.retrieve_profile,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -190,8 +200,10 @@ class AsyncUsersResourceWithStreamingResponse:
     def __init__(self, users: AsyncUsersResource) -> None:
         self._users = users
 
-        self.retrieve_profile = async_to_streamed_response_wrapper(
-            users.retrieve_profile,
+        self.retrieve_profile = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                users.retrieve_profile,  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

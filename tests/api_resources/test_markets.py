@@ -11,6 +11,8 @@ from spotted import Spotted, AsyncSpotted
 from tests.utils import assert_matches_type
 from spotted.types import MarketListResponse
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -20,13 +22,16 @@ class TestMarkets:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Spotted) -> None:
-        market = client.markets.list()
+        with pytest.warns(DeprecationWarning):
+            market = client.markets.list()
+
         assert_matches_type(MarketListResponse, market, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Spotted) -> None:
-        response = client.markets.with_raw_response.list()
+        with pytest.warns(DeprecationWarning):
+            response = client.markets.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -36,12 +41,13 @@ class TestMarkets:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Spotted) -> None:
-        with client.markets.with_streaming_response.list() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.markets.with_streaming_response.list() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            market = response.parse()
-            assert_matches_type(MarketListResponse, market, path=["response"])
+                market = response.parse()
+                assert_matches_type(MarketListResponse, market, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -54,13 +60,16 @@ class TestAsyncMarkets:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncSpotted) -> None:
-        market = await async_client.markets.list()
+        with pytest.warns(DeprecationWarning):
+            market = await async_client.markets.list()
+
         assert_matches_type(MarketListResponse, market, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.markets.with_raw_response.list()
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.markets.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -70,11 +79,12 @@ class TestAsyncMarkets:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncSpotted) -> None:
-        async with async_client.markets.with_streaming_response.list() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.markets.with_streaming_response.list() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            market = await response.parse()
-            assert_matches_type(MarketListResponse, market, path=["response"])
+                market = await response.parse()
+                assert_matches_type(MarketListResponse, market, path=["response"])
 
         assert cast(Any, response.is_closed) is True
