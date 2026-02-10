@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
@@ -132,6 +134,7 @@ class AudiobooksResource(SyncAPIResource):
             cast_to=AudiobookCheckResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def remove(
         self,
         *,
@@ -172,6 +175,7 @@ class AudiobooksResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def save(
         self,
         *,
@@ -322,6 +326,7 @@ class AsyncAudiobooksResource(AsyncAPIResource):
             cast_to=AudiobookCheckResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def remove(
         self,
         *,
@@ -362,6 +367,7 @@ class AsyncAudiobooksResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def save(
         self,
         *,
@@ -413,11 +419,15 @@ class AudiobooksResourceWithRawResponse:
         self.check = to_raw_response_wrapper(
             audiobooks.check,
         )
-        self.remove = to_raw_response_wrapper(
-            audiobooks.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                audiobooks.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = to_raw_response_wrapper(
-            audiobooks.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                audiobooks.save,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -431,11 +441,15 @@ class AsyncAudiobooksResourceWithRawResponse:
         self.check = async_to_raw_response_wrapper(
             audiobooks.check,
         )
-        self.remove = async_to_raw_response_wrapper(
-            audiobooks.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                audiobooks.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = async_to_raw_response_wrapper(
-            audiobooks.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                audiobooks.save,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -449,11 +463,15 @@ class AudiobooksResourceWithStreamingResponse:
         self.check = to_streamed_response_wrapper(
             audiobooks.check,
         )
-        self.remove = to_streamed_response_wrapper(
-            audiobooks.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                audiobooks.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = to_streamed_response_wrapper(
-            audiobooks.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                audiobooks.save,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -467,9 +485,13 @@ class AsyncAudiobooksResourceWithStreamingResponse:
         self.check = async_to_streamed_response_wrapper(
             audiobooks.check,
         )
-        self.remove = async_to_streamed_response_wrapper(
-            audiobooks.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                audiobooks.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = async_to_streamed_response_wrapper(
-            audiobooks.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                audiobooks.save,  # pyright: ignore[reportDeprecated],
+            )
         )

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
@@ -144,6 +146,7 @@ class AlbumsResource(SyncAPIResource):
             cast_to=AlbumCheckResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def remove(
         self,
         *,
@@ -196,6 +199,7 @@ class AlbumsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def save(
         self,
         *,
@@ -370,6 +374,7 @@ class AsyncAlbumsResource(AsyncAPIResource):
             cast_to=AlbumCheckResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def remove(
         self,
         *,
@@ -422,6 +427,7 @@ class AsyncAlbumsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def save(
         self,
         *,
@@ -485,11 +491,15 @@ class AlbumsResourceWithRawResponse:
         self.check = to_raw_response_wrapper(
             albums.check,
         )
-        self.remove = to_raw_response_wrapper(
-            albums.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                albums.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = to_raw_response_wrapper(
-            albums.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                albums.save,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -503,11 +513,15 @@ class AsyncAlbumsResourceWithRawResponse:
         self.check = async_to_raw_response_wrapper(
             albums.check,
         )
-        self.remove = async_to_raw_response_wrapper(
-            albums.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                albums.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = async_to_raw_response_wrapper(
-            albums.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                albums.save,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -521,11 +535,15 @@ class AlbumsResourceWithStreamingResponse:
         self.check = to_streamed_response_wrapper(
             albums.check,
         )
-        self.remove = to_streamed_response_wrapper(
-            albums.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                albums.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = to_streamed_response_wrapper(
-            albums.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                albums.save,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -539,9 +557,13 @@ class AsyncAlbumsResourceWithStreamingResponse:
         self.check = async_to_streamed_response_wrapper(
             albums.check,
         )
-        self.remove = async_to_streamed_response_wrapper(
-            albums.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                albums.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = async_to_streamed_response_wrapper(
-            albums.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                albums.save,  # pyright: ignore[reportDeprecated],
+            )
         )

@@ -16,6 +16,8 @@ from spotted.types.me import (
 )
 from spotted.pagination import SyncCursorURLPage, AsyncCursorURLPage
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -97,22 +99,27 @@ class TestTracks:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_remove(self, client: Spotted) -> None:
-        track = client.me.tracks.remove()
+        with pytest.warns(DeprecationWarning):
+            track = client.me.tracks.remove()
+
         assert track is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_remove_with_all_params(self, client: Spotted) -> None:
-        track = client.me.tracks.remove(
-            ids=["string"],
-            published=True,
-        )
+        with pytest.warns(DeprecationWarning):
+            track = client.me.tracks.remove(
+                ids=["string"],
+                published=True,
+            )
+
         assert track is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_remove(self, client: Spotted) -> None:
-        response = client.me.tracks.with_raw_response.remove()
+        with pytest.warns(DeprecationWarning):
+            response = client.me.tracks.with_raw_response.remove()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,44 +129,50 @@ class TestTracks:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_remove(self, client: Spotted) -> None:
-        with client.me.tracks.with_streaming_response.remove() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.me.tracks.with_streaming_response.remove() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            track = response.parse()
-            assert track is None
+                track = response.parse()
+                assert track is None
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_save(self, client: Spotted) -> None:
-        track = client.me.tracks.save(
-            ids=["string"],
-        )
+        with pytest.warns(DeprecationWarning):
+            track = client.me.tracks.save(
+                ids=["string"],
+            )
+
         assert track is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_save_with_all_params(self, client: Spotted) -> None:
-        track = client.me.tracks.save(
-            ids=["string"],
-            published=True,
-            timestamped_ids=[
-                {
-                    "id": "id",
-                    "added_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                }
-            ],
-        )
+        with pytest.warns(DeprecationWarning):
+            track = client.me.tracks.save(
+                ids=["string"],
+                published=True,
+                timestamped_ids=[
+                    {
+                        "id": "id",
+                        "added_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    }
+                ],
+            )
+
         assert track is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_save(self, client: Spotted) -> None:
-        response = client.me.tracks.with_raw_response.save(
-            ids=["string"],
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.me.tracks.with_raw_response.save(
+                ids=["string"],
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -169,14 +182,15 @@ class TestTracks:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_save(self, client: Spotted) -> None:
-        with client.me.tracks.with_streaming_response.save(
-            ids=["string"],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.me.tracks.with_streaming_response.save(
+                ids=["string"],
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            track = response.parse()
-            assert track is None
+                track = response.parse()
+                assert track is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -261,22 +275,27 @@ class TestAsyncTracks:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_remove(self, async_client: AsyncSpotted) -> None:
-        track = await async_client.me.tracks.remove()
+        with pytest.warns(DeprecationWarning):
+            track = await async_client.me.tracks.remove()
+
         assert track is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_remove_with_all_params(self, async_client: AsyncSpotted) -> None:
-        track = await async_client.me.tracks.remove(
-            ids=["string"],
-            published=True,
-        )
+        with pytest.warns(DeprecationWarning):
+            track = await async_client.me.tracks.remove(
+                ids=["string"],
+                published=True,
+            )
+
         assert track is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_remove(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.tracks.with_raw_response.remove()
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.me.tracks.with_raw_response.remove()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -286,44 +305,50 @@ class TestAsyncTracks:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_remove(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.tracks.with_streaming_response.remove() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.me.tracks.with_streaming_response.remove() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            track = await response.parse()
-            assert track is None
+                track = await response.parse()
+                assert track is None
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_save(self, async_client: AsyncSpotted) -> None:
-        track = await async_client.me.tracks.save(
-            ids=["string"],
-        )
+        with pytest.warns(DeprecationWarning):
+            track = await async_client.me.tracks.save(
+                ids=["string"],
+            )
+
         assert track is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_save_with_all_params(self, async_client: AsyncSpotted) -> None:
-        track = await async_client.me.tracks.save(
-            ids=["string"],
-            published=True,
-            timestamped_ids=[
-                {
-                    "id": "id",
-                    "added_at": parse_datetime("2019-12-27T18:11:19.117Z"),
-                }
-            ],
-        )
+        with pytest.warns(DeprecationWarning):
+            track = await async_client.me.tracks.save(
+                ids=["string"],
+                published=True,
+                timestamped_ids=[
+                    {
+                        "id": "id",
+                        "added_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    }
+                ],
+            )
+
         assert track is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_save(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.tracks.with_raw_response.save(
-            ids=["string"],
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.me.tracks.with_raw_response.save(
+                ids=["string"],
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -333,13 +358,14 @@ class TestAsyncTracks:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_save(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.tracks.with_streaming_response.save(
-            ids=["string"],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.me.tracks.with_streaming_response.save(
+                ids=["string"],
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            track = await response.parse()
-            assert track is None
+                track = await response.parse()
+                assert track is None
 
         assert cast(Any, response.is_closed) is True
