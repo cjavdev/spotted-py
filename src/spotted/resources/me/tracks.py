@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Iterable
 
 import httpx
@@ -146,6 +147,7 @@ class TracksResource(SyncAPIResource):
             cast_to=TrackCheckResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def remove(
         self,
         *,
@@ -198,6 +200,7 @@ class TracksResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def save(
         self,
         *,
@@ -383,6 +386,7 @@ class AsyncTracksResource(AsyncAPIResource):
             cast_to=TrackCheckResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def remove(
         self,
         *,
@@ -435,6 +439,7 @@ class AsyncTracksResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def save(
         self,
         *,
@@ -509,11 +514,15 @@ class TracksResourceWithRawResponse:
         self.check = to_raw_response_wrapper(
             tracks.check,
         )
-        self.remove = to_raw_response_wrapper(
-            tracks.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                tracks.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = to_raw_response_wrapper(
-            tracks.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                tracks.save,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -527,11 +536,15 @@ class AsyncTracksResourceWithRawResponse:
         self.check = async_to_raw_response_wrapper(
             tracks.check,
         )
-        self.remove = async_to_raw_response_wrapper(
-            tracks.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                tracks.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = async_to_raw_response_wrapper(
-            tracks.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                tracks.save,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -545,11 +558,15 @@ class TracksResourceWithStreamingResponse:
         self.check = to_streamed_response_wrapper(
             tracks.check,
         )
-        self.remove = to_streamed_response_wrapper(
-            tracks.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                tracks.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = to_streamed_response_wrapper(
-            tracks.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                tracks.save,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -563,9 +580,13 @@ class AsyncTracksResourceWithStreamingResponse:
         self.check = async_to_streamed_response_wrapper(
             tracks.check,
         )
-        self.remove = async_to_streamed_response_wrapper(
-            tracks.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                tracks.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = async_to_streamed_response_wrapper(
-            tracks.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                tracks.save,  # pyright: ignore[reportDeprecated],
+            )
         )
