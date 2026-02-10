@@ -125,7 +125,6 @@ class ArtistsResource(SyncAPIResource):
             cast_to=ArtistBulkRetrieveResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def list_albums(
         self,
         id: str,
@@ -387,7 +386,6 @@ class AsyncArtistsResource(AsyncAPIResource):
             cast_to=ArtistBulkRetrieveResponse,
         )
 
-    @typing_extensions.deprecated("deprecated")
     def list_albums(
         self,
         id: str,
@@ -564,10 +562,8 @@ class ArtistsResourceWithRawResponse:
                 artists.bulk_retrieve,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list_albums = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                artists.list_albums,  # pyright: ignore[reportDeprecated],
-            )
+        self.list_albums = to_raw_response_wrapper(
+            artists.list_albums,
         )
         self.list_related_artists = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -593,10 +589,8 @@ class AsyncArtistsResourceWithRawResponse:
                 artists.bulk_retrieve,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list_albums = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                artists.list_albums,  # pyright: ignore[reportDeprecated],
-            )
+        self.list_albums = async_to_raw_response_wrapper(
+            artists.list_albums,
         )
         self.list_related_artists = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -622,10 +616,8 @@ class ArtistsResourceWithStreamingResponse:
                 artists.bulk_retrieve,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list_albums = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                artists.list_albums,  # pyright: ignore[reportDeprecated],
-            )
+        self.list_albums = to_streamed_response_wrapper(
+            artists.list_albums,
         )
         self.list_related_artists = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -651,10 +643,8 @@ class AsyncArtistsResourceWithStreamingResponse:
                 artists.bulk_retrieve,  # pyright: ignore[reportDeprecated],
             )
         )
-        self.list_albums = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                artists.list_albums,  # pyright: ignore[reportDeprecated],
-            )
+        self.list_albums = async_to_streamed_response_wrapper(
+            artists.list_albums,
         )
         self.list_related_artists = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(

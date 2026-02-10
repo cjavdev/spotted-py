@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
@@ -149,6 +151,7 @@ class EpisodesResource(SyncAPIResource):
             cast_to=EpisodeCheckResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def remove(
         self,
         *,
@@ -204,6 +207,7 @@ class EpisodesResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def save(
         self,
         *,
@@ -386,6 +390,7 @@ class AsyncEpisodesResource(AsyncAPIResource):
             cast_to=EpisodeCheckResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def remove(
         self,
         *,
@@ -441,6 +446,7 @@ class AsyncEpisodesResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def save(
         self,
         *,
@@ -507,11 +513,15 @@ class EpisodesResourceWithRawResponse:
         self.check = to_raw_response_wrapper(
             episodes.check,
         )
-        self.remove = to_raw_response_wrapper(
-            episodes.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                episodes.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = to_raw_response_wrapper(
-            episodes.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                episodes.save,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -525,11 +535,15 @@ class AsyncEpisodesResourceWithRawResponse:
         self.check = async_to_raw_response_wrapper(
             episodes.check,
         )
-        self.remove = async_to_raw_response_wrapper(
-            episodes.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                episodes.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = async_to_raw_response_wrapper(
-            episodes.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                episodes.save,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -543,11 +557,15 @@ class EpisodesResourceWithStreamingResponse:
         self.check = to_streamed_response_wrapper(
             episodes.check,
         )
-        self.remove = to_streamed_response_wrapper(
-            episodes.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                episodes.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = to_streamed_response_wrapper(
-            episodes.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                episodes.save,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -561,9 +579,13 @@ class AsyncEpisodesResourceWithStreamingResponse:
         self.check = async_to_streamed_response_wrapper(
             episodes.check,
         )
-        self.remove = async_to_streamed_response_wrapper(
-            episodes.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                episodes.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.save = async_to_streamed_response_wrapper(
-            episodes.save,
+        self.save = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                episodes.save,  # pyright: ignore[reportDeprecated],
+            )
         )
