@@ -64,17 +64,20 @@ class TestEpisodes:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_check(self, client: Spotted) -> None:
-        episode = client.me.episodes.check(
-            ids="77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf",
-        )
+        with pytest.warns(DeprecationWarning):
+            episode = client.me.episodes.check(
+                ids="77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf",
+            )
+
         assert_matches_type(EpisodeCheckResponse, episode, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_check(self, client: Spotted) -> None:
-        response = client.me.episodes.with_raw_response.check(
-            ids="77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.me.episodes.with_raw_response.check(
+                ids="77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -84,14 +87,15 @@ class TestEpisodes:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_check(self, client: Spotted) -> None:
-        with client.me.episodes.with_streaming_response.check(
-            ids="77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.me.episodes.with_streaming_response.check(
+                ids="77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            episode = response.parse()
-            assert_matches_type(EpisodeCheckResponse, episode, path=["response"])
+                episode = response.parse()
+                assert_matches_type(EpisodeCheckResponse, episode, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -234,17 +238,20 @@ class TestAsyncEpisodes:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_check(self, async_client: AsyncSpotted) -> None:
-        episode = await async_client.me.episodes.check(
-            ids="77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf",
-        )
+        with pytest.warns(DeprecationWarning):
+            episode = await async_client.me.episodes.check(
+                ids="77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf",
+            )
+
         assert_matches_type(EpisodeCheckResponse, episode, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_check(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.episodes.with_raw_response.check(
-            ids="77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.me.episodes.with_raw_response.check(
+                ids="77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -254,14 +261,15 @@ class TestAsyncEpisodes:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_check(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.episodes.with_streaming_response.check(
-            ids="77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.me.episodes.with_streaming_response.check(
+                ids="77o6BIVlYM3msb4MMIL1jH,0Q86acNRm6V9GYx55SXKwf",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            episode = await response.parse()
-            assert_matches_type(EpisodeCheckResponse, episode, path=["response"])
+                episode = await response.parse()
+                assert_matches_type(EpisodeCheckResponse, episode, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

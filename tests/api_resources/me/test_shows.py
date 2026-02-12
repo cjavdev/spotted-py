@@ -63,17 +63,20 @@ class TestShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_check(self, client: Spotted) -> None:
-        show = client.me.shows.check(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        with pytest.warns(DeprecationWarning):
+            show = client.me.shows.check(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+            )
+
         assert_matches_type(ShowCheckResponse, show, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_check(self, client: Spotted) -> None:
-        response = client.me.shows.with_raw_response.check(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.me.shows.with_raw_response.check(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -83,14 +86,15 @@ class TestShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_check(self, client: Spotted) -> None:
-        with client.me.shows.with_streaming_response.check(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.me.shows.with_streaming_response.check(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            show = response.parse()
-            assert_matches_type(ShowCheckResponse, show, path=["response"])
+                show = response.parse()
+                assert_matches_type(ShowCheckResponse, show, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -226,17 +230,20 @@ class TestAsyncShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_check(self, async_client: AsyncSpotted) -> None:
-        show = await async_client.me.shows.check(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        with pytest.warns(DeprecationWarning):
+            show = await async_client.me.shows.check(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+            )
+
         assert_matches_type(ShowCheckResponse, show, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_check(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.shows.with_raw_response.check(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.me.shows.with_raw_response.check(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -246,14 +253,15 @@ class TestAsyncShows:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_check(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.shows.with_streaming_response.check(
-            ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.me.shows.with_streaming_response.check(
+                ids="5CfCWKI5pZ28U0uOzXkDHe,5as3aKmN2k11yfDDDSrvaZ",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            show = await response.parse()
-            assert_matches_type(ShowCheckResponse, show, path=["response"])
+                show = await response.parse()
+                assert_matches_type(ShowCheckResponse, show, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

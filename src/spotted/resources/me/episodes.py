@@ -59,10 +59,7 @@ class EpisodesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncCursorURLPage[EpisodeListResponse]:
         """
-        Get a list of the episodes saved in the current Spotify user's library.<br/>
-        This API endpoint is in **beta** and could change without warning. Please share
-        any feedback that you have, or issues that you discover, in our
-        [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Get a list of the episodes saved in the current Spotify user's library.
 
         Args:
           limit: The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
@@ -108,6 +105,7 @@ class EpisodesResource(SyncAPIResource):
             model=EpisodeListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def check(
         self,
         *,
@@ -121,10 +119,11 @@ class EpisodesResource(SyncAPIResource):
     ) -> EpisodeCheckResponse:
         """
         Check if one or more episodes is already saved in the current Spotify user's
-        'Your Episodes' library.<br/> This API endpoint is in **beta** and could change
-        without warning. Please share any feedback that you have, or issues that you
-        discover, in our
-        [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer)..
+        'Your Episodes' library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Check User's Saved Items](/documentation/web-api/reference/check-library-contains)
+        instead.
 
         Args:
           ids: A comma-separated list of the
@@ -165,10 +164,11 @@ class EpisodesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Remove one or more episodes from the current user's library.<br/> This API
-        endpoint is in **beta** and could change without warning. Please share any
-        feedback that you have, or issues that you discover, in our
-        [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Remove one or more episodes from the current user's library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Remove Items from Library](/documentation/web-api/reference/remove-library-items)
+        instead.
 
         Args:
           ids: A JSON array of the
@@ -221,10 +221,11 @@ class EpisodesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Save one or more episodes to the current user's library.<br/> This API endpoint
-        is in **beta** and could change without warning. Please share any feedback that
-        you have, or issues that you discover, in our
-        [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Save one or more episodes to the current user's library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Save Items to Library](/documentation/web-api/reference/save-library-items)
+        instead.
 
         Args:
           ids: A JSON array of the
@@ -298,10 +299,7 @@ class AsyncEpisodesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EpisodeListResponse, AsyncCursorURLPage[EpisodeListResponse]]:
         """
-        Get a list of the episodes saved in the current Spotify user's library.<br/>
-        This API endpoint is in **beta** and could change without warning. Please share
-        any feedback that you have, or issues that you discover, in our
-        [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Get a list of the episodes saved in the current Spotify user's library.
 
         Args:
           limit: The maximum number of items to return. Default: 20. Minimum: 1. Maximum: 50.
@@ -347,6 +345,7 @@ class AsyncEpisodesResource(AsyncAPIResource):
             model=EpisodeListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def check(
         self,
         *,
@@ -360,10 +359,11 @@ class AsyncEpisodesResource(AsyncAPIResource):
     ) -> EpisodeCheckResponse:
         """
         Check if one or more episodes is already saved in the current Spotify user's
-        'Your Episodes' library.<br/> This API endpoint is in **beta** and could change
-        without warning. Please share any feedback that you have, or issues that you
-        discover, in our
-        [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer)..
+        'Your Episodes' library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Check User's Saved Items](/documentation/web-api/reference/check-library-contains)
+        instead.
 
         Args:
           ids: A comma-separated list of the
@@ -404,10 +404,11 @@ class AsyncEpisodesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Remove one or more episodes from the current user's library.<br/> This API
-        endpoint is in **beta** and could change without warning. Please share any
-        feedback that you have, or issues that you discover, in our
-        [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Remove one or more episodes from the current user's library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Remove Items from Library](/documentation/web-api/reference/remove-library-items)
+        instead.
 
         Args:
           ids: A JSON array of the
@@ -460,10 +461,11 @@ class AsyncEpisodesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Save one or more episodes to the current user's library.<br/> This API endpoint
-        is in **beta** and could change without warning. Please share any feedback that
-        you have, or issues that you discover, in our
-        [developer community forum](https://community.spotify.com/t5/Spotify-for-Developers/bd-p/Spotify_Developer).
+        Save one or more episodes to the current user's library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Save Items to Library](/documentation/web-api/reference/save-library-items)
+        instead.
 
         Args:
           ids: A JSON array of the
@@ -510,8 +512,10 @@ class EpisodesResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             episodes.list,
         )
-        self.check = to_raw_response_wrapper(
-            episodes.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                episodes.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -532,8 +536,10 @@ class AsyncEpisodesResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             episodes.list,
         )
-        self.check = async_to_raw_response_wrapper(
-            episodes.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                episodes.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -554,8 +560,10 @@ class EpisodesResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             episodes.list,
         )
-        self.check = to_streamed_response_wrapper(
-            episodes.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                episodes.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -576,8 +584,10 @@ class AsyncEpisodesResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             episodes.list,
         )
-        self.check = async_to_streamed_response_wrapper(
-            episodes.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                episodes.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(

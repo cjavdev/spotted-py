@@ -95,6 +95,7 @@ class ShowsResource(SyncAPIResource):
             model=ShowListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def check(
         self,
         *,
@@ -109,6 +110,10 @@ class ShowsResource(SyncAPIResource):
         """
         Check if one or more shows is already saved in the current Spotify user's
         library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Check User's Saved Items](/documentation/web-api/reference/check-library-contains)
+        instead.
 
         Args:
           ids: A comma-separated list of the
@@ -150,6 +155,10 @@ class ShowsResource(SyncAPIResource):
     ) -> None:
         """
         Delete one or more shows from current Spotify user's library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Remove Items from Library](/documentation/web-api/reference/remove-library-items)
+        instead.
 
         Args:
           ids: A JSON array of the
@@ -203,6 +212,10 @@ class ShowsResource(SyncAPIResource):
     ) -> None:
         """
         Save one or more shows to current Spotify user's library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Save Items to Library](/documentation/web-api/reference/save-library-items)
+        instead.
 
         Args:
           ids: A JSON array of the
@@ -312,6 +325,7 @@ class AsyncShowsResource(AsyncAPIResource):
             model=ShowListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def check(
         self,
         *,
@@ -326,6 +340,10 @@ class AsyncShowsResource(AsyncAPIResource):
         """
         Check if one or more shows is already saved in the current Spotify user's
         library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Check User's Saved Items](/documentation/web-api/reference/check-library-contains)
+        instead.
 
         Args:
           ids: A comma-separated list of the
@@ -367,6 +385,10 @@ class AsyncShowsResource(AsyncAPIResource):
     ) -> None:
         """
         Delete one or more shows from current Spotify user's library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Remove Items from Library](/documentation/web-api/reference/remove-library-items)
+        instead.
 
         Args:
           ids: A JSON array of the
@@ -421,6 +443,10 @@ class AsyncShowsResource(AsyncAPIResource):
         """
         Save one or more shows to current Spotify user's library.
 
+        **Note:** This endpoint is deprecated. Use
+        [Save Items to Library](/documentation/web-api/reference/save-library-items)
+        instead.
+
         Args:
           ids: A JSON array of the
               [Spotify IDs](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids).
@@ -466,8 +492,10 @@ class ShowsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             shows.list,
         )
-        self.check = to_raw_response_wrapper(
-            shows.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                shows.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -488,8 +516,10 @@ class AsyncShowsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             shows.list,
         )
-        self.check = async_to_raw_response_wrapper(
-            shows.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                shows.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -510,8 +540,10 @@ class ShowsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             shows.list,
         )
-        self.check = to_streamed_response_wrapper(
-            shows.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                shows.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -532,8 +564,10 @@ class AsyncShowsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             shows.list,
         )
-        self.check = async_to_streamed_response_wrapper(
-            shows.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                shows.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Iterable
 
 import httpx
@@ -47,6 +48,7 @@ class TracksResource(SyncAPIResource):
         """
         return TracksResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def update(
         self,
         playlist_id: str,
@@ -65,6 +67,10 @@ class TracksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrackUpdateResponse:
         """
+        **Deprecated:** Use
+        [Update Playlist Items](/documentation/web-api/reference/reorder-or-replace-playlists-items)
+        instead.
+
         Either reorder or replace items in a playlist depending on the request's
         parameters. To reorder items, include `range_start`, `insert_before`,
         `range_length` and `snapshot_id` in the request's body. To replace items,
@@ -131,6 +137,7 @@ class TracksResource(SyncAPIResource):
             cast_to=TrackUpdateResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         playlist_id: str,
@@ -148,10 +155,11 @@ class TracksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncCursorURLPage[PlaylistTrackObject]:
         """
-        Get full details of the items of a playlist owned by a Spotify user.
+        **Deprecated:** Use
+        [Get Playlist Items](/documentation/web-api/reference/get-playlists-items)
+        instead.
 
-        **Note**: This endpoint is only accessible for playlists owned by the current
-        user.
+        Get full details of the items of a playlist owned by a Spotify user.
 
         Args:
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
@@ -222,6 +230,7 @@ class TracksResource(SyncAPIResource):
             model=PlaylistTrackObject,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def add(
         self,
         playlist_id: str,
@@ -237,6 +246,10 @@ class TracksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrackAddResponse:
         """
+        **Deprecated:** Use
+        [Add Items to Playlist](/documentation/web-api/reference/add-items-to-playlist)
+        instead.
+
         Add one or more items to a user's playlist.
 
         Args:
@@ -289,6 +302,7 @@ class TracksResource(SyncAPIResource):
             cast_to=TrackAddResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def remove(
         self,
         playlist_id: str,
@@ -304,6 +318,10 @@ class TracksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrackRemoveResponse:
         """
+        **Deprecated:** Use
+        [Remove Playlist Items](/documentation/web-api/reference/remove-items-playlist)
+        instead.
+
         Remove one or more items from a user's playlist.
 
         Args:
@@ -373,6 +391,7 @@ class AsyncTracksResource(AsyncAPIResource):
         """
         return AsyncTracksResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def update(
         self,
         playlist_id: str,
@@ -391,6 +410,10 @@ class AsyncTracksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrackUpdateResponse:
         """
+        **Deprecated:** Use
+        [Update Playlist Items](/documentation/web-api/reference/reorder-or-replace-playlists-items)
+        instead.
+
         Either reorder or replace items in a playlist depending on the request's
         parameters. To reorder items, include `range_start`, `insert_before`,
         `range_length` and `snapshot_id` in the request's body. To replace items,
@@ -457,6 +480,7 @@ class AsyncTracksResource(AsyncAPIResource):
             cast_to=TrackUpdateResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def list(
         self,
         playlist_id: str,
@@ -474,10 +498,11 @@ class AsyncTracksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PlaylistTrackObject, AsyncCursorURLPage[PlaylistTrackObject]]:
         """
-        Get full details of the items of a playlist owned by a Spotify user.
+        **Deprecated:** Use
+        [Get Playlist Items](/documentation/web-api/reference/get-playlists-items)
+        instead.
 
-        **Note**: This endpoint is only accessible for playlists owned by the current
-        user.
+        Get full details of the items of a playlist owned by a Spotify user.
 
         Args:
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
@@ -548,6 +573,7 @@ class AsyncTracksResource(AsyncAPIResource):
             model=PlaylistTrackObject,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def add(
         self,
         playlist_id: str,
@@ -563,6 +589,10 @@ class AsyncTracksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrackAddResponse:
         """
+        **Deprecated:** Use
+        [Add Items to Playlist](/documentation/web-api/reference/add-items-to-playlist)
+        instead.
+
         Add one or more items to a user's playlist.
 
         Args:
@@ -615,6 +645,7 @@ class AsyncTracksResource(AsyncAPIResource):
             cast_to=TrackAddResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def remove(
         self,
         playlist_id: str,
@@ -630,6 +661,10 @@ class AsyncTracksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TrackRemoveResponse:
         """
+        **Deprecated:** Use
+        [Remove Playlist Items](/documentation/web-api/reference/remove-items-playlist)
+        instead.
+
         Remove one or more items from a user's playlist.
 
         Args:
@@ -683,17 +718,25 @@ class TracksResourceWithRawResponse:
     def __init__(self, tracks: TracksResource) -> None:
         self._tracks = tracks
 
-        self.update = to_raw_response_wrapper(
-            tracks.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                tracks.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            tracks.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                tracks.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.add = to_raw_response_wrapper(
-            tracks.add,
+        self.add = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                tracks.add,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.remove = to_raw_response_wrapper(
-            tracks.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                tracks.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -701,17 +744,25 @@ class AsyncTracksResourceWithRawResponse:
     def __init__(self, tracks: AsyncTracksResource) -> None:
         self._tracks = tracks
 
-        self.update = async_to_raw_response_wrapper(
-            tracks.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                tracks.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            tracks.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                tracks.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.add = async_to_raw_response_wrapper(
-            tracks.add,
+        self.add = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                tracks.add,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.remove = async_to_raw_response_wrapper(
-            tracks.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                tracks.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -719,17 +770,25 @@ class TracksResourceWithStreamingResponse:
     def __init__(self, tracks: TracksResource) -> None:
         self._tracks = tracks
 
-        self.update = to_streamed_response_wrapper(
-            tracks.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                tracks.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            tracks.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                tracks.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.add = to_streamed_response_wrapper(
-            tracks.add,
+        self.add = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                tracks.add,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.remove = to_streamed_response_wrapper(
-            tracks.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                tracks.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -737,15 +796,23 @@ class AsyncTracksResourceWithStreamingResponse:
     def __init__(self, tracks: AsyncTracksResource) -> None:
         self._tracks = tracks
 
-        self.update = async_to_streamed_response_wrapper(
-            tracks.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                tracks.update,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            tracks.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                tracks.list,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.add = async_to_streamed_response_wrapper(
-            tracks.add,
+        self.add = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                tracks.add,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.remove = async_to_streamed_response_wrapper(
-            tracks.remove,
+        self.remove = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                tracks.remove,  # pyright: ignore[reportDeprecated],
+            )
         )
