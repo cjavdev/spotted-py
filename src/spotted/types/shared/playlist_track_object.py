@@ -10,7 +10,9 @@ from .track_object import TrackObject
 from .episode_object import EpisodeObject
 from .playlist_user_object import PlaylistUserObject
 
-__all__ = ["PlaylistTrackObject", "Track"]
+__all__ = ["PlaylistTrackObject", "Item", "Track"]
+
+Item: TypeAlias = Annotated[Union[TrackObject, EpisodeObject], PropertyInfo(discriminator="type")]
 
 Track: TypeAlias = Annotated[Union[TrackObject, EpisodeObject], PropertyInfo(discriminator="type")]
 
@@ -34,6 +36,9 @@ class PlaylistTrackObject(BaseModel):
     [local file](/documentation/web-api/concepts/playlists/#local-files) or not.
     """
 
+    item: Optional[Item] = None
+    """Information about the track or episode."""
+
     published: Optional[bool] = None
     """
     The playlist's public/private status (if it should be added to the user's
@@ -44,4 +49,4 @@ class PlaylistTrackObject(BaseModel):
     """
 
     track: Optional[Track] = None
-    """Information about the track or episode."""
+    """**Deprecated:** Use `item` instead. Information about the track or episode."""

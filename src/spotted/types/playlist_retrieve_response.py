@@ -9,7 +9,45 @@ from .shared.external_url_object import ExternalURLObject
 from .shared.playlist_user_object import PlaylistUserObject
 from .shared.playlist_track_object import PlaylistTrackObject
 
-__all__ = ["PlaylistRetrieveResponse", "Owner", "Tracks"]
+__all__ = ["PlaylistRetrieveResponse", "Items", "Owner", "Tracks"]
+
+
+class Items(BaseModel):
+    """The items of the playlist.
+
+    _**Note**: This field is only available for playlists owned by the current user or playlists the user is a collaborator of._
+    """
+
+    href: str
+    """A link to the Web API endpoint returning the full result of the request"""
+
+    limit: int
+    """
+    The maximum number of items in the response (as set in the query or by default).
+    """
+
+    next: Optional[str] = None
+    """URL to the next page of items. ( `null` if none)"""
+
+    offset: int
+    """The offset of the items returned (as set in the query or by default)"""
+
+    previous: Optional[str] = None
+    """URL to the previous page of items. ( `null` if none)"""
+
+    total: int
+    """The total number of items available to return."""
+
+    items: Optional[List[PlaylistTrackObject]] = None
+
+    published: Optional[bool] = None
+    """
+    The playlist's public/private status (if it should be added to the user's
+    profile or not): `true` the playlist will be public, `false` the playlist will
+    be private, `null` the playlist status is not relevant. For more about
+    public/private status, see
+    [Working with Playlists](/documentation/web-api/concepts/playlists)
+    """
 
 
 class Owner(PlaylistUserObject):
@@ -20,10 +58,7 @@ class Owner(PlaylistUserObject):
 
 
 class Tracks(BaseModel):
-    """The tracks of the playlist.
-
-    _**Note**: This field is only available for playlists owned by the current user._
-    """
+    """**Deprecated:** Use `items` instead. The tracks of the playlist."""
 
     href: str
     """A link to the Web API endpoint returning the full result of the request"""
@@ -92,6 +127,13 @@ class PlaylistRetrieveResponse(BaseModel):
     in less than a day._
     """
 
+    items: Optional[Items] = None
+    """The items of the playlist.
+
+    _**Note**: This field is only available for playlists owned by the current user
+    or playlists the user is a collaborator of._
+    """
+
     name: Optional[str] = None
     """The name of the playlist."""
 
@@ -114,11 +156,7 @@ class PlaylistRetrieveResponse(BaseModel):
     """
 
     tracks: Optional[Tracks] = None
-    """The tracks of the playlist.
-
-    _**Note**: This field is only available for playlists owned by the current
-    user._
-    """
+    """**Deprecated:** Use `items` instead. The tracks of the playlist."""
 
     type: Optional[str] = None
     """The object type: "playlist" """

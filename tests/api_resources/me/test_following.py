@@ -14,6 +14,8 @@ from spotted.types.me import (
     FollowingBulkRetrieveResponse,
 )
 
+# pyright: reportDeprecated=false
+
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
@@ -67,19 +69,22 @@ class TestFollowing:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_check(self, client: Spotted) -> None:
-        following = client.me.following.check(
-            ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-        )
+        with pytest.warns(DeprecationWarning):
+            following = client.me.following.check(
+                ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
+                type="artist",
+            )
+
         assert_matches_type(FollowingCheckResponse, following, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_check(self, client: Spotted) -> None:
-        response = client.me.following.with_raw_response.check(
-            ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.me.following.with_raw_response.check(
+                ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
+                type="artist",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -89,41 +94,47 @@ class TestFollowing:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_check(self, client: Spotted) -> None:
-        with client.me.following.with_streaming_response.check(
-            ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.me.following.with_streaming_response.check(
+                ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
+                type="artist",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            following = response.parse()
-            assert_matches_type(FollowingCheckResponse, following, path=["response"])
+                following = response.parse()
+                assert_matches_type(FollowingCheckResponse, following, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_follow(self, client: Spotted) -> None:
-        following = client.me.following.follow(
-            ids=["string"],
-        )
+        with pytest.warns(DeprecationWarning):
+            following = client.me.following.follow(
+                ids=["string"],
+            )
+
         assert following is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_follow_with_all_params(self, client: Spotted) -> None:
-        following = client.me.following.follow(
-            ids=["string"],
-            published=True,
-        )
+        with pytest.warns(DeprecationWarning):
+            following = client.me.following.follow(
+                ids=["string"],
+                published=True,
+            )
+
         assert following is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_follow(self, client: Spotted) -> None:
-        response = client.me.following.with_raw_response.follow(
-            ids=["string"],
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.me.following.with_raw_response.follow(
+                ids=["string"],
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -133,36 +144,42 @@ class TestFollowing:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_follow(self, client: Spotted) -> None:
-        with client.me.following.with_streaming_response.follow(
-            ids=["string"],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.me.following.with_streaming_response.follow(
+                ids=["string"],
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            following = response.parse()
-            assert following is None
+                following = response.parse()
+                assert following is None
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_unfollow(self, client: Spotted) -> None:
-        following = client.me.following.unfollow()
+        with pytest.warns(DeprecationWarning):
+            following = client.me.following.unfollow()
+
         assert following is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_unfollow_with_all_params(self, client: Spotted) -> None:
-        following = client.me.following.unfollow(
-            ids=["string"],
-            published=True,
-        )
+        with pytest.warns(DeprecationWarning):
+            following = client.me.following.unfollow(
+                ids=["string"],
+                published=True,
+            )
+
         assert following is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_unfollow(self, client: Spotted) -> None:
-        response = client.me.following.with_raw_response.unfollow()
+        with pytest.warns(DeprecationWarning):
+            response = client.me.following.with_raw_response.unfollow()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -172,12 +189,13 @@ class TestFollowing:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_unfollow(self, client: Spotted) -> None:
-        with client.me.following.with_streaming_response.unfollow() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.me.following.with_streaming_response.unfollow() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            following = response.parse()
-            assert following is None
+                following = response.parse()
+                assert following is None
 
         assert cast(Any, response.is_closed) is True
 
@@ -234,19 +252,22 @@ class TestAsyncFollowing:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_check(self, async_client: AsyncSpotted) -> None:
-        following = await async_client.me.following.check(
-            ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-        )
+        with pytest.warns(DeprecationWarning):
+            following = await async_client.me.following.check(
+                ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
+                type="artist",
+            )
+
         assert_matches_type(FollowingCheckResponse, following, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_check(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.following.with_raw_response.check(
-            ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.me.following.with_raw_response.check(
+                ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
+                type="artist",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -256,41 +277,47 @@ class TestAsyncFollowing:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_check(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.following.with_streaming_response.check(
-            ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-            type="artist",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.me.following.with_streaming_response.check(
+                ids="2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
+                type="artist",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            following = await response.parse()
-            assert_matches_type(FollowingCheckResponse, following, path=["response"])
+                following = await response.parse()
+                assert_matches_type(FollowingCheckResponse, following, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_follow(self, async_client: AsyncSpotted) -> None:
-        following = await async_client.me.following.follow(
-            ids=["string"],
-        )
+        with pytest.warns(DeprecationWarning):
+            following = await async_client.me.following.follow(
+                ids=["string"],
+            )
+
         assert following is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_follow_with_all_params(self, async_client: AsyncSpotted) -> None:
-        following = await async_client.me.following.follow(
-            ids=["string"],
-            published=True,
-        )
+        with pytest.warns(DeprecationWarning):
+            following = await async_client.me.following.follow(
+                ids=["string"],
+                published=True,
+            )
+
         assert following is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_follow(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.following.with_raw_response.follow(
-            ids=["string"],
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.me.following.with_raw_response.follow(
+                ids=["string"],
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -300,36 +327,42 @@ class TestAsyncFollowing:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_follow(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.following.with_streaming_response.follow(
-            ids=["string"],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.me.following.with_streaming_response.follow(
+                ids=["string"],
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            following = await response.parse()
-            assert following is None
+                following = await response.parse()
+                assert following is None
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_unfollow(self, async_client: AsyncSpotted) -> None:
-        following = await async_client.me.following.unfollow()
+        with pytest.warns(DeprecationWarning):
+            following = await async_client.me.following.unfollow()
+
         assert following is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_unfollow_with_all_params(self, async_client: AsyncSpotted) -> None:
-        following = await async_client.me.following.unfollow(
-            ids=["string"],
-            published=True,
-        )
+        with pytest.warns(DeprecationWarning):
+            following = await async_client.me.following.unfollow(
+                ids=["string"],
+                published=True,
+            )
+
         assert following is None
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_unfollow(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.following.with_raw_response.unfollow()
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.me.following.with_raw_response.unfollow()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -339,11 +372,12 @@ class TestAsyncFollowing:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_unfollow(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.following.with_streaming_response.unfollow() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.me.following.with_streaming_response.unfollow() as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            following = await response.parse()
-            assert following is None
+                following = await response.parse()
+                assert following is None
 
         assert cast(Any, response.is_closed) is True

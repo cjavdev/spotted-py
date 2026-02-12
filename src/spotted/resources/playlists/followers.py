@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import typing_extensions
+
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
@@ -41,6 +43,7 @@ class FollowersResource(SyncAPIResource):
         """
         return FollowersResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     def check(
         self,
         playlist_id: str,
@@ -55,6 +58,10 @@ class FollowersResource(SyncAPIResource):
     ) -> FollowerCheckResponse:
         """
         Check to see if the current user is following a specified playlist.
+
+        **Note:** This endpoint is deprecated. Use
+        [Check User's Saved Items](/documentation/web-api/reference/check-library-contains)
+        instead.
 
         Args:
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
@@ -86,6 +93,7 @@ class FollowersResource(SyncAPIResource):
             cast_to=FollowerCheckResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def follow(
         self,
         playlist_id: str,
@@ -100,6 +108,10 @@ class FollowersResource(SyncAPIResource):
     ) -> None:
         """
         Add the current user as a follower of a playlist.
+
+        **Note:** This endpoint is deprecated. Use
+        [Save Items to Library](/documentation/web-api/reference/save-library-items)
+        instead.
 
         Args:
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
@@ -131,6 +143,7 @@ class FollowersResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def unfollow(
         self,
         playlist_id: str,
@@ -144,6 +157,10 @@ class FollowersResource(SyncAPIResource):
     ) -> None:
         """
         Remove the current user as a follower of a playlist.
+
+        **Note:** This endpoint is deprecated. Use
+        [Remove Items from Library](/documentation/web-api/reference/remove-library-items)
+        instead.
 
         Args:
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
@@ -189,6 +206,7 @@ class AsyncFollowersResource(AsyncAPIResource):
         """
         return AsyncFollowersResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated("deprecated")
     async def check(
         self,
         playlist_id: str,
@@ -203,6 +221,10 @@ class AsyncFollowersResource(AsyncAPIResource):
     ) -> FollowerCheckResponse:
         """
         Check to see if the current user is following a specified playlist.
+
+        **Note:** This endpoint is deprecated. Use
+        [Check User's Saved Items](/documentation/web-api/reference/check-library-contains)
+        instead.
 
         Args:
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
@@ -234,6 +256,7 @@ class AsyncFollowersResource(AsyncAPIResource):
             cast_to=FollowerCheckResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def follow(
         self,
         playlist_id: str,
@@ -248,6 +271,10 @@ class AsyncFollowersResource(AsyncAPIResource):
     ) -> None:
         """
         Add the current user as a follower of a playlist.
+
+        **Note:** This endpoint is deprecated. Use
+        [Save Items to Library](/documentation/web-api/reference/save-library-items)
+        instead.
 
         Args:
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
@@ -279,6 +306,7 @@ class AsyncFollowersResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def unfollow(
         self,
         playlist_id: str,
@@ -292,6 +320,10 @@ class AsyncFollowersResource(AsyncAPIResource):
     ) -> None:
         """
         Remove the current user as a follower of a playlist.
+
+        **Note:** This endpoint is deprecated. Use
+        [Remove Items from Library](/documentation/web-api/reference/remove-library-items)
+        instead.
 
         Args:
           playlist_id: The [Spotify ID](/documentation/web-api/concepts/spotify-uris-ids) of the
@@ -321,14 +353,20 @@ class FollowersResourceWithRawResponse:
     def __init__(self, followers: FollowersResource) -> None:
         self._followers = followers
 
-        self.check = to_raw_response_wrapper(
-            followers.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                followers.check,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.follow = to_raw_response_wrapper(
-            followers.follow,
+        self.follow = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                followers.follow,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.unfollow = to_raw_response_wrapper(
-            followers.unfollow,
+        self.unfollow = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                followers.unfollow,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -336,14 +374,20 @@ class AsyncFollowersResourceWithRawResponse:
     def __init__(self, followers: AsyncFollowersResource) -> None:
         self._followers = followers
 
-        self.check = async_to_raw_response_wrapper(
-            followers.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                followers.check,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.follow = async_to_raw_response_wrapper(
-            followers.follow,
+        self.follow = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                followers.follow,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.unfollow = async_to_raw_response_wrapper(
-            followers.unfollow,
+        self.unfollow = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                followers.unfollow,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -351,14 +395,20 @@ class FollowersResourceWithStreamingResponse:
     def __init__(self, followers: FollowersResource) -> None:
         self._followers = followers
 
-        self.check = to_streamed_response_wrapper(
-            followers.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                followers.check,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.follow = to_streamed_response_wrapper(
-            followers.follow,
+        self.follow = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                followers.follow,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.unfollow = to_streamed_response_wrapper(
-            followers.unfollow,
+        self.unfollow = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                followers.unfollow,  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -366,12 +416,18 @@ class AsyncFollowersResourceWithStreamingResponse:
     def __init__(self, followers: AsyncFollowersResource) -> None:
         self._followers = followers
 
-        self.check = async_to_streamed_response_wrapper(
-            followers.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                followers.check,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.follow = async_to_streamed_response_wrapper(
-            followers.follow,
+        self.follow = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                followers.follow,  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.unfollow = async_to_streamed_response_wrapper(
-            followers.unfollow,
+        self.unfollow = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                followers.unfollow,  # pyright: ignore[reportDeprecated],
+            )
         )

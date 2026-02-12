@@ -64,17 +64,20 @@ class TestAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_check(self, client: Spotted) -> None:
-        album = client.me.albums.check(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        with pytest.warns(DeprecationWarning):
+            album = client.me.albums.check(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+            )
+
         assert_matches_type(AlbumCheckResponse, album, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_check(self, client: Spotted) -> None:
-        response = client.me.albums.with_raw_response.check(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = client.me.albums.with_raw_response.check(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -84,14 +87,15 @@ class TestAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_check(self, client: Spotted) -> None:
-        with client.me.albums.with_streaming_response.check(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            with client.me.albums.with_streaming_response.check(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            album = response.parse()
-            assert_matches_type(AlbumCheckResponse, album, path=["response"])
+                album = response.parse()
+                assert_matches_type(AlbumCheckResponse, album, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -228,17 +232,20 @@ class TestAsyncAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_check(self, async_client: AsyncSpotted) -> None:
-        album = await async_client.me.albums.check(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        with pytest.warns(DeprecationWarning):
+            album = await async_client.me.albums.check(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+            )
+
         assert_matches_type(AlbumCheckResponse, album, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_check(self, async_client: AsyncSpotted) -> None:
-        response = await async_client.me.albums.with_raw_response.check(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        )
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.me.albums.with_raw_response.check(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+            )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -248,14 +255,15 @@ class TestAsyncAlbums:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_check(self, async_client: AsyncSpotted) -> None:
-        async with async_client.me.albums.with_streaming_response.check(
-            ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        with pytest.warns(DeprecationWarning):
+            async with async_client.me.albums.with_streaming_response.check(
+                ids="382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            album = await response.parse()
-            assert_matches_type(AlbumCheckResponse, album, path=["response"])
+                album = await response.parse()
+                assert_matches_type(AlbumCheckResponse, album, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
