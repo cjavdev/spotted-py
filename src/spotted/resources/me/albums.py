@@ -106,6 +106,7 @@ class AlbumsResource(SyncAPIResource):
             model=AlbumListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def check(
         self,
         *,
@@ -120,6 +121,10 @@ class AlbumsResource(SyncAPIResource):
         """
         Check if one or more albums is already saved in the current Spotify user's 'Your
         Music' library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Check User's Saved Items](/documentation/web-api/reference/check-library-contains)
+        instead.
 
         Args:
           ids: A comma-separated list of the
@@ -161,6 +166,10 @@ class AlbumsResource(SyncAPIResource):
     ) -> None:
         """
         Remove one or more albums from the current user's 'Your Music' library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Remove Items from Library](/documentation/web-api/reference/remove-library-items)
+        instead.
 
         Args:
           ids: A JSON array of the
@@ -214,6 +223,10 @@ class AlbumsResource(SyncAPIResource):
     ) -> None:
         """
         Save one or more albums to the current user's 'Your Music' library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Save Items to Library](/documentation/web-api/reference/save-library-items)
+        instead.
 
         Args:
           ids: A JSON array of the
@@ -334,6 +347,7 @@ class AsyncAlbumsResource(AsyncAPIResource):
             model=AlbumListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def check(
         self,
         *,
@@ -348,6 +362,10 @@ class AsyncAlbumsResource(AsyncAPIResource):
         """
         Check if one or more albums is already saved in the current Spotify user's 'Your
         Music' library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Check User's Saved Items](/documentation/web-api/reference/check-library-contains)
+        instead.
 
         Args:
           ids: A comma-separated list of the
@@ -389,6 +407,10 @@ class AsyncAlbumsResource(AsyncAPIResource):
     ) -> None:
         """
         Remove one or more albums from the current user's 'Your Music' library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Remove Items from Library](/documentation/web-api/reference/remove-library-items)
+        instead.
 
         Args:
           ids: A JSON array of the
@@ -443,6 +465,10 @@ class AsyncAlbumsResource(AsyncAPIResource):
         """
         Save one or more albums to the current user's 'Your Music' library.
 
+        **Note:** This endpoint is deprecated. Use
+        [Save Items to Library](/documentation/web-api/reference/save-library-items)
+        instead.
+
         Args:
           ids: A JSON array of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
@@ -488,8 +514,10 @@ class AlbumsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             albums.list,
         )
-        self.check = to_raw_response_wrapper(
-            albums.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                albums.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -510,8 +538,10 @@ class AsyncAlbumsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             albums.list,
         )
-        self.check = async_to_raw_response_wrapper(
-            albums.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                albums.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -532,8 +562,10 @@ class AlbumsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             albums.list,
         )
-        self.check = to_streamed_response_wrapper(
-            albums.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                albums.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -554,8 +586,10 @@ class AsyncAlbumsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             albums.list,
         )
-        self.check = async_to_streamed_response_wrapper(
-            albums.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                albums.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(

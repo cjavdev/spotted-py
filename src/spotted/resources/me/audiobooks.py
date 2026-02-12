@@ -94,6 +94,7 @@ class AudiobooksResource(SyncAPIResource):
             model=AudiobookListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     def check(
         self,
         *,
@@ -108,6 +109,10 @@ class AudiobooksResource(SyncAPIResource):
         """
         Check if one or more audiobooks are already saved in the current Spotify user's
         library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Check User's Saved Items](/documentation/web-api/reference/check-library-contains)
+        instead.
 
         Args:
           ids: A comma-separated list of the
@@ -149,6 +154,10 @@ class AudiobooksResource(SyncAPIResource):
         """
         Remove one or more audiobooks from the Spotify user's library.
 
+        **Note:** This endpoint is deprecated. Use
+        [Remove Items from Library](/documentation/web-api/reference/remove-library-items)
+        instead.
+
         Args:
           ids: A comma-separated list of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
@@ -189,6 +198,10 @@ class AudiobooksResource(SyncAPIResource):
     ) -> None:
         """
         Save one or more audiobooks to the current Spotify user's library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Save Items to Library](/documentation/web-api/reference/save-library-items)
+        instead.
 
         Args:
           ids: A comma-separated list of the
@@ -286,6 +299,7 @@ class AsyncAudiobooksResource(AsyncAPIResource):
             model=AudiobookListResponse,
         )
 
+    @typing_extensions.deprecated("deprecated")
     async def check(
         self,
         *,
@@ -300,6 +314,10 @@ class AsyncAudiobooksResource(AsyncAPIResource):
         """
         Check if one or more audiobooks are already saved in the current Spotify user's
         library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Check User's Saved Items](/documentation/web-api/reference/check-library-contains)
+        instead.
 
         Args:
           ids: A comma-separated list of the
@@ -340,6 +358,10 @@ class AsyncAudiobooksResource(AsyncAPIResource):
     ) -> None:
         """
         Remove one or more audiobooks from the Spotify user's library.
+
+        **Note:** This endpoint is deprecated. Use
+        [Remove Items from Library](/documentation/web-api/reference/remove-library-items)
+        instead.
 
         Args:
           ids: A comma-separated list of the
@@ -382,6 +404,10 @@ class AsyncAudiobooksResource(AsyncAPIResource):
         """
         Save one or more audiobooks to the current Spotify user's library.
 
+        **Note:** This endpoint is deprecated. Use
+        [Save Items to Library](/documentation/web-api/reference/save-library-items)
+        instead.
+
         Args:
           ids: A comma-separated list of the
               [Spotify IDs](/documentation/web-api/concepts/spotify-uris-ids). For example:
@@ -416,8 +442,10 @@ class AudiobooksResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             audiobooks.list,
         )
-        self.check = to_raw_response_wrapper(
-            audiobooks.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                audiobooks.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
@@ -438,8 +466,10 @@ class AsyncAudiobooksResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             audiobooks.list,
         )
-        self.check = async_to_raw_response_wrapper(
-            audiobooks.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                audiobooks.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
@@ -460,8 +490,10 @@ class AudiobooksResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             audiobooks.list,
         )
-        self.check = to_streamed_response_wrapper(
-            audiobooks.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                audiobooks.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
@@ -482,8 +514,10 @@ class AsyncAudiobooksResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             audiobooks.list,
         )
-        self.check = async_to_streamed_response_wrapper(
-            audiobooks.check,
+        self.check = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                audiobooks.check,  # pyright: ignore[reportDeprecated],
+            )
         )
         self.remove = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
