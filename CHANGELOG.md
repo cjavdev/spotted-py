@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.29.0 (2026-02-12)
+
+Full Changelog: [v0.28.0...v0.29.0](https://github.com/cjavdev/spotted-py/compare/v0.28.0...v0.29.0)
+
+### Features
+
+* **api:** api update ([73f04e1](https://github.com/cjavdev/spotted-py/commit/73f04e1d9165a5a0c51848b6db87abc3b9df0299))
+
+
+### Chores
+
+* **internal:** bump dependencies ([06a6cd9](https://github.com/cjavdev/spotted-py/commit/06a6cd9343d98622452d8239e150604ca9553950))
+
 ## 0.28.0 (2026-02-10)
 
 Full Changelog: [v0.27.0...v0.28.0](https://github.com/cjavdev/spotted-py/compare/v0.27.0...v0.28.0)
