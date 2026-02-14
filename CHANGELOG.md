@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.29.1 (2026-02-14)
+
+Full Changelog: [v0.29.0...v0.29.1](https://github.com/cjavdev/spotted-py/compare/v0.29.0...v0.29.1)
+
+### Chores
+
+* format all `api.md` files ([0c765a0](https://github.com/cjavdev/spotted-py/commit/0c765a0834316c9608d2e90cdf1604694a478ab0))
+* **internal:** fix lint error on Python 3.14 ([1ad528a](https://github.com/cjavdev/spotted-py/commit/1ad528a08561a1cfb0baca91b485d5b665b576c6))
+
 ## 0.29.0 (2026-02-12)
 
 Full Changelog: [v0.28.0...v0.29.0](https://github.com/cjavdev/spotted-py/compare/v0.28.0...v0.29.0)
