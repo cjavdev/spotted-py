@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestQueue:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_add(self, client: Spotted) -> None:
         queue = client.me.player.queue.add(
@@ -25,7 +25,7 @@ class TestQueue:
         )
         assert queue is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_add_with_all_params(self, client: Spotted) -> None:
         queue = client.me.player.queue.add(
@@ -34,7 +34,7 @@ class TestQueue:
         )
         assert queue is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_add(self, client: Spotted) -> None:
         response = client.me.player.queue.with_raw_response.add(
@@ -46,7 +46,7 @@ class TestQueue:
         queue = response.parse()
         assert queue is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_add(self, client: Spotted) -> None:
         with client.me.player.queue.with_streaming_response.add(
@@ -60,13 +60,13 @@ class TestQueue:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get(self, client: Spotted) -> None:
         queue = client.me.player.queue.get()
         assert_matches_type(QueueGetResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get(self, client: Spotted) -> None:
         response = client.me.player.queue.with_raw_response.get()
@@ -76,7 +76,7 @@ class TestQueue:
         queue = response.parse()
         assert_matches_type(QueueGetResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get(self, client: Spotted) -> None:
         with client.me.player.queue.with_streaming_response.get() as response:
@@ -94,7 +94,7 @@ class TestAsyncQueue:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_add(self, async_client: AsyncSpotted) -> None:
         queue = await async_client.me.player.queue.add(
@@ -102,7 +102,7 @@ class TestAsyncQueue:
         )
         assert queue is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_add_with_all_params(self, async_client: AsyncSpotted) -> None:
         queue = await async_client.me.player.queue.add(
@@ -111,7 +111,7 @@ class TestAsyncQueue:
         )
         assert queue is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_add(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.queue.with_raw_response.add(
@@ -123,7 +123,7 @@ class TestAsyncQueue:
         queue = await response.parse()
         assert queue is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_add(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.queue.with_streaming_response.add(
@@ -137,13 +137,13 @@ class TestAsyncQueue:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get(self, async_client: AsyncSpotted) -> None:
         queue = await async_client.me.player.queue.get()
         assert_matches_type(QueueGetResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.queue.with_raw_response.get()
@@ -153,7 +153,7 @@ class TestAsyncQueue:
         queue = await response.parse()
         assert_matches_type(QueueGetResponse, queue, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.queue.with_streaming_response.get() as response:
