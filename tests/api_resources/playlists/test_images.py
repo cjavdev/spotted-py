@@ -85,7 +85,7 @@ class TestImages:
                 body=b"raw file contents",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Spotted) -> None:
         image = client.playlists.images.list(
@@ -93,7 +93,7 @@ class TestImages:
         )
         assert_matches_type(ImageListResponse, image, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Spotted) -> None:
         response = client.playlists.images.with_raw_response.list(
@@ -105,7 +105,7 @@ class TestImages:
         image = response.parse()
         assert_matches_type(ImageListResponse, image, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Spotted) -> None:
         with client.playlists.images.with_streaming_response.list(
@@ -119,7 +119,7 @@ class TestImages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_list(self, client: Spotted) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `playlist_id` but received ''"):
@@ -193,7 +193,7 @@ class TestAsyncImages:
                 body=b"raw file contents",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncSpotted) -> None:
         image = await async_client.playlists.images.list(
@@ -201,7 +201,7 @@ class TestAsyncImages:
         )
         assert_matches_type(ImageListResponse, image, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncSpotted) -> None:
         response = await async_client.playlists.images.with_raw_response.list(
@@ -213,7 +213,7 @@ class TestAsyncImages:
         image = await response.parse()
         assert_matches_type(ImageListResponse, image, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncSpotted) -> None:
         async with async_client.playlists.images.with_streaming_response.list(
@@ -227,7 +227,7 @@ class TestAsyncImages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncSpotted) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `playlist_id` but received ''"):
