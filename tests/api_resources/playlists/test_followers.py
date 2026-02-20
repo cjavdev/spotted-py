@@ -19,7 +19,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestFollowers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_check(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -29,7 +29,7 @@ class TestFollowers:
 
         assert_matches_type(FollowerCheckResponse, follower, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_check_with_all_params(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -40,7 +40,7 @@ class TestFollowers:
 
         assert_matches_type(FollowerCheckResponse, follower, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_check(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -53,7 +53,7 @@ class TestFollowers:
         follower = response.parse()
         assert_matches_type(FollowerCheckResponse, follower, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_check(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -68,7 +68,7 @@ class TestFollowers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_check(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -77,7 +77,7 @@ class TestFollowers:
                     playlist_id="",
                 )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_follow(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -87,7 +87,7 @@ class TestFollowers:
 
         assert follower is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_follow_with_all_params(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -98,7 +98,7 @@ class TestFollowers:
 
         assert follower is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_follow(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -111,7 +111,7 @@ class TestFollowers:
         follower = response.parse()
         assert follower is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_follow(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -126,7 +126,7 @@ class TestFollowers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_follow(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -135,7 +135,7 @@ class TestFollowers:
                     playlist_id="",
                 )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_unfollow(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -145,7 +145,7 @@ class TestFollowers:
 
         assert follower is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_unfollow(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -158,7 +158,7 @@ class TestFollowers:
         follower = response.parse()
         assert follower is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_unfollow(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -173,7 +173,7 @@ class TestFollowers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_unfollow(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -188,7 +188,7 @@ class TestAsyncFollowers:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_check(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -198,7 +198,7 @@ class TestAsyncFollowers:
 
         assert_matches_type(FollowerCheckResponse, follower, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_check_with_all_params(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -209,7 +209,7 @@ class TestAsyncFollowers:
 
         assert_matches_type(FollowerCheckResponse, follower, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_check(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -222,7 +222,7 @@ class TestAsyncFollowers:
         follower = await response.parse()
         assert_matches_type(FollowerCheckResponse, follower, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_check(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -237,7 +237,7 @@ class TestAsyncFollowers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_check(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -246,7 +246,7 @@ class TestAsyncFollowers:
                     playlist_id="",
                 )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_follow(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -256,7 +256,7 @@ class TestAsyncFollowers:
 
         assert follower is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_follow_with_all_params(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -267,7 +267,7 @@ class TestAsyncFollowers:
 
         assert follower is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_follow(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -280,7 +280,7 @@ class TestAsyncFollowers:
         follower = await response.parse()
         assert follower is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_follow(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -295,7 +295,7 @@ class TestAsyncFollowers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_follow(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -304,7 +304,7 @@ class TestAsyncFollowers:
                     playlist_id="",
                 )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_unfollow(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -314,7 +314,7 @@ class TestAsyncFollowers:
 
         assert follower is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_unfollow(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -327,7 +327,7 @@ class TestAsyncFollowers:
         follower = await response.parse()
         assert follower is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_unfollow(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -342,7 +342,7 @@ class TestAsyncFollowers:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_unfollow(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):

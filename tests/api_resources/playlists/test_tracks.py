@@ -25,7 +25,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTracks:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -35,7 +35,7 @@ class TestTracks:
 
         assert_matches_type(TrackUpdateResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -51,7 +51,7 @@ class TestTracks:
 
         assert_matches_type(TrackUpdateResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -64,7 +64,7 @@ class TestTracks:
         track = response.parse()
         assert_matches_type(TrackUpdateResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -79,7 +79,7 @@ class TestTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_update(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -88,7 +88,7 @@ class TestTracks:
                     playlist_id="",
                 )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -98,7 +98,7 @@ class TestTracks:
 
         assert_matches_type(SyncCursorURLPage[PlaylistTrackObject], track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -113,7 +113,7 @@ class TestTracks:
 
         assert_matches_type(SyncCursorURLPage[PlaylistTrackObject], track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -126,7 +126,7 @@ class TestTracks:
         track = response.parse()
         assert_matches_type(SyncCursorURLPage[PlaylistTrackObject], track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -141,7 +141,7 @@ class TestTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_list(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -150,7 +150,7 @@ class TestTracks:
                     playlist_id="",
                 )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_add(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -160,7 +160,7 @@ class TestTracks:
 
         assert_matches_type(TrackAddResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_add_with_all_params(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -173,7 +173,7 @@ class TestTracks:
 
         assert_matches_type(TrackAddResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_add(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -186,7 +186,7 @@ class TestTracks:
         track = response.parse()
         assert_matches_type(TrackAddResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_add(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -201,7 +201,7 @@ class TestTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_add(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -210,7 +210,7 @@ class TestTracks:
                     playlist_id="",
                 )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_remove(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -221,7 +221,7 @@ class TestTracks:
 
         assert_matches_type(TrackRemoveResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_remove_with_all_params(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -234,7 +234,7 @@ class TestTracks:
 
         assert_matches_type(TrackRemoveResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_remove(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -248,7 +248,7 @@ class TestTracks:
         track = response.parse()
         assert_matches_type(TrackRemoveResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_remove(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -264,7 +264,7 @@ class TestTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_remove(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -280,7 +280,7 @@ class TestAsyncTracks:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -290,7 +290,7 @@ class TestAsyncTracks:
 
         assert_matches_type(TrackUpdateResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -306,7 +306,7 @@ class TestAsyncTracks:
 
         assert_matches_type(TrackUpdateResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -319,7 +319,7 @@ class TestAsyncTracks:
         track = await response.parse()
         assert_matches_type(TrackUpdateResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -334,7 +334,7 @@ class TestAsyncTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -343,7 +343,7 @@ class TestAsyncTracks:
                     playlist_id="",
                 )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -353,7 +353,7 @@ class TestAsyncTracks:
 
         assert_matches_type(AsyncCursorURLPage[PlaylistTrackObject], track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -368,7 +368,7 @@ class TestAsyncTracks:
 
         assert_matches_type(AsyncCursorURLPage[PlaylistTrackObject], track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -381,7 +381,7 @@ class TestAsyncTracks:
         track = await response.parse()
         assert_matches_type(AsyncCursorURLPage[PlaylistTrackObject], track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -396,7 +396,7 @@ class TestAsyncTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -405,7 +405,7 @@ class TestAsyncTracks:
                     playlist_id="",
                 )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_add(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -415,7 +415,7 @@ class TestAsyncTracks:
 
         assert_matches_type(TrackAddResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_add_with_all_params(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -428,7 +428,7 @@ class TestAsyncTracks:
 
         assert_matches_type(TrackAddResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_add(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -441,7 +441,7 @@ class TestAsyncTracks:
         track = await response.parse()
         assert_matches_type(TrackAddResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_add(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -456,7 +456,7 @@ class TestAsyncTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_add(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -465,7 +465,7 @@ class TestAsyncTracks:
                     playlist_id="",
                 )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_remove(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -476,7 +476,7 @@ class TestAsyncTracks:
 
         assert_matches_type(TrackRemoveResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_remove_with_all_params(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -489,7 +489,7 @@ class TestAsyncTracks:
 
         assert_matches_type(TrackRemoveResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_remove(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -503,7 +503,7 @@ class TestAsyncTracks:
         track = await response.parse()
         assert_matches_type(TrackRemoveResponse, track, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_remove(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -519,7 +519,7 @@ class TestAsyncTracks:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_remove(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
