@@ -20,7 +20,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestEpisodes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Spotted) -> None:
         episode = client.episodes.retrieve(
@@ -28,7 +28,7 @@ class TestEpisodes:
         )
         assert_matches_type(EpisodeObject, episode, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Spotted) -> None:
         episode = client.episodes.retrieve(
@@ -37,7 +37,7 @@ class TestEpisodes:
         )
         assert_matches_type(EpisodeObject, episode, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Spotted) -> None:
         response = client.episodes.with_raw_response.retrieve(
@@ -49,7 +49,7 @@ class TestEpisodes:
         episode = response.parse()
         assert_matches_type(EpisodeObject, episode, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Spotted) -> None:
         with client.episodes.with_streaming_response.retrieve(
@@ -63,7 +63,7 @@ class TestEpisodes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Spotted) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -71,7 +71,7 @@ class TestEpisodes:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_bulk_retrieve(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -81,7 +81,7 @@ class TestEpisodes:
 
         assert_matches_type(EpisodeBulkRetrieveResponse, episode, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_bulk_retrieve_with_all_params(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -92,7 +92,7 @@ class TestEpisodes:
 
         assert_matches_type(EpisodeBulkRetrieveResponse, episode, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_bulk_retrieve(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -105,7 +105,7 @@ class TestEpisodes:
         episode = response.parse()
         assert_matches_type(EpisodeBulkRetrieveResponse, episode, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_bulk_retrieve(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -126,7 +126,7 @@ class TestAsyncEpisodes:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncSpotted) -> None:
         episode = await async_client.episodes.retrieve(
@@ -134,7 +134,7 @@ class TestAsyncEpisodes:
         )
         assert_matches_type(EpisodeObject, episode, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncSpotted) -> None:
         episode = await async_client.episodes.retrieve(
@@ -143,7 +143,7 @@ class TestAsyncEpisodes:
         )
         assert_matches_type(EpisodeObject, episode, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncSpotted) -> None:
         response = await async_client.episodes.with_raw_response.retrieve(
@@ -155,7 +155,7 @@ class TestAsyncEpisodes:
         episode = await response.parse()
         assert_matches_type(EpisodeObject, episode, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncSpotted) -> None:
         async with async_client.episodes.with_streaming_response.retrieve(
@@ -169,7 +169,7 @@ class TestAsyncEpisodes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncSpotted) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -177,7 +177,7 @@ class TestAsyncEpisodes:
                 id="",
             )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -187,7 +187,7 @@ class TestAsyncEpisodes:
 
         assert_matches_type(EpisodeBulkRetrieveResponse, episode, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_bulk_retrieve_with_all_params(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -198,7 +198,7 @@ class TestAsyncEpisodes:
 
         assert_matches_type(EpisodeBulkRetrieveResponse, episode, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -211,7 +211,7 @@ class TestAsyncEpisodes:
         episode = await response.parse()
         assert_matches_type(EpisodeBulkRetrieveResponse, episode, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_bulk_retrieve(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
