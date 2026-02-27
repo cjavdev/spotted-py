@@ -19,7 +19,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAudioAnalysis:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -29,7 +29,7 @@ class TestAudioAnalysis:
 
         assert_matches_type(AudioAnalysisRetrieveResponse, audio_analysis, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -42,7 +42,7 @@ class TestAudioAnalysis:
         audio_analysis = response.parse()
         assert_matches_type(AudioAnalysisRetrieveResponse, audio_analysis, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -57,7 +57,7 @@ class TestAudioAnalysis:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -72,7 +72,7 @@ class TestAsyncAudioAnalysis:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -82,7 +82,7 @@ class TestAsyncAudioAnalysis:
 
         assert_matches_type(AudioAnalysisRetrieveResponse, audio_analysis, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -95,7 +95,7 @@ class TestAsyncAudioAnalysis:
         audio_analysis = await response.parse()
         assert_matches_type(AudioAnalysisRetrieveResponse, audio_analysis, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -110,7 +110,7 @@ class TestAsyncAudioAnalysis:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
