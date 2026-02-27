@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.29.1 (2026-02-27)
+
+Full Changelog: [v0.29.0...v0.29.1](https://github.com/cjavdev/spotted-py/compare/v0.29.0...v0.29.1)
+
+### Chores
+
+* **ci:** bump uv version ([a60f457](https://github.com/cjavdev/spotted-py/commit/a60f4572482ec57c53f822fbdb409fb8e84f2ebb))
+* format all `api.md` files ([0c765a0](https://github.com/cjavdev/spotted-py/commit/0c765a0834316c9608d2e90cdf1604694a478ab0))
+* **internal:** add request options to SSE classes ([35923f2](https://github.com/cjavdev/spotted-py/commit/35923f23dbd85ccadb99a87e25623ab97e52f773))
+* **internal:** fix lint error on Python 3.14 ([1ad528a](https://github.com/cjavdev/spotted-py/commit/1ad528a08561a1cfb0baca91b485d5b665b576c6))
+* **internal:** make `test_proxy_environment_variables` more resilient ([16f2319](https://github.com/cjavdev/spotted-py/commit/16f2319ffb13f13b8e32ca33a17e3c8bb710faf7))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([ab8ffff](https://github.com/cjavdev/spotted-py/commit/ab8ffffda62316d34ea0806e6f73999a81330b69))
+* **internal:** remove mock server code ([7a2c1e6](https://github.com/cjavdev/spotted-py/commit/7a2c1e6e66d2e40b238b800966a20c073053428d))
+* update mock server docs ([64f3993](https://github.com/cjavdev/spotted-py/commit/64f39936c62c933691f2cd205edaabd8c7098279))
+
 ## 0.29.0 (2026-02-12)
 
 Full Changelog: [v0.28.0...v0.29.0](https://github.com/cjavdev/spotted-py/compare/v0.28.0...v0.29.0)
