@@ -23,13 +23,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPlayer:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_currently_playing(self, client: Spotted) -> None:
         player = client.me.player.get_currently_playing()
         assert_matches_type(PlayerGetCurrentlyPlayingResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_currently_playing_with_all_params(self, client: Spotted) -> None:
         player = client.me.player.get_currently_playing(
@@ -38,7 +38,7 @@ class TestPlayer:
         )
         assert_matches_type(PlayerGetCurrentlyPlayingResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_currently_playing(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.get_currently_playing()
@@ -48,7 +48,7 @@ class TestPlayer:
         player = response.parse()
         assert_matches_type(PlayerGetCurrentlyPlayingResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_currently_playing(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.get_currently_playing() as response:
@@ -60,13 +60,13 @@ class TestPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_devices(self, client: Spotted) -> None:
         player = client.me.player.get_devices()
         assert_matches_type(PlayerGetDevicesResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_devices(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.get_devices()
@@ -76,7 +76,7 @@ class TestPlayer:
         player = response.parse()
         assert_matches_type(PlayerGetDevicesResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_devices(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.get_devices() as response:
@@ -88,13 +88,13 @@ class TestPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_state(self, client: Spotted) -> None:
         player = client.me.player.get_state()
         assert_matches_type(PlayerGetStateResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_state_with_all_params(self, client: Spotted) -> None:
         player = client.me.player.get_state(
@@ -103,7 +103,7 @@ class TestPlayer:
         )
         assert_matches_type(PlayerGetStateResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_state(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.get_state()
@@ -113,7 +113,7 @@ class TestPlayer:
         player = response.parse()
         assert_matches_type(PlayerGetStateResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_state(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.get_state() as response:
@@ -125,13 +125,13 @@ class TestPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_recently_played(self, client: Spotted) -> None:
         player = client.me.player.list_recently_played()
         assert_matches_type(SyncCursorURLPage[PlayerListRecentlyPlayedResponse], player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_recently_played_with_all_params(self, client: Spotted) -> None:
         player = client.me.player.list_recently_played(
@@ -141,7 +141,7 @@ class TestPlayer:
         )
         assert_matches_type(SyncCursorURLPage[PlayerListRecentlyPlayedResponse], player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list_recently_played(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.list_recently_played()
@@ -151,7 +151,7 @@ class TestPlayer:
         player = response.parse()
         assert_matches_type(SyncCursorURLPage[PlayerListRecentlyPlayedResponse], player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list_recently_played(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.list_recently_played() as response:
@@ -163,13 +163,13 @@ class TestPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_pause_playback(self, client: Spotted) -> None:
         player = client.me.player.pause_playback()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_pause_playback_with_all_params(self, client: Spotted) -> None:
         player = client.me.player.pause_playback(
@@ -177,7 +177,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_pause_playback(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.pause_playback()
@@ -187,7 +187,7 @@ class TestPlayer:
         player = response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_pause_playback(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.pause_playback() as response:
@@ -199,7 +199,7 @@ class TestPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_seek_to_position(self, client: Spotted) -> None:
         player = client.me.player.seek_to_position(
@@ -207,7 +207,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_seek_to_position_with_all_params(self, client: Spotted) -> None:
         player = client.me.player.seek_to_position(
@@ -216,7 +216,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_seek_to_position(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.seek_to_position(
@@ -228,7 +228,7 @@ class TestPlayer:
         player = response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_seek_to_position(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.seek_to_position(
@@ -242,7 +242,7 @@ class TestPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_set_repeat_mode(self, client: Spotted) -> None:
         player = client.me.player.set_repeat_mode(
@@ -250,7 +250,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_set_repeat_mode_with_all_params(self, client: Spotted) -> None:
         player = client.me.player.set_repeat_mode(
@@ -259,7 +259,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_set_repeat_mode(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.set_repeat_mode(
@@ -271,7 +271,7 @@ class TestPlayer:
         player = response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_set_repeat_mode(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.set_repeat_mode(
@@ -285,7 +285,7 @@ class TestPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_set_volume(self, client: Spotted) -> None:
         player = client.me.player.set_volume(
@@ -293,7 +293,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_set_volume_with_all_params(self, client: Spotted) -> None:
         player = client.me.player.set_volume(
@@ -302,7 +302,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_set_volume(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.set_volume(
@@ -314,7 +314,7 @@ class TestPlayer:
         player = response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_set_volume(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.set_volume(
@@ -328,13 +328,13 @@ class TestPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_skip_next(self, client: Spotted) -> None:
         player = client.me.player.skip_next()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_skip_next_with_all_params(self, client: Spotted) -> None:
         player = client.me.player.skip_next(
@@ -342,7 +342,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_skip_next(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.skip_next()
@@ -352,7 +352,7 @@ class TestPlayer:
         player = response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_skip_next(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.skip_next() as response:
@@ -364,13 +364,13 @@ class TestPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_skip_previous(self, client: Spotted) -> None:
         player = client.me.player.skip_previous()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_skip_previous_with_all_params(self, client: Spotted) -> None:
         player = client.me.player.skip_previous(
@@ -378,7 +378,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_skip_previous(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.skip_previous()
@@ -388,7 +388,7 @@ class TestPlayer:
         player = response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_skip_previous(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.skip_previous() as response:
@@ -400,13 +400,13 @@ class TestPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_start_playback(self, client: Spotted) -> None:
         player = client.me.player.start_playback()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_start_playback_with_all_params(self, client: Spotted) -> None:
         player = client.me.player.start_playback(
@@ -419,7 +419,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_start_playback(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.start_playback()
@@ -429,7 +429,7 @@ class TestPlayer:
         player = response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_start_playback(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.start_playback() as response:
@@ -441,7 +441,7 @@ class TestPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_toggle_shuffle(self, client: Spotted) -> None:
         player = client.me.player.toggle_shuffle(
@@ -449,7 +449,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_toggle_shuffle_with_all_params(self, client: Spotted) -> None:
         player = client.me.player.toggle_shuffle(
@@ -458,7 +458,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_toggle_shuffle(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.toggle_shuffle(
@@ -470,7 +470,7 @@ class TestPlayer:
         player = response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_toggle_shuffle(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.toggle_shuffle(
@@ -484,7 +484,7 @@ class TestPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_transfer(self, client: Spotted) -> None:
         player = client.me.player.transfer(
@@ -492,7 +492,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_transfer_with_all_params(self, client: Spotted) -> None:
         player = client.me.player.transfer(
@@ -502,7 +502,7 @@ class TestPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_transfer(self, client: Spotted) -> None:
         response = client.me.player.with_raw_response.transfer(
@@ -514,7 +514,7 @@ class TestPlayer:
         player = response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_transfer(self, client: Spotted) -> None:
         with client.me.player.with_streaming_response.transfer(
@@ -534,13 +534,13 @@ class TestAsyncPlayer:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_currently_playing(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.get_currently_playing()
         assert_matches_type(PlayerGetCurrentlyPlayingResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_currently_playing_with_all_params(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.get_currently_playing(
@@ -549,7 +549,7 @@ class TestAsyncPlayer:
         )
         assert_matches_type(PlayerGetCurrentlyPlayingResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_currently_playing(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.get_currently_playing()
@@ -559,7 +559,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert_matches_type(PlayerGetCurrentlyPlayingResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_currently_playing(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.get_currently_playing() as response:
@@ -571,13 +571,13 @@ class TestAsyncPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_devices(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.get_devices()
         assert_matches_type(PlayerGetDevicesResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_devices(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.get_devices()
@@ -587,7 +587,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert_matches_type(PlayerGetDevicesResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_devices(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.get_devices() as response:
@@ -599,13 +599,13 @@ class TestAsyncPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_state(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.get_state()
         assert_matches_type(PlayerGetStateResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_state_with_all_params(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.get_state(
@@ -614,7 +614,7 @@ class TestAsyncPlayer:
         )
         assert_matches_type(PlayerGetStateResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_state(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.get_state()
@@ -624,7 +624,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert_matches_type(PlayerGetStateResponse, player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_state(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.get_state() as response:
@@ -636,13 +636,13 @@ class TestAsyncPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_recently_played(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.list_recently_played()
         assert_matches_type(AsyncCursorURLPage[PlayerListRecentlyPlayedResponse], player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_recently_played_with_all_params(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.list_recently_played(
@@ -652,7 +652,7 @@ class TestAsyncPlayer:
         )
         assert_matches_type(AsyncCursorURLPage[PlayerListRecentlyPlayedResponse], player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list_recently_played(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.list_recently_played()
@@ -662,7 +662,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert_matches_type(AsyncCursorURLPage[PlayerListRecentlyPlayedResponse], player, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list_recently_played(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.list_recently_played() as response:
@@ -674,13 +674,13 @@ class TestAsyncPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_pause_playback(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.pause_playback()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_pause_playback_with_all_params(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.pause_playback(
@@ -688,7 +688,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_pause_playback(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.pause_playback()
@@ -698,7 +698,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_pause_playback(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.pause_playback() as response:
@@ -710,7 +710,7 @@ class TestAsyncPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_seek_to_position(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.seek_to_position(
@@ -718,7 +718,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_seek_to_position_with_all_params(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.seek_to_position(
@@ -727,7 +727,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_seek_to_position(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.seek_to_position(
@@ -739,7 +739,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_seek_to_position(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.seek_to_position(
@@ -753,7 +753,7 @@ class TestAsyncPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_set_repeat_mode(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.set_repeat_mode(
@@ -761,7 +761,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_set_repeat_mode_with_all_params(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.set_repeat_mode(
@@ -770,7 +770,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_set_repeat_mode(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.set_repeat_mode(
@@ -782,7 +782,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_set_repeat_mode(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.set_repeat_mode(
@@ -796,7 +796,7 @@ class TestAsyncPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_set_volume(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.set_volume(
@@ -804,7 +804,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_set_volume_with_all_params(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.set_volume(
@@ -813,7 +813,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_set_volume(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.set_volume(
@@ -825,7 +825,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_set_volume(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.set_volume(
@@ -839,13 +839,13 @@ class TestAsyncPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_skip_next(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.skip_next()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_skip_next_with_all_params(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.skip_next(
@@ -853,7 +853,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_skip_next(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.skip_next()
@@ -863,7 +863,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_skip_next(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.skip_next() as response:
@@ -875,13 +875,13 @@ class TestAsyncPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_skip_previous(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.skip_previous()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_skip_previous_with_all_params(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.skip_previous(
@@ -889,7 +889,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_skip_previous(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.skip_previous()
@@ -899,7 +899,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_skip_previous(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.skip_previous() as response:
@@ -911,13 +911,13 @@ class TestAsyncPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_start_playback(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.start_playback()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_start_playback_with_all_params(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.start_playback(
@@ -930,7 +930,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_start_playback(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.start_playback()
@@ -940,7 +940,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_start_playback(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.start_playback() as response:
@@ -952,7 +952,7 @@ class TestAsyncPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_toggle_shuffle(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.toggle_shuffle(
@@ -960,7 +960,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_toggle_shuffle_with_all_params(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.toggle_shuffle(
@@ -969,7 +969,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_toggle_shuffle(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.toggle_shuffle(
@@ -981,7 +981,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_toggle_shuffle(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.toggle_shuffle(
@@ -995,7 +995,7 @@ class TestAsyncPlayer:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_transfer(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.transfer(
@@ -1003,7 +1003,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_transfer_with_all_params(self, async_client: AsyncSpotted) -> None:
         player = await async_client.me.player.transfer(
@@ -1013,7 +1013,7 @@ class TestAsyncPlayer:
         )
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_transfer(self, async_client: AsyncSpotted) -> None:
         response = await async_client.me.player.with_raw_response.transfer(
@@ -1025,7 +1025,7 @@ class TestAsyncPlayer:
         player = await response.parse()
         assert player is None
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_transfer(self, async_client: AsyncSpotted) -> None:
         async with async_client.me.player.with_streaming_response.transfer(

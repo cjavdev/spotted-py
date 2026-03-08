@@ -22,7 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBrowse:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_featured_playlists(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -30,7 +30,7 @@ class TestBrowse:
 
         assert_matches_type(BrowseGetFeaturedPlaylistsResponse, browse, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_featured_playlists_with_all_params(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -42,7 +42,7 @@ class TestBrowse:
 
         assert_matches_type(BrowseGetFeaturedPlaylistsResponse, browse, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_featured_playlists(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -53,7 +53,7 @@ class TestBrowse:
         browse = response.parse()
         assert_matches_type(BrowseGetFeaturedPlaylistsResponse, browse, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_featured_playlists(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -66,7 +66,7 @@ class TestBrowse:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_new_releases(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -74,7 +74,7 @@ class TestBrowse:
 
         assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_get_new_releases_with_all_params(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -85,7 +85,7 @@ class TestBrowse:
 
         assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_get_new_releases(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -96,7 +96,7 @@ class TestBrowse:
         browse = response.parse()
         assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_get_new_releases(self, client: Spotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -115,7 +115,7 @@ class TestAsyncBrowse:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_featured_playlists(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -123,7 +123,7 @@ class TestAsyncBrowse:
 
         assert_matches_type(BrowseGetFeaturedPlaylistsResponse, browse, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_featured_playlists_with_all_params(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -135,7 +135,7 @@ class TestAsyncBrowse:
 
         assert_matches_type(BrowseGetFeaturedPlaylistsResponse, browse, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_featured_playlists(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -146,7 +146,7 @@ class TestAsyncBrowse:
         browse = await response.parse()
         assert_matches_type(BrowseGetFeaturedPlaylistsResponse, browse, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_featured_playlists(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -159,7 +159,7 @@ class TestAsyncBrowse:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_new_releases(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -167,7 +167,7 @@ class TestAsyncBrowse:
 
         assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_get_new_releases_with_all_params(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -178,7 +178,7 @@ class TestAsyncBrowse:
 
         assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_get_new_releases(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
@@ -189,7 +189,7 @@ class TestAsyncBrowse:
         browse = await response.parse()
         assert_matches_type(BrowseGetNewReleasesResponse, browse, path=["response"])
 
-    @pytest.mark.skip(reason="Prism tests are disabled")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_get_new_releases(self, async_client: AsyncSpotted) -> None:
         with pytest.warns(DeprecationWarning):
