@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.29.2 (2026-03-17)
+
+Full Changelog: [v0.29.1...v0.29.2](https://github.com/cjavdev/spotted-py/compare/v0.29.1...v0.29.2)
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([a4b87a3](https://github.com/cjavdev/spotted-py/commit/a4b87a382e013f3470d15dff211f3f117863796a))
+
 ## 0.29.1 (2026-03-17)
 
 Full Changelog: [v0.29.0...v0.29.1](https://github.com/cjavdev/spotted-py/compare/v0.29.0...v0.29.1)
