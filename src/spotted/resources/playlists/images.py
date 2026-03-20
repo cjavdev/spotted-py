@@ -17,6 +17,7 @@ from ..._types import (
     AsyncBinaryTypes,
     not_given,
 )
+from ..._utils import path_template
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -93,7 +94,7 @@ class ImagesResource(SyncAPIResource):
         extra_headers = {"Accept": "application/binary", **(extra_headers or {})}
         extra_headers = {"Content-Type": "image/jpeg", **(extra_headers or {})}
         return self._put(
-            f"/playlists/{playlist_id}/images",
+            path_template("/playlists/{playlist_id}/images", playlist_id=playlist_id),
             content=read_file_content(body) if isinstance(body, os.PathLike) else body,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -130,7 +131,7 @@ class ImagesResource(SyncAPIResource):
         if not playlist_id:
             raise ValueError(f"Expected a non-empty value for `playlist_id` but received {playlist_id!r}")
         return self._get(
-            f"/playlists/{playlist_id}/images",
+            path_template("/playlists/{playlist_id}/images", playlist_id=playlist_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -192,7 +193,7 @@ class AsyncImagesResource(AsyncAPIResource):
         extra_headers = {"Accept": "application/binary", **(extra_headers or {})}
         extra_headers = {"Content-Type": "image/jpeg", **(extra_headers or {})}
         return await self._put(
-            f"/playlists/{playlist_id}/images",
+            path_template("/playlists/{playlist_id}/images", playlist_id=playlist_id),
             content=await async_read_file_content(body) if isinstance(body, os.PathLike) else body,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -229,7 +230,7 @@ class AsyncImagesResource(AsyncAPIResource):
         if not playlist_id:
             raise ValueError(f"Expected a non-empty value for `playlist_id` but received {playlist_id!r}")
         return await self._get(
-            f"/playlists/{playlist_id}/images",
+            path_template("/playlists/{playlist_id}/images", playlist_id=playlist_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

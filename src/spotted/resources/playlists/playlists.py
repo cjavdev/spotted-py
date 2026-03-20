@@ -22,7 +22,7 @@ from .tracks import (
 )
 from ...types import playlist_update_params, playlist_retrieve_params
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .followers import (
     FollowersResource,
@@ -137,7 +137,7 @@ class PlaylistsResource(SyncAPIResource):
         if not playlist_id:
             raise ValueError(f"Expected a non-empty value for `playlist_id` but received {playlist_id!r}")
         return self._get(
-            f"/playlists/{playlist_id}",
+            path_template("/playlists/{playlist_id}", playlist_id=playlist_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -206,7 +206,7 @@ class PlaylistsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `playlist_id` but received {playlist_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
-            f"/playlists/{playlist_id}",
+            path_template("/playlists/{playlist_id}", playlist_id=playlist_id),
             body=maybe_transform(
                 {
                     "collaborative": collaborative,
@@ -315,7 +315,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
         if not playlist_id:
             raise ValueError(f"Expected a non-empty value for `playlist_id` but received {playlist_id!r}")
         return await self._get(
-            f"/playlists/{playlist_id}",
+            path_template("/playlists/{playlist_id}", playlist_id=playlist_id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -384,7 +384,7 @@ class AsyncPlaylistsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `playlist_id` but received {playlist_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
-            f"/playlists/{playlist_id}",
+            path_template("/playlists/{playlist_id}", playlist_id=playlist_id),
             body=await async_maybe_transform(
                 {
                     "collaborative": collaborative,
