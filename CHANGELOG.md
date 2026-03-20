@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.29.3 (2026-03-20)
+
+Full Changelog: [v0.29.2...v0.29.3](https://github.com/cjavdev/spotted-py/compare/v0.29.2...v0.29.3)
+
+### Bug Fixes
+
+* sanitize endpoint path params ([6910cea](https://github.com/cjavdev/spotted-py/commit/6910cea51d1f38133e08b90473f79b675335bd89))
+
+
+### Chores
+
+* **internal:** tweak CI branches ([823d3cf](https://github.com/cjavdev/spotted-py/commit/823d3cf337da6abd5953604436896f5b50abaa25))
+
 ## 0.29.2 (2026-03-17)
 
 Full Changelog: [v0.29.1...v0.29.2](https://github.com/cjavdev/spotted-py/compare/v0.29.1...v0.29.2)
