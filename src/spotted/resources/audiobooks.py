@@ -8,7 +8,7 @@ import httpx
 
 from ..types import audiobook_retrieve_params, audiobook_bulk_retrieve_params, audiobook_list_chapters_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -88,7 +88,7 @@ class AudiobooksResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/audiobooks/{id}",
+            path_template("/audiobooks/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -208,7 +208,7 @@ class AudiobooksResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/audiobooks/{id}/chapters",
+            path_template("/audiobooks/{id}/chapters", id=id),
             page=SyncCursorURLPage[SimplifiedChapterObject],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -290,7 +290,7 @@ class AsyncAudiobooksResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/audiobooks/{id}",
+            path_template("/audiobooks/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -412,7 +412,7 @@ class AsyncAudiobooksResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/audiobooks/{id}/chapters",
+            path_template("/audiobooks/{id}/chapters", id=id),
             page=AsyncCursorURLPage[SimplifiedChapterObject],
             options=make_request_options(
                 extra_headers=extra_headers,
