@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.30.0 (2026-03-27)
+
+Full Changelog: [v0.29.3...v0.30.0](https://github.com/cjavdev/spotted-py/compare/v0.29.3...v0.30.0)
+
+### Features
+
+* **internal:** implement indices array format for query and form serialization ([f5b8faf](https://github.com/cjavdev/spotted-py/commit/f5b8faf5630e5b6bcf03d68249864f5910be9832))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([9fc5dcd](https://github.com/cjavdev/spotted-py/commit/9fc5dcdce122bfaa12a236a742efad065899f582))
+* **internal:** update gitignore ([853fdad](https://github.com/cjavdev/spotted-py/commit/853fdad42d780cb989909fec9b5c8c726ae25155))
+
 ## 0.29.3 (2026-03-20)
 
 Full Changelog: [v0.29.2...v0.29.3](https://github.com/cjavdev/spotted-py/compare/v0.29.2...v0.29.3)
