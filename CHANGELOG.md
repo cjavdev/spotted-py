@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.30.1 (2026-04-08)
+
+Full Changelog: [v0.30.0...v0.30.1](https://github.com/cjavdev/spotted-py/compare/v0.30.0...v0.30.1)
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([9a75d17](https://github.com/cjavdev/spotted-py/commit/9a75d1773946f8dd03763dddb4885ade283dbc92))
+
 ## 0.30.0 (2026-03-27)
 
 Full Changelog: [v0.29.3...v0.30.0](https://github.com/cjavdev/spotted-py/compare/v0.29.3...v0.30.0)
