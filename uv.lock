@@ -1334,7 +1334,7 @@ wheels = [
 
 [[package]]
 name = "spotted"
-version = "0.30.0"
+version = "0.30.1"
 source = { editable = "." }
 dependencies = [
     { name = "anyio" },
