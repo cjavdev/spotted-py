@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.30.2 (2026-04-11)
+
+Full Changelog: [v0.30.1...v0.30.2](https://github.com/cjavdev/spotted-py/compare/v0.30.1...v0.30.2)
+
+### Bug Fixes
+
+* ensure file data are only sent as 1 parameter ([0606da6](https://github.com/cjavdev/spotted-py/commit/0606da6d710dabea68577edeab31999eea7fcb63))
+
 ## 0.30.1 (2026-04-08)
 
 Full Changelog: [v0.30.0...v0.30.1](https://github.com/cjavdev/spotted-py/compare/v0.30.0...v0.30.1)
