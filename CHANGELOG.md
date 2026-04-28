@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.31.0 (2026-04-28)
+
+Full Changelog: [v0.30.2...v0.31.0](https://github.com/cjavdev/spotted-py/compare/v0.30.2...v0.31.0)
+
+### Features
+
+* support setting headers via env ([2333b19](https://github.com/cjavdev/spotted-py/commit/2333b19244c9f10fac1bd3289c5e905de3c7d185))
+
+
+### Bug Fixes
+
+* use correct field name format for multipart file arrays ([0d49396](https://github.com/cjavdev/spotted-py/commit/0d49396559bef1f4599d5659ee8af3d8caba0f6b))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([87c78db](https://github.com/cjavdev/spotted-py/commit/87c78db5210f3aead9a2cf2f3225f4bd4f4c33de))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([c2ca58c](https://github.com/cjavdev/spotted-py/commit/c2ca58cabb89c54b62505fc128ca106098e3f045))
+
 ## 0.30.2 (2026-04-11)
 
 Full Changelog: [v0.30.1...v0.30.2](https://github.com/cjavdev/spotted-py/compare/v0.30.1...v0.30.2)
