@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.31.1 (2026-05-09)
+
+Full Changelog: [v0.31.0...v0.31.1](https://github.com/cjavdev/spotted-py/compare/v0.31.0...v0.31.1)
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([b6fe6cf](https://github.com/cjavdev/spotted-py/commit/b6fe6cfad7cb93b556b00509c73afdeac7aab0f7))
+
+
+### Chores
+
+* **internal:** reformat pyproject.toml ([21b12da](https://github.com/cjavdev/spotted-py/commit/21b12dadbf71316ee44247819a9b9e9be04931fe))
+
 ## 0.31.0 (2026-04-28)
 
 Full Changelog: [v0.30.2...v0.31.0](https://github.com/cjavdev/spotted-py/compare/v0.30.2...v0.31.0)
