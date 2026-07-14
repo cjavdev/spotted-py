@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.33.1 (2026-07-14)
+
+Full Changelog: [v0.33.0...v0.33.1](https://github.com/cjavdev/spotted-py/compare/v0.33.0...v0.33.1)
+
+### Bug Fixes
+
+* **internal:** resolve build failures ([de70971](https://github.com/cjavdev/spotted-py/commit/de70971abaa9a151c7c781fa06e8568d16fe661b))
+
 ## 0.33.0 (2026-05-30)
 
 Full Changelog: [v0.32.0...v0.33.0](https://github.com/cjavdev/spotted-py/compare/v0.32.0...v0.33.0)
