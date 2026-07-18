@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.34.0 (2026-07-18)
+
+Full Changelog: [v0.33.1...v0.34.0](https://github.com/cjavdev/spotted-py/compare/v0.33.1...v0.34.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([b812795](https://github.com/cjavdev/spotted-py/commit/b812795adf3218d615e3c6ccbcf2301ee4ad48e8))
+
 ## 0.33.1 (2026-07-14)
 
 Full Changelog: [v0.33.0...v0.33.1](https://github.com/cjavdev/spotted-py/compare/v0.33.0...v0.33.1)
